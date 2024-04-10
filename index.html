@@ -19,22 +19,26 @@
       </ul>
       <ul>
         <li><a href="#" class="secondary navbar-link" ;">About</a></li>
+        <li><a href="/contact" class="secondary navbar-link">contact</a></li>
       </ul>
     </nav>
 
-    <div class="about-section">
-      <p>Here we'll have some about stuff</p>
-    </div>
   </header>
 
-  <section id="main-section">
-    <div id="ad-box">
-      <p>ads here</p>
+  <div class="about-section container">
+    <p>Here we'll have some about stuff</p>
+    <p>AudioReaper will harvest your music...blah blah</p>
+  </div>
+
+  <div class=" container-fluid grid main">
+    <div id="drop_zone" ondrop="dropHandler(event);" ondragover="dragOverHandler(event);">
+      <p>Drag and drop a folder here or click to select files</p>
+      <input type="file" id="fileElem" multiple accept="audio/mp3" onchange="handleFiles(this.files)" webkitdirectory
+        directory style="display:none">
+      <button onclick="document.getElementById('fileElem').click();">Browse</button>
     </div>
-    <div class="folder-div">
-      <p>Bob</p>
-    </div>
-  </section>
+
+  </div>
 
   <div class=" container disclaimer-box">
     <p>
@@ -48,10 +52,17 @@
 
 
   <footer>
-    <p>
-      add grid layout for footer
-    </p>
+   <section id="footer-about">
+    <p>Coom</p>
+   </section>
+   <section id="footer-docs">
+    <p>Bri</p>
+   </section id="footer-contact">
+   <section>
+     <p>Cocknikito</p>
+   </section>
   </footer>
+
 </body>
 
 </html>
