@@ -10,6 +10,7 @@
   <!-- jsmediatags CDN -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jsmediatags/3.9.5/jsmediatags.min.js"></script>
   <!-- My scripts -->
+  <script type="text/javascript" src="/index.js"></script>
   <script type="text/javascript" src="/fileIO.js"></script>
 </head>
 
@@ -37,16 +38,20 @@
     <p>AudioReaper will harvest your music...blah blah</p>
   </div>
 
-  <div class="container-fluid grid main">
+  <div class="container main">
     <div id="drop_zone" ondrop="dropHandler(event);" ondragover="dragOverHandler(event);">
       <p>Drag and drop a folder here or click to select files</p>
       <input type="file" id="fileElem" multiple accept="audio/mp3" onchange="handleFiles(this.files)" webkitdirectory
         directory style="display:none">
       <button onclick="document.getElementById('fileElem').click();">Browse</button>
     </div>
+    <div class="container form-box">
+      <input type="text" class="playlist-form" name="playlistName" placeholder="Playlist name..."
+        aria-label="playlistName">
+        <button id="harvest-btn" disabled="true" onclick="harvest(event);">Harvest!</button>
+    </div>
   </div>
-
-
+  
   <div class=" container disclaimer-box">
     <p>
       Here lies the diclaimer that this program isn't perfect

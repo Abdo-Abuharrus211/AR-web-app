@@ -1,19 +1,41 @@
 var metadata = [];
 
 function dropHandler(event) {
-    event.preventDefault(); // This needs to be event.preventDefault(), not input.preventDefault()
+    event.preventDefault();
+    metadata = [];
     var items = event.dataTransfer.items;
     if (items) {
-        // Use DataTransferItemList interface to access the files
         for (var i = 0; i < items.length; i++) {
-            // If dropped items aren't files, reject them
             if (items[i].kind === 'file') {
-                var file = items[i].getAsFile();
-                readMusicTags(file);
+                var entry = items[i].webkitGetAsEntry();
+
+                if (entry) {
+                    if (entry.isDirectory) {
+                        // Handle directory entry here
+                        readDirectory(entry);
+                    } else if (entry.isFile) {
+                        entry.file(readMusicTags);
+                    }
+                }
             }
         }
     }
+    console.log(metadata);
 }
+
+function readDirectory(entry) {
+    var dirReader = entry.createReader();
+    dirReader.readEntries(function (entries) {
+        for (var i = 0; i < entries.length; i++) {
+            if (entries[i].isFile) {
+                entries[i].file(readMusicTags);
+            } else if (entries[i].isDirectory) {
+                readDirectory(entries[i]); // Recursively read nested directories
+            }
+        }
+    });
+}
+
 
 function dragOverHandler(event) {
     event.preventDefault(); // TODO: Add a visual cue to show that the file can be dropped!!!
@@ -23,14 +45,8 @@ function handleFiles(files) {
     for (var i = 0; i < files.length; i++) {
         readMusicTags(files[i]);
     }
+    console.log(metadata);
 }
-
-function printFileNames(inputFolder) {
-    // console.log(typeof inputFolder);
-    // console.log(inputFolder[0]);
-    // console.log(typeof inputFolder[0]);
-}
-
 
 
 function readMusicTags(file) {
@@ -40,20 +56,18 @@ function readMusicTags(file) {
     };
     jsmediatags.read(file, {
         onSuccess: function (tag) {
-            var songData = {                
+            var songData = {
                 Title: tag.tags.title || 'Unknown Title',
                 Artist: tag.tags.artist || 'Unknown Artist',
-                Album: tag.tags.album || 'Unknown Album',
+                    Album: tag.tags.album || 'Unknown Album',
                 // console.log('Artist:', tag.tags.artist);
                 // console.log('Album:', tag.tags.album);
             };
-            metadata.push(songData);
-        },
+        metadata.push(songData);
+    },
         onError: function (error) {
             console.log('Error reading metadata from:', file.name);
             console.log(error);
         }
     });
 }
-
-console.log(metadata);

@@ -41,7 +41,7 @@ nav a {
 }
 
 #drop_zone {
-    margin: auto;
+    margin: 2% 10%;
     border: 2px dashed #007bff;
     border-radius: 5px;
     padding: 20px;
@@ -57,9 +57,27 @@ nav a {
 
 
 .main {
+    padding: 2%;
     margin: 5% auto;
-    display: flex;
 }
+
+.form-box{
+    margin-left: 10%;
+    width: 50%;
+    display: flex;
+    align-items: center;
+}
+.playlist-form{
+    width: 40%;
+    margin: 3% auto;
+}
+#harvest-btn{
+    margin: 5%;
+}
+
+
+
+
 
 .disclaimer-box{
     margin: auto;
