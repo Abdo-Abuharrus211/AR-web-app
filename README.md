@@ -12,4 +12,5 @@ This will serve as the web app and front-end for Project AudioReaper
 - [ ] Store the Spotify credentials and pass to backend
 - [ ] Account for remaining interactivity and DOM updating
 - [ ] Send backend the packaged data via API handler (like Axios)
+- [ ] Finish UI design
 - [ ] Bob
