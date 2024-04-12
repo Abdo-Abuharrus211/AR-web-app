@@ -7,7 +7,9 @@
   <title>AudioReaper</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
   <link rel="stylesheet" href="styles/styles.css">
-
+  <!-- jsmediatags CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jsmediatags/3.9.5/jsmediatags.min.js"></script>
+  <!-- My scripts -->
   <script type="text/javascript" src="/fileIO.js"></script>
 </head>
 
@@ -35,15 +37,15 @@
     <p>AudioReaper will harvest your music...blah blah</p>
   </div>
 
-  <div class=" container-fluid grid main">
+  <div class="container-fluid grid main">
     <div id="drop_zone" ondrop="dropHandler(event);" ondragover="dragOverHandler(event);">
       <p>Drag and drop a folder here or click to select files</p>
       <input type="file" id="fileElem" multiple accept="audio/mp3" onchange="handleFiles(this.files)" webkitdirectory
         directory style="display:none">
       <button onclick="document.getElementById('fileElem').click();">Browse</button>
     </div>
-
   </div>
+
 
   <div class=" container disclaimer-box">
     <p>
@@ -57,15 +59,15 @@
 
 
   <footer>
-   <section id="footer-about">
-    <p>About</p>
-   </section>
-   <section id="footer-docs">
-    <p>Docs</p>
-   </section id="footer-contact">
-   <section>
-     <p>Contact</p>
-   </section>
+    <section id="footer-about">
+      <p>About</p>
+    </section>
+    <section id="footer-docs">
+      <p>Docs</p>
+    </section id="footer-contact">
+    <section>
+      <p>Contact</p>
+    </section>
   </footer>
 
 </body>
