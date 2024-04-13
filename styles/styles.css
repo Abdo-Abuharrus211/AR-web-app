@@ -40,7 +40,7 @@ nav a {
     margin: 5% 7%;
 }
 
-#drop_zone {
+#drop-zone {
     margin: 2% 10%;
     border: 2px dashed #007bff;
     border-radius: 5px;
@@ -50,7 +50,7 @@ nav a {
     cursor: pointer;
 }
 
-#drop_zone:hover {
+#drop-zone:hover {
     background-color: #f8f9fa;
 }
 

@@ -9,9 +9,6 @@
   <link rel="stylesheet" href="styles/styles.css">
   <!-- jsmediatags CDN -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jsmediatags/3.9.5/jsmediatags.min.js"></script>
-  <!-- My scripts -->
-  <script type="text/javascript" src="/index.js"></script>
-  <script type="text/javascript" src="/fileIO.js"></script>
 </head>
 
 <body>
@@ -39,11 +36,11 @@
   </div>
 
   <div class="container main">
-    <div id="drop_zone" ondrop="dropHandler(event);" ondragover="dragOverHandler(event);">
-      <p>Drag and drop a folder here or click to select files</p>
+    <div id="drop-zone" ondrop="dropHandler(event);" ondragover="dragOverHandler(event);">
+      <p>Drag and drop a folder or click</p>
       <input type="file" id="fileElem" multiple accept="audio/mp3" onchange="handleFiles(this.files)" webkitdirectory
         directory style="display:none">
-      <button onclick="document.getElementById('fileElem').click();">Browse</button>
+      <button onclick="document.getElementById('fileElem').click();">Browse...</button>
     </div>
     <div class="container form-box">
       <input type="text" class="playlist-form" name="playlistName" placeholder="Playlist name..."
@@ -52,6 +49,7 @@
     </div>
   </div>
   
+  <!-- /////////////////////////////// -->
   <div class=" container disclaimer-box">
     <p>
       Here lies the diclaimer that this program isn't perfect
@@ -74,7 +72,9 @@
       <p>Contact</p>
     </section>
   </footer>
-
+ <!-- My scripts -->
+ <script type="text/javascript" src="/index.js"></script>
+ <script type="text/javascript" src="/fileIO.js"></script>
 </body>
 
 </html>
