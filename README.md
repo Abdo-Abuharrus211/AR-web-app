@@ -8,7 +8,7 @@ This will serve as the web app and front-end for Project AudioReaper
 - [X] Add "Harvest" button
 - [X] Make form and button dynamic and restricted until ready
 - [ ] Modify HTML to reflect drag over
-- [ ] Change HTML appearance when file dropped in
+- [ ] Change HTML appearance when file dropped in by changing the drop zone accordingly
 - [ ] Store the Spotify credentials and pass to backend
 - [ ] Account for remaining interactivity and DOM updating
 - [ ] Send backend the packaged data via API handler (like Axios or AJAx)

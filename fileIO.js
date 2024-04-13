@@ -1,8 +1,9 @@
-var metadata = [];
+var metadataArray = [];
+var folderCheck = false;
 
 function dropHandler(event) {
     event.preventDefault();
-    metadata = [];
+    metadataArray = [];
     var items = event.dataTransfer.items;
     if (items) {
         for (var i = 0; i < items.length; i++) {
@@ -20,7 +21,8 @@ function dropHandler(event) {
             }
         }
     }
-    console.log(metadata);
+    folderCheck = true;
+    console.log(metadataArray);
 }
 
 function readDirectory(entry) {
@@ -44,7 +46,8 @@ function handleFiles(files) {
     for (var i = 0; i < files.length; i++) {
         readMusicTags(files[i]);
     }
-    console.log(metadata);
+    console.log(metadataArray);
+    folderCheck = true;
 }
 
 
@@ -58,15 +61,21 @@ function readMusicTags(file) {
             var songData = {
                 Title: tag.tags.title || 'Unknown Title',
                 Artist: tag.tags.artist || 'Unknown Artist',
-                    Album: tag.tags.album || 'Unknown Album',
+                Album: tag.tags.album || 'Unknown Album',
                 // console.log('Artist:', tag.tags.artist);
                 // console.log('Album:', tag.tags.album);
             };
-        metadata.push(songData);
-    },
+            metadataArray.push(songData);
+        },
         onError: function (error) {
             console.log('Error reading metadata from:', file.name);
             console.log(error);
         }
     });
 }
+
+// module.exports = {
+//     folderAdded: folderCheck,
+//     metadata: metadataArray
+// }
+
