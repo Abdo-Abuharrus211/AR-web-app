@@ -36,25 +36,29 @@ nav a {
     text-align: center;
 }
 
-.folder-div {
-    background-color: antiquewhite;
-    margin: 5% 7%;
-}
+
 
 #drop-zone {
     margin: 2% 10%;
-    border: 2px dashed #007bff;
     border-radius: 5px;
     padding: 20px;
     text-align: center;
-    color: #007bff;
     cursor: pointer;
 }
+
 
 #drop-zone:hover {
     background-color: #f8f9fa;
 }
 
+.folder-not-added{
+    color: #007bff;
+    border: 2px dashed #007bff;
+}
+.folder-added {
+    color: #88FF88;
+    border: 2px solid #88FF88;
+}
 
 
 .main {
