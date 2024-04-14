@@ -11,24 +11,52 @@ playlistNameInput.addEventListener("input", () => {
 });
 
 
-const folderInput = document.getElementById("folderInput");
-folderInput.addEventListener("change", handleFolderInput);
-folderInput.addEventListener("drop", handleFolderInput);
+const folderInput = document.getElementById("folderInput").addEventListener("change", handleFolderInput);
+const dropInput = document.getElementById('drop-zone').addEventListener("drop", handleFolderInput);
+
 function handleFolderInput(e) {
-    if (Array.from(e.target.files).some(file => file.type === "audio/mpeg")){
-        isFolderAdded = true;
+    e.preventDefault();
+    var items;
+    if (e.type === "change") {
+        items = e.target.files;
+    } else if (e.type === "drop") {
+        items = e.dataTransfer.items;
     }
-    console.log(isFolderAdded);
-    validateInput();
+
+    for (let i = 0; i < items.length; i++) {
+        const item = items[i].webkitGetAsEntry();
+        if (item) {
+            traverseFileTree(item);
+        }
+    }
 }
 
+function traverseFileTree(item, path = "") {
+    if (item.isFile) {
+        // Get file
+        item.file((file) => {
+            if (file.name.endsWith(".mp3") || file.type === "audio/mpeg") {
+                isFolderAdded = true;
+            }
+            validateInput();
+        });
+    } else if (item.isDirectory) {
+        // Get folder contents
+        const dirReader = item.createReader();
+        dirReader.readEntries((entries) => {
+            for (let i = 0; i < entries.length; i++) {
+                traverseFileTree(entries[i], path + item.name + "/");
+            }
+        });
+    }
+}
 function validateInput() {
-    if(isFolderAdded == true && playlistNameValue != ""){
+    if (isFolderAdded == true && playlistNameValue != "") {
         document.getElementById("harvest-btn").disabled = false;
         console.log("ready to harvest");
-        }
-        else {
-            document.getElementById("harvest-btn").disabled = true;
-            console.log("Aborting harvest! Enter playlist name!")
-        }
+    }
+    else {
+        document.getElementById("harvest-btn").disabled = true;
+        console.log("Aborting harvest! Enter playlist name!")
+    }
 }
