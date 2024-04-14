@@ -54,6 +54,7 @@ function handleFiles(files) {
 function readMusicTags(file) {
     if (!file.name.toLowerCase().endsWith('.mp3')) {
         console.log('Not an MP3 file:', file.name);
+        indicateWrongFileTypes();
         return;
     };
     jsmediatags.read(file, {
@@ -79,7 +80,19 @@ function readMusicTags(file) {
 function indicateFolderAdded(){
     var drop = document.getElementById('drop-zone');
     drop.classList.replace('folder-not-added', 'folder-added');
+    drop.classList.replace('wrong-file-types', 'folder-added');
+    //TODO: pop-up stating a folder with MP3s added + name of folder
 }
+
+function indicateWrongFileTypes(){
+    var drop = document.getElementById('drop-zone');
+    drop.classList.replace('folder-not-added', 'wrong-file-types');
+    //TODO: pop-up stating a folder with wrong file types and to add a folder with MP3s
+
+}
+
+
+
 // module.exports = {
 //     folderAdded: folderCheck,
 //     metadata: metadataArray
