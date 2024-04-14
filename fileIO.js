@@ -22,6 +22,7 @@ function dropHandler(event) {
         }
     }
     folderCheck = true;
+    indicateFolderAdded();
     console.log(metadataArray);
 }
 
@@ -47,6 +48,7 @@ function handleFiles(files) {
         readMusicTags(files[i]);
     }
     console.log(metadataArray);
+    indicateFolderAdded();
     folderCheck = true;
 }
 
@@ -74,6 +76,11 @@ function readMusicTags(file) {
     });
 }
 
+
+function indicateFolderAdded(){
+    var drop = document.getElementById('drop-zone');
+    drop.classList.replace('folder-not-added', 'folder-added');
+}
 // module.exports = {
 //     folderAdded: folderCheck,
 //     metadata: metadataArray
