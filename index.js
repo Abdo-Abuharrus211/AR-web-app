@@ -19,14 +19,19 @@ function handleFolderInput(e) {
     var items;
     if (e.type === "change") {
         items = e.target.files;
+        for (let i = 0; i < items.length; i++) {
+            if (items[i].name.endsWith(".mp3") || items[i].type === "audio/mpeg") {
+                isFolderAdded = true;
+            }
+        }
+        validateInput();
     } else if (e.type === "drop") {
         items = e.dataTransfer.items;
-    }
-
-    for (let i = 0; i < items.length; i++) {
-        const item = items[i].webkitGetAsEntry();
-        if (item) {
-            traverseFileTree(item);
+        for (let i = 0; i < items.length; i++) {
+            const item = items[i].webkitGetAsEntry();
+            if (item) {
+                traverseFileTree(item);
+            }
         }
     }
 }
