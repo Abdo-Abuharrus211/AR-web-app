@@ -22,7 +22,6 @@ function dropHandler(event) {
         }
     }
     folderCheck = true;
-    indicateFolderAdded();
     console.log(metadataArray);
 }
 
@@ -48,7 +47,6 @@ function handleFiles(files) {
         readMusicTags(files[i]);
     }
     console.log(metadataArray);
-    indicateFolderAdded();
     folderCheck = true;
 }
 
@@ -68,6 +66,7 @@ function readMusicTags(file) {
                 // console.log('Album:', tag.tags.album);
             };
             metadataArray.push(songData);
+            indicateFolderAdded();
         },
         onError: function (error) {
             console.log('Error reading metadata from:', file.name);
