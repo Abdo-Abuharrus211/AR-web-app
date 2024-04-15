@@ -1,6 +1,15 @@
 var metadataArray = [];
 var folderCheck = false;
 
+
+//Event listeners
+document.getElementById('drop-zone').addEventListener('drop', dropHandler);
+document.getElementById('drop-zone').addEventListener('dragover', dragOverHandler);
+document.getElementById('folderInput').addEventListener('change', function(event) {
+    handleFiles(event.target.files);
+});
+
+
 function dropHandler(event) {
     event.preventDefault();
     metadataArray = [];
@@ -50,7 +59,6 @@ function handleFiles(files) {
     folderCheck = true;
 }
 
-
 function readMusicTags(file) {
     if (!file.name.toLowerCase().endsWith('.mp3')) {
         console.log('Not an MP3 file:', file.name);
@@ -60,9 +68,9 @@ function readMusicTags(file) {
     jsmediatags.read(file, {
         onSuccess: function (tag) {
             var songData = {
-                Title: tag.tags.title || 'Unknown Title',
-                Artist: tag.tags.artist || 'Unknown Artist',
-                Album: tag.tags.album || 'Unknown Album',
+                Title: tag.tags.title || '',
+                Artist: tag.tags.artist || '',
+                Album: tag.tags.album || '',
                 // console.log('Artist:', tag.tags.artist);
                 // console.log('Album:', tag.tags.album);
             };
@@ -75,7 +83,6 @@ function readMusicTags(file) {
         }
     });
 }
-
 
 function indicateFolderAdded(){
     var drop = document.getElementById('drop-zone');
@@ -92,9 +99,4 @@ function indicateWrongFileTypes(){
 }
 
 
-
-// module.exports = {
-//     folderAdded: folderCheck,
-//     metadata: metadataArray
-// }
-
+export var metadata = metadataArray;

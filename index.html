@@ -37,19 +37,18 @@
   </div>
 
   <div class="container main">
-    <div id="drop-zone" class="folder-not-added" ondrop="dropHandler(event);" ondragover="dragOverHandler(event);">
+    <div id="drop-zone" class="folder-not-added">
       <p>Drag and drop a folder or click</p>
-      <input type="file" id="folderInput" multiple accept="audio/mp3" onchange="handleFiles(this.files)" webkitdirectory
-        directory style="display:none">
+      <input type="file" id="folderInput" multiple accept="audio/mp3" webkitdirectory directory style="display:none">
       <button onclick="document.getElementById('folderInput').click();">Browse...</button>
     </div>
     <div class="container form-box">
       <input type="text" class="playlist-form" name="playlistName" placeholder="Playlist name..."
         aria-label="playlistName">
-        <button id="harvest-btn" disabled="true" onclick="harvest(event);">Harvest!</button>
+      <button id="harvest-btn" disabled="true" onclick="harvest(event);">Harvest!</button>
     </div>
   </div>
-  
+
   <!-- /////////////////////////////// -->
   <div class=" container disclaimer-box">
     <p>
@@ -73,9 +72,10 @@
       <p>Contact</p>
     </section>
   </footer>
- <!-- My scripts -->
- <script type="text/javascript" src="/index.js"></script>
- <script type="text/javascript" src="/fileIO.js"></script>
+  <!-- My scripts -->
+  <script type="module" src="/index.js"></script>
+  <script type="module" src="/fileIO.js"></script>
+  <script type="module" src="/metadata.js"></script>
 </body>
 
 </html>
