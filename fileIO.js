@@ -1,6 +1,8 @@
 var metadataArray = [];
 var folderCheck = false;
-
+var filesToRead = 0;
+var filesRead = 0;
+var metadataPromise;
 
 //Event listeners
 document.getElementById('drop-zone').addEventListener('drop', dropHandler);
@@ -10,8 +12,24 @@ document.getElementById('folderInput').addEventListener('change', function(event
 });
 
 
+function resetMetadataPromise() {
+    metadataPromise = new Promise((resolve, reject) => {
+        var checkInterval = setInterval(() => {
+            if (filesToRead === filesRead) {
+                clearInterval(checkInterval);
+                resolve(metadataArray);
+            }
+        }, 100);
+    });
+}
+
+// Call resetMetadataPromise to create the initial Promise
+resetMetadataPromise();
+
 function dropHandler(event) {
     event.preventDefault();
+    filesToRead = items.length;
+    resetMetadataPromise();
     metadataArray = [];
     var items = event.dataTransfer.items;
     if (items) {
@@ -52,6 +70,8 @@ function dragOverHandler(event) {
 }
 
 function handleFiles(files) {
+    filesToRead = files.length;
+    resetMetadataPromise();
     for (var i = 0; i < files.length; i++) {
         readMusicTags(files[i]);
     }
@@ -63,6 +83,7 @@ function readMusicTags(file) {
     if (!file.name.toLowerCase().endsWith('.mp3')) {
         console.log('Not an MP3 file:', file.name);
         indicateWrongFileTypes();
+        filesRead++;
         return;
     };
     jsmediatags.read(file, {
@@ -70,9 +91,7 @@ function readMusicTags(file) {
             var songData = {
                 Title: tag.tags.title || '',
                 Artist: tag.tags.artist || '',
-                Album: tag.tags.album || '',
-                // console.log('Artist:', tag.tags.artist);
-                // console.log('Album:', tag.tags.album);
+                Album: tag.tags.album || ''
             };
             metadataArray.push(songData);
             indicateFolderAdded();
@@ -82,6 +101,7 @@ function readMusicTags(file) {
             console.log(error);
         }
     });
+    filesRead++;
 }
 
 function indicateFolderAdded(){
@@ -99,4 +119,6 @@ function indicateWrongFileTypes(){
 }
 
 
-export var metadata = metadataArray;
+export function getMetadata(){
+    return metadataPromise;
+}

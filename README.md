@@ -10,6 +10,7 @@ This will serve as the web app and front-end for Project AudioReaper
 - [X] Modify HTML to reflect drag over
 - [X] Change HTML appearance when file dropped in by changing the drop zone accordingly
 - [X] Reflect HTML when wrong folders are added.
+- [ ] Create a custom event to ensure updating the metadata in fileIO.js
 - [ ] Store the Spotify credentials and pass to backend
 - [ ] Account for remaining interactivity and DOM updating
 - [ ] Send backend the packaged data via API handler (like Axios or AJAx)
