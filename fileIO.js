@@ -1,4 +1,5 @@
 var metadataArray = [];
+var fileNames = [];
 var folderCheck = false;
 var filesToRead = 0;
 var filesRead = 0;
@@ -7,7 +8,7 @@ var metadataPromise;
 //Event listeners
 document.getElementById('drop-zone').addEventListener('drop', dropHandler);
 document.getElementById('drop-zone').addEventListener('dragover', dragOverHandler);
-document.getElementById('folderInput').addEventListener('change', function(event) {
+document.getElementById('folderInput').addEventListener('change', function (event) {
     handleFiles(event.target.files);
 });
 
@@ -86,6 +87,7 @@ function readMusicTags(file) {
         filesRead++;
         return;
     };
+    fileNames.push(file.name);
     jsmediatags.read(file, {
         onSuccess: function (tag) {
             var songData = {
@@ -104,14 +106,14 @@ function readMusicTags(file) {
     filesRead++;
 }
 
-function indicateFolderAdded(){
+function indicateFolderAdded() {
     var drop = document.getElementById('drop-zone');
     drop.classList.replace('folder-not-added', 'folder-added');
     drop.classList.replace('wrong-file-types', 'folder-added');
     //TODO: pop-up stating a folder with MP3s added + name of folder
 }
 
-function indicateWrongFileTypes(){
+function indicateWrongFileTypes() {
     var drop = document.getElementById('drop-zone');
     drop.classList.replace('folder-not-added', 'wrong-file-types');
     //TODO: pop-up stating a folder with wrong file types and to add a folder with MP3s
@@ -119,6 +121,10 @@ function indicateWrongFileTypes(){
 }
 
 
-export function getMetadata(){
+export function getMetadata() {
     return metadataPromise;
+}
+
+export function getFileNames() {
+    return fileNames;
 }
