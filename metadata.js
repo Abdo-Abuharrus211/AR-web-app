@@ -5,14 +5,16 @@ var unprocessedMetadata = [];
 var processedMetadata = [];
 var mp3FileNames = [];
 
-getFileNames().then(names => {
-    mp3FileNames = names;
-})
-getMetadata().then(metadata => {
-    unprocessedMetadata = metadata;
-    console.log(metadata);
+document.addEventListener('metadataUpdated', () => {
+    getMetadata().then(metadata => {
+        unprocessedMetadata = [];
+        unprocessedMetadata = metadata;
+        console.log(unprocessedMetadata);
+    });
+    mp3FileNames = [];
+    mp3FileNames = getFileNames();
+    console.log(mp3FileNames);
 });
-
 
 function cleanMetadata(title, artist) {
     title = title.replace(" - Copy", "").replace(" (HD)", "").replace(" (Official Video)", "").trim();
@@ -41,6 +43,6 @@ function processMetadata(data) {
             Artist: processedTags[1],
             Album: song.Album
         }
-        processMetadata.push(newSongData);
+        processedMetadata.push(newSongData);
     }
 }

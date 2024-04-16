@@ -3,6 +3,7 @@ var fileNames = [];
 var folderCheck = false;
 var filesToRead = 0;
 var filesRead = 0;
+var mp3FilesToRead = 0;
 var metadataPromise;
 
 //Event listeners
@@ -16,23 +17,27 @@ document.getElementById('folderInput').addEventListener('change', function (even
 function resetMetadataPromise() {
     metadataPromise = new Promise((resolve, reject) => {
         var checkInterval = setInterval(() => {
-            if (filesToRead === filesRead) {
+            if (filesToRead === filesRead && mp3FilesToRead === 0) {  // Ensure all MP3 files are processed
                 clearInterval(checkInterval);
+                console.log("Resolving promise with metadataArray:", metadataArray);
                 resolve(metadataArray);
             }
         }, 100);
     });
 }
 
+
 // Call resetMetadataPromise to create the initial Promise
 resetMetadataPromise();
 
 function dropHandler(event) {
     event.preventDefault();
-    filesToRead = items.length;
     resetMetadataPromise();
     metadataArray = [];
+    fileNames = [];
     var items = event.dataTransfer.items;
+    filesToRead = items.length;
+    var promises = [];
     if (items) {
         for (var i = 0; i < items.length; i++) {
             if (items[i].kind === 'file') {
@@ -40,17 +45,23 @@ function dropHandler(event) {
 
                 if (entry) {
                     if (entry.isDirectory) {
-                        // Handle directory entry here
+                        // Handle directory entry
                         readDirectory(entry);
                     } else if (entry.isFile) {
-                        entry.file(readMusicTags);
+                        promises.push(new Promise((resolve, reject) => {
+                            entry.file(file => {
+                                readMusicTags(file).then(resolve);
+                            });
+                        }));
                     }
                 }
             }
         }
     }
-    folderCheck = true;
-    console.log(metadataArray);
+    Promise.all(promises).then(() => {
+        folderCheck = true;
+        console.log(metadataArray);
+    });
 }
 
 function readDirectory(entry) {
@@ -73,6 +84,8 @@ function dragOverHandler(event) {
 function handleFiles(files) {
     filesToRead = files.length;
     resetMetadataPromise();
+    metadataArray = [];
+    fileNames = [];
     for (var i = 0; i < files.length; i++) {
         readMusicTags(files[i]);
     }
@@ -80,30 +93,84 @@ function handleFiles(files) {
     folderCheck = true;
 }
 
+/*
 function readMusicTags(file) {
-    if (!file.name.toLowerCase().endsWith('.mp3')) {
-        console.log('Not an MP3 file:', file.name);
-        indicateWrongFileTypes();
-        filesRead++;
-        return;
-    };
-    fileNames.push(file.name);
-    jsmediatags.read(file, {
-        onSuccess: function (tag) {
-            var songData = {
-                Title: tag.tags.title || '',
-                Artist: tag.tags.artist || '',
-                Album: tag.tags.album || ''
-            };
-            metadataArray.push(songData);
-            indicateFolderAdded();
-        },
-        onError: function (error) {
-            console.log('Error reading metadata from:', file.name);
-            console.log(error);
-        }
+    return new Promise((resolve, reject) => {
+        if (!file.name.toLowerCase().endsWith('.mp3')) {
+            indicateWrongFileTypes();
+            filesRead++;
+            resolve();
+            return;
+        };
+        mp3FilesToRead++;
+        fileNames.push(file.name);
+        jsmediatags.read(file, {
+            onSuccess: function (tag) {
+                var songData = {
+                    Title: tag.tags.title || '',
+                    Artist: tag.tags.artist || '',
+                    Album: tag.tags.album || ''
+                };
+                metadataArray.push(songData);
+                indicateFolderAdded();
+                filesRead++;
+                mp3FilesToRead--;
+                checkMp3FilesRead();
+                resolve();
+            },
+            onError: function (error) {
+                console.log('Error reading metadata from:', file.name);
+                console.log(error);
+                filesRead++;
+                mp3FilesToRead--;
+                checkMp3FilesRead();
+                resolve();
+            }
+        });
     });
-    filesRead++;
+}
+
+function checkMp3FilesRead() {
+    if (mp3FilesToRead === 0) {
+        document.dispatchEvent(new Event('metadataUpdated'));
+    }
+}
+*/
+
+function readMusicTags(file) {
+    return new Promise((resolve, reject) => {
+        if (!file.name.toLowerCase().endsWith('.mp3')) {
+            indicateWrongFileTypes();
+            filesRead++;
+            resolve();
+            return;
+        };
+        fileNames.push(file.name);
+        jsmediatags.read(file, {
+            onSuccess: function (tag) {
+                var songData = {
+                    Title: tag.tags.title || '',
+                    Artist: tag.tags.artist || '',
+                    Album: tag.tags.album || ''
+                };
+                metadataArray.push(songData);
+                indicateFolderAdded();
+                filesRead++;
+                resolve();
+            },
+            onError: function (error) {
+                console.error('Error reading metadata from:', file.name, error);
+                filesRead++;
+                resolve();
+            }
+        });
+    });
+}
+
+function checkMp3FilesRead() {
+    if (mp3FilesToRead === 0 && folderCheck) {
+        document.dispatchEvent(new Event('metadataUpdated'));
+    }
 }
 
 function indicateFolderAdded() {
