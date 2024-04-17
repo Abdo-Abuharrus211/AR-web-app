@@ -6,11 +6,9 @@ var processedMetadata = [];
 var mp3FileNames = [];
 
 document.addEventListener('metadataUpdated', () => {
-    getMetadata().then(metadata => {
-        unprocessedMetadata = [];
-        unprocessedMetadata = metadata;
-        console.log(unprocessedMetadata);
-    });
+   unprocessedMetadata =[];
+   unprocessedMetadata = getMetadata();
+   console.log(unprocessedMetadata);
     mp3FileNames = [];
     mp3FileNames = getFileNames();
     console.log(mp3FileNames);

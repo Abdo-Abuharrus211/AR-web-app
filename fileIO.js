@@ -60,7 +60,8 @@ function dropHandler(event) {
     }
     Promise.all(promises).then(() => {
         folderCheck = true;
-        console.log(metadataArray);
+        // console.log(metadataArray);
+        checkMp3FilesRead();
     });
 }
 
@@ -91,6 +92,7 @@ function handleFiles(files) {
     }
     console.log(metadataArray);
     folderCheck = true;
+    checkMp3FilesRead();
 }
 
 /*
@@ -189,7 +191,7 @@ function indicateWrongFileTypes() {
 
 
 export function getMetadata() {
-    return metadataPromise;
+    return metadataArray;
 }
 
 export function getFileNames() {
