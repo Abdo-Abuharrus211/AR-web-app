@@ -58,7 +58,7 @@ function traverseFileTree(item, path = "") {
 function validateInput() {
     if (isFolderAdded == true && playlistNameValue != "") {
         document.getElementById("harvest-btn").disabled = false;
-        console.log("ready to harvest");
+        // console.log("ready to harvest");
     }
     else {
         document.getElementById("harvest-btn").disabled = true;

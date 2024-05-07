@@ -153,7 +153,8 @@ function readMusicTags(file) {
                 var songData = {
                     Title: tag.tags.title || '',
                     Artist: tag.tags.artist || '',
-                    Album: tag.tags.album || ''
+                    Album: tag.tags.album || '',
+                    FileName: file.name
                 };
                 metadataArray.push(songData);
                 indicateFolderAdded();
@@ -194,6 +195,6 @@ export function getMetadata() {
     return metadataArray;
 }
 
-export function getFileNames() {
-    return fileNames;
-}
+// export function getFileNames() {
+//     return fileNames;
+// }
