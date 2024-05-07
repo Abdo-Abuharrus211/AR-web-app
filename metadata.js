@@ -44,3 +44,8 @@ function processMetadata(data) {
         processedMetadata.push(newSongData);
     }
 }
+
+// TODO: Send the metadata to the backend
+function sendToBackend(){}
+
+

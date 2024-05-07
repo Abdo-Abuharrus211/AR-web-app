@@ -65,3 +65,8 @@ function validateInput() {
         console.log("Aborting harvest! Enter playlist name!")
     }
 }
+
+// TODO: Get the user to login and then send the auth code to the backend
+function prompt_user_login(){}
+
+
