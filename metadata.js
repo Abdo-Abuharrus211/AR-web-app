@@ -1,4 +1,7 @@
+import axios from 'axios';
 import { getMetadata, getFileNames } from './fileIO.js';
+import { response } from 'express';
+import { error } from 'console';
 
 
 var unprocessedMetadata = [];
@@ -46,6 +49,12 @@ function processMetadata(data) {
 }
 
 // TODO: Send the metadata to the backend
-function sendToBackend(){}
+function sendToBackend(data){
+    axios.post('/placeholderURL', data).then(response =>{
+        console.log("Response:" + response);
+    }).catch( error => {
+        console.log("Error" + error);
+    })
+}
 
 

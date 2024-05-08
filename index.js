@@ -66,7 +66,10 @@ function validateInput() {
     }
 }
 
-// TODO: Get the user to login and then send the auth code to the backend
+// TODO: Get the user to login and then send the auth code to the backend (How?)
 function prompt_user_login(){}
+
+//TODO: Send the playlist name entered by the user to the backend (separately from the actual data?)
+function sendPlaylistName(){}
 
 
