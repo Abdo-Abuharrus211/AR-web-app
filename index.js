@@ -66,10 +66,68 @@ function validateInput() {
     }
 }
 
-// TODO: Get the user to login and then send the auth code to the backend (How?)
-function prompt_user_login(){}
+
+
+window.onload = function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const authorizationCode = urlParams.get('code');
+
+    if (authorizationCode) {
+        getAccessToken(authorizationCode);
+    } else {
+        console.error('No authorization code in redirect URL');
+    }
+}
+
+function prompUserLogin() {
+    const clientID = process.env.SPOTIFY_CLIENT_ID;
+    const clientSecret = process.env.SPOTIFY_CLIENT_SECRET;
+    const redirectURI = encodeURIComponent('http://localhost:8888');
+    const scope = encodeURIComponent('playlist-modify-public playlist-modify-private playlist-read-private');
+    window.location.href = `https://accounts.spotify.com/authorize?response_type=code&client_id=${clientId}&scope=${scopes}&redirect_uri=${redirectUri}`;
+}
+
+
+function getAccessToken(authorization_code) {
+    const clientID = process.env.SPOTIFY_CLIENT_ID;
+    const clientSecret = process.env.SPOTIFY_CLIENT_SECRET;
+    const redirectURI = 'http://localhost:8888';
+
+    axios({
+        method: 'post',
+        url: 'https://accounts.spotify.com/api/token',
+        params: {
+            grant_type: 'authorization_code',
+            code: authorization_code,
+            redirect_uri: redirectURI,
+        },
+        headers: {
+            'Authorization': 'Basic ' + (new Buffer(clientId + ':' + clientSecret).toString('base64')),
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+    }).then(response => {
+        // The access token and refresh token are in response.data
+        console.log(response.data);
+    }).catch(error => {
+        console.error(error);
+    });
+}
+
+function sendAccessTokenToBackend(accessToken) {
+    axios({
+        method: 'post',
+        url: 'http://localhost:5000/api/spotify_access_token', // TODO: replace with real API URL
+        data: {
+            access_token: accessToken
+        }
+    }).then(response => {
+        console.log(response.data);
+    }).catch(error => {
+        console.error(error);
+    });
+}
 
 //TODO: Send the playlist name entered by the user to the backend (separately from the actual data?)
-function sendPlaylistName(){}
+function sendPlaylistName() { }
 
 
