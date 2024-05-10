@@ -6,6 +6,8 @@ import { error } from "console";
 // import { folderAdded, metadata } from './fileIO';
 var playlistNameValue = "";
 var isFolderAdded = false;
+const API_BASE_URL = 'https://localhost:5000'; // TODO: replace with real API URL and store in .env
+
 
 const playlistNameInput = document.getElementsByClassName("playlist-form")[0];
 playlistNameInput.addEventListener("input", () => {
@@ -72,15 +74,16 @@ function validateInput() {
 }
 
 // TODO: Implement the commenceHarvest function to kickstart the process
-function commenceHarvest(){}
+function commenceHarvest() { }
 
 // API requests and backend communictation
-window.onload = function() {
+window.onload = function () {
     const urlParams = new URLSearchParams(window.location.search);
     const authorizationCode = urlParams.get('code');
 
     if (authorizationCode) {
-        getAccessToken(authorizationCode);
+        // Send the authorization code to the backend
+        sendAuthorizationCodeToBackend(authorizationCode);
     } else {
         console.error('No authorization code in redirect URL');
     }
@@ -88,44 +91,17 @@ window.onload = function() {
 
 function prompUserLogin() {
     const clientID = process.env.SPOTIFY_CLIENT_ID;
-    const clientSecret = process.env.SPOTIFY_CLIENT_SECRET;
     const redirectURI = encodeURIComponent('https://localhost:8888');
-    const scope = encodeURIComponent('playlist-modify-public playlist-modify-private playlist-read-private');
-    window.location.href = `httpss://accounts.spotify.com/authorize?response_type=code&client_id=${clientID}&scope=${scopes}&redirect_uri=${redirectUri}`;
+    const scopes = encodeURIComponent('playlist-modify-public playlist-modify-private playlist-read-private');
+    window.location.href = `https://accounts.spotify.com/authorize?response_type=code&client_id=${clientID}&scope=${scopes}&redirect_uri=${redirectURI}`;
 }
 
-
-function getAccessToken(authorization_code) {
-    const clientID = process.env.SPOTIFY_CLIENT_ID;
-    const clientSecret = process.env.SPOTIFY_CLIENT_SECRET;
-    const redirectURI = 'https://localhost:8888';
-
+function sendAuthorizationCodeToBackend(authorization_code) {
     axios({
         method: 'post',
-        url: 'https://accounts.spotify.com/api/token',
-        params: {
-            grant_type: 'authorization_code',
-            code: authorization_code,
-            redirect_uri: redirectURI,
-        },
-        headers: {
-            'Authorization': 'Basic ' + (new Buffer(clientId + ':' + clientSecret).toString('base64')),
-            'Content-Type': 'application/x-www-form-urlencoded'
-        },
-    }).then(response => {
-        // The access token and refresh token are in response.data
-        console.log(response.data);
-    }).catch(error => {
-        console.error(error);
-    });
-}
-
-function sendAccessTokenToBackend(accessToken) {
-    axios({
-        method: 'post',
-        url: 'https://localhost:5000/accessToken', // TODO: replace with real API URL
+        url: 'https://localhost:5000/authCode', // TODO: replace with real API URL
         data: {
-            token: accessToken
+            code: authorization_code
         }
     }).then(response => {
         console.log(response.data);
@@ -134,13 +110,14 @@ function sendAccessTokenToBackend(accessToken) {
     });
 }
 
+
 //TODO: Send the playlist name entered by the user to the backend (separately from the actual data?)
-function sendPlaylistName() { 
-    var name = document.getElementById('playlist-input-form').value;
+function sendPlaylistName() {
+    var playlistName = document.getElementById('playlist-input-form').value;
     console.log("Name of the playlist is: " + name);
     // API request via Axios
-    axios.post('https://localhost:5000/setPlaylistName', name).then(response =>{
-        console.log("Response: " + response);
+    axios.post('https://localhost:5000/setPlaylistName', { name: playlistName }).then(response => {
+        console.log("Response: " + response.data);
     }).catch(error => {
         console.log("Response: " + error);
     })
