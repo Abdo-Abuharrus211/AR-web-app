@@ -1,4 +1,8 @@
 // Here we'll have scripts that modify the DOM
+
+import axios from "axios";
+import { error } from "console";
+
 // import { folderAdded, metadata } from './fileIO';
 var playlistNameValue = "";
 var isFolderAdded = false;
@@ -67,7 +71,7 @@ function validateInput() {
 }
 
 
-
+// API requests and backend communictation
 window.onload = function() {
     const urlParams = new URLSearchParams(window.location.search);
     const authorizationCode = urlParams.get('code');
@@ -82,20 +86,20 @@ window.onload = function() {
 function prompUserLogin() {
     const clientID = process.env.SPOTIFY_CLIENT_ID;
     const clientSecret = process.env.SPOTIFY_CLIENT_SECRET;
-    const redirectURI = encodeURIComponent('http://localhost:8888');
+    const redirectURI = encodeURIComponent('https://localhost:8888');
     const scope = encodeURIComponent('playlist-modify-public playlist-modify-private playlist-read-private');
-    window.location.href = `https://accounts.spotify.com/authorize?response_type=code&client_id=${clientId}&scope=${scopes}&redirect_uri=${redirectUri}`;
+    window.location.href = `httpss://accounts.spotify.com/authorize?response_type=code&client_id=${clientID}&scope=${scopes}&redirect_uri=${redirectUri}`;
 }
 
 
 function getAccessToken(authorization_code) {
     const clientID = process.env.SPOTIFY_CLIENT_ID;
     const clientSecret = process.env.SPOTIFY_CLIENT_SECRET;
-    const redirectURI = 'http://localhost:8888';
+    const redirectURI = 'https://localhost:8888';
 
     axios({
         method: 'post',
-        url: 'https://accounts.spotify.com/api/token',
+        url: 'httpss://accounts.spotify.com/api/token',
         params: {
             grant_type: 'authorization_code',
             code: authorization_code,
@@ -116,7 +120,7 @@ function getAccessToken(authorization_code) {
 function sendAccessTokenToBackend(accessToken) {
     axios({
         method: 'post',
-        url: 'http://localhost:5000/api/spotify_access_token', // TODO: replace with real API URL
+        url: 'https://localhost:5000/accessToken', // TODO: replace with real API URL
         data: {
             access_token: accessToken
         }
@@ -128,6 +132,16 @@ function sendAccessTokenToBackend(accessToken) {
 }
 
 //TODO: Send the playlist name entered by the user to the backend (separately from the actual data?)
-function sendPlaylistName() { }
+function sendPlaylistName() { 
+    var name = document.getElementById('playlist-input-form').value;
+    console.log("Name of the playlist is: " + name);
+    // API request via Axios
+    axios.post('https://localhost:5000/setPlaylistName', name).then(response =>{
+        console.log("Response: " + response);
+    }).catch(error => {
+        console.log("Response: " + error);
+    })
+}
+
 
 
