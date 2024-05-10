@@ -90,7 +90,7 @@ function handleFiles(files) {
     for (var i = 0; i < files.length; i++) {
         readMusicTags(files[i]);
     }
-    console.log(metadataArray);
+    // console.log(metadataArray);
     folderCheck = true;
     checkMp3FilesRead();
 }
@@ -195,6 +195,6 @@ export function getMetadata() {
     return metadataArray;
 }
 
-// export function getFileNames() {
-//     return fileNames;
-// }
+export function getFileNames() {
+    return fileNames;
+}
