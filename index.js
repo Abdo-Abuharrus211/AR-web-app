@@ -17,6 +17,7 @@ playlistNameInput.addEventListener("input", () => {
 
 const folderInput = document.getElementById("folderInput").addEventListener("change", handleFolderInput);
 const dropInput = document.getElementById('drop-zone').addEventListener("drop", handleFolderInput);
+const harvestBtn = document.getElementById('harvest-btn').addEventListener("click", commenceHarvest);
 
 function handleFolderInput(e) {
     e.preventDefault();
@@ -70,6 +71,8 @@ function validateInput() {
     }
 }
 
+// TODO: Implement the commenceHarvest function to kickstart the process
+function commenceHarvest(){}
 
 // API requests and backend communictation
 window.onload = function() {
@@ -99,7 +102,7 @@ function getAccessToken(authorization_code) {
 
     axios({
         method: 'post',
-        url: 'httpss://accounts.spotify.com/api/token',
+        url: 'https://accounts.spotify.com/api/token',
         params: {
             grant_type: 'authorization_code',
             code: authorization_code,
@@ -122,7 +125,7 @@ function sendAccessTokenToBackend(accessToken) {
         method: 'post',
         url: 'https://localhost:5000/accessToken', // TODO: replace with real API URL
         data: {
-            access_token: accessToken
+            token: accessToken
         }
     }).then(response => {
         console.log(response.data);
