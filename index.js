@@ -89,7 +89,7 @@ window.onload = function () {
     }
 }
 
-function prompUserLogin() {
+function promptUserLogin() {
     const clientID = process.env.SPOTIFY_CLIENT_ID;
     const redirectURI = encodeURIComponent('https://localhost:8888');
     const scopes = encodeURIComponent('playlist-modify-public playlist-modify-private playlist-read-private');
@@ -114,7 +114,7 @@ function sendAuthorizationCodeToBackend(authorization_code) {
 //TODO: Send the playlist name entered by the user to the backend (separately from the actual data?)
 function sendPlaylistName() {
     var playlistName = document.getElementById('playlist-input-form').value;
-    console.log("Name of the playlist is: " + name);
+    console.log("Name of the playlist is: " + playlistName);
     // API request via Axios
     axios.post('https://localhost:5000/setPlaylistName', { name: playlistName }).then(response => {
         console.log("Response: " + response.data);
