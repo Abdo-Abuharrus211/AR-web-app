@@ -1,12 +1,12 @@
-// Here we'll have scripts that modify the DOM
+// This module is responsible for DOM manipulation and specific API requests
+
 
 // import { error } from "console";
-
 // import { folderAdded, metadata } from './fileIO';
+
 var playlistNameValue = "";
 var isFolderAdded = false;
-const API_BASE_URL = 'https://localhost:5000'; // TODO: replace with real API URL and store in .env
-
+const APIBaseURL = process.env.API_BASE_URL; // TODO: replace with real API URL and store in .env
 
 const playlistNameInput = document.getElementsByClassName("playlist-form")[0];
 playlistNameInput.addEventListener("input", () => {
@@ -14,11 +14,10 @@ playlistNameInput.addEventListener("input", () => {
     console.log(playlistNameValue);
     validateInput();
 });
-
-
 const folderInput = document.getElementById("folderInput").addEventListener("change", handleFolderInput);
 const dropInput = document.getElementById('drop-zone').addEventListener("drop", handleFolderInput);
 const harvestBtn = document.getElementById('harvest-btn').addEventListener("click", commenceHarvest);
+
 
 function handleFolderInput(e) {
     e.preventDefault();
@@ -64,7 +63,6 @@ function traverseFileTree(item, path = "") {
 function validateInput() {
     if (isFolderAdded == true && playlistNameValue != "") {
         document.getElementById("harvest-btn").disabled = false;
-        // console.log("ready to harvest");
     }
     else {
         document.getElementById("harvest-btn").disabled = true;
@@ -72,7 +70,8 @@ function validateInput() {
     }
 }
 
-// TODO: Implement the commenceHarvest function to kickstart the process
+// TODO: Implement the commenceHarvest function to kickstart the process by setting off function calls in a specific order
+// Account for wait time and async functions and to wait until the backend is done to get results
 function commenceHarvest() { }
 
 // API requests and backend communictation
@@ -98,7 +97,7 @@ function promptUserLogin() {
 function sendAuthorizationCodeToBackend(authorization_code) {
     axios({
         method: 'post',
-        url: 'https://localhost:5000/authCode', // TODO: replace with real API URL
+        url: 'APIBaseURL/authCode',
         data: {
             code: authorization_code
         }
@@ -109,13 +108,11 @@ function sendAuthorizationCodeToBackend(authorization_code) {
     });
 }
 
-
-//TODO: Send the playlist name entered by the user to the backend (separately from the actual data?)
 function sendPlaylistName() {
     var playlistName = document.getElementById('playlist-input-form').value;
     console.log("Name of the playlist is: " + playlistName);
     // API request via Axios
-    axios.post('https://localhost:5000/setPlaylistName', { name: playlistName }).then(response => {
+    axios.post('APIBaseURL/setPlaylistName', { name: playlistName }).then(response => {
         console.log("Response: " + response.data);
     }).catch(error => {
         console.log("Response: " + error);

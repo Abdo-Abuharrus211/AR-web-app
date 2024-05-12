@@ -60,7 +60,6 @@ function dropHandler(event) {
     }
     Promise.all(promises).then(() => {
         folderCheck = true;
-        // console.log(metadataArray);
         checkMp3FilesRead();
     });
 }
@@ -90,7 +89,6 @@ function handleFiles(files) {
     for (var i = 0; i < files.length; i++) {
         readMusicTags(files[i]);
     }
-    // console.log(metadataArray);
     folderCheck = true;
     checkMp3FilesRead();
 }
