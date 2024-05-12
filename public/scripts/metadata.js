@@ -1,7 +1,6 @@
-import axios from 'axios';
 import { getMetadata, getFileNames } from './fileIO.js';
-import { response } from 'express';
-import { error } from 'console';
+// import { response } from 'express';
+// import { error } from 'console';
 
 
 var unprocessedMetadata = [];

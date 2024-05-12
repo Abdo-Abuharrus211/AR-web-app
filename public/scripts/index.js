@@ -1,7 +1,6 @@
 // Here we'll have scripts that modify the DOM
 
-import axios from "axios";
-import { error } from "console";
+// import { error } from "console";
 
 // import { folderAdded, metadata } from './fileIO';
 var playlistNameValue = "";
