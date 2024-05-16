@@ -18,6 +18,17 @@ document.addEventListener('metadataUpdated', () => {
     // console.log(mp3FileNames);
 });
 
+document.addEventListener('harvestCommence', () => {
+    try{
+        sendToBackend(unprocessedMetadata);
+        getAddedResults();
+        getFailed();
+    }
+    catch(error){
+        console.log(error);
+    }
+})
+
 function sendToBackend(data){
     axios.post('APIBaseURL/receiveMetadata', data).then(response =>{
         console.log("Response:" + response);
@@ -29,7 +40,7 @@ function sendToBackend(data){
 function getAddedResults(){
     axios.get('APIBaseURL/getResults').then(response =>{
         addedTitles = response;
-        console.log(addedTitles);
+        console.log("Added: \n" + addedTitles);
     }).catch(error =>{
         console.log(error);
     })
@@ -38,7 +49,7 @@ function getAddedResults(){
 function getFailed(){
     axios.get('APIBaseURL/getFailed').then(response =>{
         failedTitles = response;
-        console.log(failedTitles);
+        console.log("Failed: \n" + failedTitles);
     }).catch(error =>{
         console.log(error);
     })
