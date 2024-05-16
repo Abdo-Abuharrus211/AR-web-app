@@ -1,3 +1,4 @@
+const cors = require('cors');
 const express = require('express');
 const ejs = require('ejs');
 const routes = require('./routes/home');
@@ -12,8 +13,9 @@ app.use(express.urlencoded({
 }));
 app.use(express.static("public"));
 
-//connecting to our MongoDB Atlas cluster...
-// mongoose.connect("mongodb://0.0.0.0:27017/<db_name_here>");
+app.use(cors({
+  origin: 'http://localhost:5000'  //TODO: Replace with the origin when hosted
+}));
 
 // These import the individual pages and 'require' when app is launched
 routes(app);
