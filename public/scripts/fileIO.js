@@ -17,7 +17,7 @@ document.getElementById('folderInput').addEventListener('change', function (even
 function resetMetadataPromise() {
     metadataPromise = new Promise((resolve, reject) => {
         var checkInterval = setInterval(() => {
-            if (filesToRead === filesRead && mp3FilesToRead === 0) {  // Ensure all MP3 files are processed
+            if (filesToRead === filesRead && mp3FilesToRead === 0) {  // Ensures all MP3 files are processed
                 clearInterval(checkInterval);
                 console.log("Resolving promise with metadataArray:", metadataArray);
                 resolve(metadataArray);
