@@ -1,12 +1,6 @@
-// This module is responsible for DOM manipulation and specific API requests
-
-
-// import { error } from "console";
-// import { folderAdded, metadata } from './fileIO';
-
 var playlistNameValue = "";
 var isFolderAdded = false;
-const APIBaseURL = 'https://localhost:5000'; // TODO: replace with real API URL and store in .env
+const APIBaseURL = 'http://localhost:5000'; // TODO: replace with real API URL and store in .env
 
 const playlistNameInput = document.getElementById('playlist-input');
 playlistNameInput.addEventListener("input", () => {
@@ -72,7 +66,11 @@ function validateInput() {
 
 // TODO: Implement the commenceHarvest function to kickstart the process by setting off function calls in a specific order
 // Account for wait time and async functions and to wait until the backend is done to get results
-async function commenceHarvest() {}
+async function commenceHarvest() {
+    loginUser();
+    sendPlaylistName();
+    document.dispatchEvent(new Event('harvestCommence'));
+}
 
 
 // // API requests and backend communictation
@@ -109,11 +107,19 @@ async function commenceHarvest() {}
 //     });
 // }
 
+function loginUser() {
+    axios.get(`${APIBaseURL}/login`).then(response => {
+        // TODO: Create pop-up to confirm signed in as user X ...blah blah
+        console.log(response);
+    }).catch(error => {
+        console.log("Error authenticating: " + error);
+    })
+}
+
 function sendPlaylistName() {
-    var playlistName = document.getElementById('playlist-input-form').value;
-    console.log("Name of the playlist is: " + playlistName);
-    // API request via Axios
-    axios.post('APIBaseURL/setPlaylistName', { name: playlistName }).then(response => {
+    var playlistName = document.getElementById('playlist-input').value;
+    // console.log("Name of the playlist is: " + playlistName);
+    axios.post(`${APIBaseURL}/setPlaylistName`, { name: playlistName }).then(response => {
         console.log("Response: " + response.data);
     }).catch(error => {
         console.log("Response: " + error);
