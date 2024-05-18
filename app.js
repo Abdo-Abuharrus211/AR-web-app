@@ -13,9 +13,7 @@ app.use(express.urlencoded({
 }));
 app.use(express.static("public"));
 
-app.use(cors({
-  origin: 'http://localhost:5000'  //TODO: Replace with the origin when hosted
-}));
+app.use(cors)
 
 // These import the individual pages and 'require' when app is launched
 routes(app);
