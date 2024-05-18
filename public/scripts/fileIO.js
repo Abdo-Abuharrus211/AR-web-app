@@ -17,7 +17,7 @@ document.getElementById('folderInput').addEventListener('change', function (even
 function resetMetadataPromise() {
     metadataPromise = new Promise((resolve, reject) => {
         var checkInterval = setInterval(() => {
-            if (filesToRead === filesRead && mp3FilesToRead === 0) {  // Ensure all MP3 files are processed
+            if (filesToRead === filesRead && mp3FilesToRead === 0) {  // Ensures all MP3 files are processed
                 clearInterval(checkInterval);
                 console.log("Resolving promise with metadataArray:", metadataArray);
                 resolve(metadataArray);
@@ -93,49 +93,6 @@ function handleFiles(files) {
     checkMp3FilesRead();
 }
 
-/*
-function readMusicTags(file) {
-    return new Promise((resolve, reject) => {
-        if (!file.name.toLowerCase().endsWith('.mp3')) {
-            indicateWrongFileTypes();
-            filesRead++;
-            resolve();
-            return;
-        };
-        mp3FilesToRead++;
-        fileNames.push(file.name);
-        jsmediatags.read(file, {
-            onSuccess: function (tag) {
-                var songData = {
-                    Title: tag.tags.title || '',
-                    Artist: tag.tags.artist || '',
-                    Album: tag.tags.album || ''
-                };
-                metadataArray.push(songData);
-                indicateFolderAdded();
-                filesRead++;
-                mp3FilesToRead--;
-                checkMp3FilesRead();
-                resolve();
-            },
-            onError: function (error) {
-                console.log('Error reading metadata from:', file.name);
-                console.log(error);
-                filesRead++;
-                mp3FilesToRead--;
-                checkMp3FilesRead();
-                resolve();
-            }
-        });
-    });
-}
-
-function checkMp3FilesRead() {
-    if (mp3FilesToRead === 0) {
-        document.dispatchEvent(new Event('metadataUpdated'));
-    }
-}
-*/
 
 function readMusicTags(file) {
     return new Promise((resolve, reject) => {

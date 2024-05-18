@@ -11,10 +11,10 @@ This will serve as the web app and front-end for Project AudioReaper
 - [X] Change HTML appearance when file dropped in by changing the drop zone accordingly
 - [X] Reflect HTML when wrong folders are added.
 - [X] Create a custom event to ensure updating the metadata in fileIO.js
-- [ ] Store the Spotify credentials and pass to backend
-- [ ] Set up the backend and pass on relevant information
+- [X] Store the Spotify credentials and pass to backend
+- [X] Set up the backend and pass on relevant information
 - [ ] Account for remaining interactivity and DOM updating
-- [ ] Send backend the packaged data via API handler (like Axios or AJAx)
+- [X] Send backend the packaged data via API handler (like Axios or AJAx)
 - [ ] Finish UI design and make good looking styles
 - [ ] Bob
 
