@@ -12,7 +12,6 @@ app.use(express.urlencoded({
     extended: false
 }));
 app.use(express.static("public"));
-
 app.use(cors)
 
 // These import the individual pages and 'require' when app is launched
