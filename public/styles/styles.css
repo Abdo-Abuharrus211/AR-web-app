@@ -36,6 +36,27 @@ nav a {
     text-align: center;
 }
 
+.user-box label{
+    margin-right: 65%;
+}
+.login-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    /* border: solid 1px #1DB954; Spotify Green */
+    padding: 8px 16px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  .login-button img {
+    width: 24px; /* Adjust size as necessary */
+    height: auto;
+    margin-right: 8px; /* Space between the logo and the text */
+  }
+  
 
 
 #drop-zone {

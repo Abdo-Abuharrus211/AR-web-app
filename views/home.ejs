@@ -9,6 +9,8 @@
   <link rel="stylesheet" href="styles/styles.css">
   <!-- jsmediatags CDN -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jsmediatags/3.9.5/jsmediatags.min.js"></script>
+  <!-- fontawesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <!-- Axios -->
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
@@ -39,6 +41,19 @@
     </div>
   </div>
 
+  <div class="container user-box main grid">
+    <div style="margin: 2%, 10%; padding: 20px;">
+      <label for="login-btn">Please log into your spotify account first.</label>
+      <button id="login-btn" class="outline contrast login-button">
+        <img src="/images/Spotify_Primary_Logo_RGB_Green.png" alt="Spotify logo">
+        Log in
+      </button>
+    </div>
+    <div>
+      <p>AudioReaper needs your account info to add songs to your specified playlist.</p>
+      <p>We don't store any of your information, and all cached data is deleted after the session ends.</p>
+    </div>
+  </div>
   <div class="container main">
     <div id="drop-zone" class="folder-not-added">
       <p>Drag and drop a folder or click</p>

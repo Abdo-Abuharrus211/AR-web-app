@@ -10,6 +10,7 @@ playlistNameInput.addEventListener("input", () => {
 
 const folderInput = document.getElementById("folderInput").addEventListener("change", handleFolderInput);
 const dropInput = document.getElementById('drop-zone').addEventListener("drop", handleFolderInput);
+const loginBtn = document.getElementById('login-btn').addEventListener("click", loginUser);
 const harvestBtn = document.getElementById('harvest-btn').addEventListener("click", commenceHarvest);
 
 
@@ -67,7 +68,6 @@ function validateInput() {
 // TODO: Implement the commenceHarvest function to kickstart the process by setting off function calls in a specific order
 // Account for wait time and async functions and to wait until the backend is done to get results
 async function commenceHarvest() {
-    loginUser();
     sendPlaylistName();
     document.dispatchEvent(new Event('harvestCommence'));
 }
@@ -109,8 +109,8 @@ async function commenceHarvest() {
 
 function loginUser() {
     axios.get(`${APIBaseURL}/login`).then(response => {
-        // TODO: Create pop-up to confirm signed in as user X ...blah blah
         console.log(response);
+        // TODO: Create pop-up to confirm signed in as user X ...blah blah
     }).catch(error => {
         console.log("Error authenticating: " + error);
     })
