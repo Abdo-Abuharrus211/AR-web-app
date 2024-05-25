@@ -13,8 +13,13 @@ This will serve as the web app and front-end for Project AudioReaper
 - [X] Create a custom event to ensure updating the metadata in fileIO.js
 - [X] Store the Spotify credentials and pass to backend
 - [X] Set up the backend and pass on relevant information
+- [ ] When logged in change what the btn says
+- [X] Add SPotify icon to the login btn
+- [X] Adjust btn and text
+- [ ] Add login btn logic and test
 - [ ] Account for remaining interactivity and DOM updating
 - [X] Send backend the packaged data via API handler (like Axios or AJAx)
+- [ ] Test frontend, send req to backend
 - [ ] Finish UI design and make good looking styles
 - [ ] Bob
 
