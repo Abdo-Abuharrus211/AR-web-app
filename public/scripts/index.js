@@ -72,44 +72,10 @@ async function commenceHarvest() {
     document.dispatchEvent(new Event('harvestCommence'));
 }
 
-
-// // API requests and backend communictation
-// window.onload = function () {
-//     const urlParams = new URLSearchParams(window.location.search);
-//     const authorizationCode = urlParams.get('code');
-
-//     if (authorizationCode) {
-//         // Send the authorization code to the backend
-//         sendAuthorizationCodeToBackend(authorizationCode);
-//     } else {
-//         console.error('No authorization code in redirect URL');
-//     }
-// }
-
-// function promptUserLogin() {
-//     const clientID = process.env.SPOTIFY_CLIENT_ID;
-//     const redirectURI = encodeURIComponent('https://localhost:8888');
-//     const scopes = encodeURIComponent('playlist-modify-public playlist-modify-private playlist-read-private');
-//     window.location.href = `https://accounts.spotify.com/authorize?response_type=code&client_id=${clientID}&scope=${scopes}&redirect_uri=${redirectURI}`;
-// }
-
-// function sendAuthorizationCodeToBackend(authorization_code) {
-//     axios({
-//         method: 'post',
-//         url: 'APIBaseURL/authCode',
-//         data: {
-//             code: authorization_code
-//         }
-//     }).then(response => {
-//         console.log(response.data);
-//     }).catch(error => {
-//         console.error(error);
-//     });
-// }
-
 function loginUser() {
     axios.get(`${APIBaseURL}/login`).then(response => {
         console.log(response);
+        window.location = response.data.auth_url;
         // TODO: Create pop-up to confirm signed in as user X ...blah blah
     }).catch(error => {
         console.log("Error authenticating: " + error);
