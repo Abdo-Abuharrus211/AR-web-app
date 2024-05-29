@@ -18,8 +18,8 @@ document.addEventListener('metadataUpdated', () => {
 document.addEventListener('harvestCommence', () => {
     try{
         sendToBackend(unprocessedMetadata);
-        getAddedResults();
-        getFailed();
+        // getAddedResults();
+        // getFailed();
     }
     catch(error){
         console.log(error);
@@ -28,7 +28,7 @@ document.addEventListener('harvestCommence', () => {
 
 function sendToBackend(data){
     axios.post(`${APIBaseURL}/receiveMetadata`, data).then(response =>{
-        console.log("Response:" + response);
+        console.log("Server Response:" + response.data.message);
     }).catch( error => {
         console.log("Error" + error);
     })

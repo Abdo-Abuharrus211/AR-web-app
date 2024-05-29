@@ -93,10 +93,10 @@ function loginUser() {
 function sendPlaylistName() {
     var playlistName = document.getElementById('playlist-input').value;
     // console.log("Name of the playlist is: " + playlistName);
-    axios.post(`${APIBaseURL}/setPlaylistName`, { name: playlistName }).then(response => {
-        console.log("Response: " + response.data);
+    axios.post(`${APIBaseURL}/setPlaylistName/${playlistName}`).then(response => {
+        console.log("Server Response: " + response.data.message);
     }).catch(error => {
-        console.log("Response: " + error);
+        console.log("Server Response: " + error);
     })
 }
 
