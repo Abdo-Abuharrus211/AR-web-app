@@ -50,6 +50,17 @@ nav a {
     cursor: pointer;
     border-radius: 4px;
   }
+  .logout-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: red;
+    /* border: solid 1px #1DB954; Spotify Green */
+    padding: 8px 16px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+  }
   
   .login-button img {
     width: 24px; /* Adjust size as necessary */
