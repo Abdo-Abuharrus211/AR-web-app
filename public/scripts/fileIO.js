@@ -140,6 +140,7 @@ function indicateFolderAdded() {
 
 function indicateWrongFileTypes() {
     var drop = document.getElementById('drop-zone');
+    drop.classList.replace('folder-added', 'folder-not-added');
     drop.classList.replace('folder-not-added', 'wrong-file-types');
     //TODO: pop-up stating a folder with wrong file types and to add a folder with MP3s
 

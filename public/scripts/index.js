@@ -61,7 +61,6 @@ function validateInput() {
     }
     else {
         document.getElementById("harvest-btn").disabled = true;
-        console.log("Aborting harvest! Enter playlist name!")
     }
 }
 
