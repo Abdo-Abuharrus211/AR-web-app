@@ -18,8 +18,7 @@ document.addEventListener('metadataUpdated', () => {
 document.addEventListener('harvestCommence', () => {
     try{
         sendToBackend(unprocessedMetadata);
-        // getAddedResults();
-        // getFailed();
+        // await response when sendToBackend is done and the backend sends a response, then call the following functions
     }
     catch(error){
         console.log(error);
