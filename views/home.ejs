@@ -25,21 +25,21 @@
         </li>
       </ul>
       <ul>
-        <li><a href="#" class="secondary navbar-link" ;">About</a></li>
+        <li><a href="/about" class="secondary navbar-link" ;">About</a></li>
         <li><a href="/contact" class="secondary navbar-link">Contact</a></li>
       </ul>
     </nav>
-    <div class="container banner">
-
+    <div class="banner">
+      <img src="/images/pexels-tuesday-temptation-190692-3780104.jpg" alt="Banner Image" class="banner-image">
+      <div class="banner-text">Audio-MothaFuckin-Reaper</div>
     </div>
-
   </header>
 
-  <div class="about-section container-fluid">
+  <!-- <div class="about-section container-fluid">
     <div class="container">
       <p>AudioReaper will harvest your music...blah blah</p>
     </div>
-  </div>
+  </div> -->
 
   <div class="container user-box main grid">
     <div style="margin: 2%, 10%; padding: 20px;">
@@ -56,22 +56,22 @@
   </div>
   <div class="container main">
     <div id="drop-zone" class="folder-not-added">
-      <p>Drag and drop a folder or click</p>
+      <p id="folder-name" class="hidden"></p>
+      <p>Drag and drop a folder or select</p>
       <input type="file" id="folderInput" multiple accept="audio/mp3" webkitdirectory directory style="display:none">
       <button onclick="document.getElementById('folderInput').click();">Browse...</button>
     </div>
     <div class="container form-box">
       <input id="playlist-input" type="text" class="playlist-form" name="playlistName" placeholder="Playlist name..."
         aria-label="playlistName">
-      <button id="harvest-btn" disabled="true">Harvest!</button>
+      <button id="harvest-btn" class="outline" disabled="true">Harvest!</button>
     </div>
   </div>
 
   <!-- /////////////////////////////// -->
   <div class=" container disclaimer-box">
-    <p>
-      Here lies the diclaimer that this program isn't perfect
-    </p>
+    <p data-tooltip="AudioReaper relies on NLP and Spotify's API, so results may be inconsistent at times.
+    "data-placement="bottom" style="color: var(--secondary); text-decoration: underline;">Disclaimer</p>
   </div>
 
   <div class="fail-log">
