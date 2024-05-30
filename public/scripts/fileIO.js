@@ -5,12 +5,17 @@ var filesToRead = 0;
 var filesRead = 0;
 var mp3FilesToRead = 0;
 var metadataPromise;
+var folderName;
 
 //Event listeners
 document.getElementById('drop-zone').addEventListener('drop', dropHandler);
 document.getElementById('drop-zone').addEventListener('dragover', dragOverHandler);
 document.getElementById('folderInput').addEventListener('change', function (event) {
     handleFiles(event.target.files);
+     // Get the name of the selected folder
+     if (event.target.files.length > 0) {
+        folderName = event.target.files[0].webkitRelativePath.split('/')[0];
+    }
 });
 
 
@@ -135,6 +140,10 @@ function indicateFolderAdded() {
     var drop = document.getElementById('drop-zone');
     drop.classList.replace('folder-not-added', 'folder-added');
     drop.classList.replace('wrong-file-types', 'folder-added');
+    var folderNameElement = document.getElementById('folder-name');
+    folderNameElement.textContent = "Selected folder: "+ folderName;
+    folderNameElement.classList.remove('hidden');
+    
     //TODO: pop-up stating a folder with MP3s added + name of folder
 }
 
