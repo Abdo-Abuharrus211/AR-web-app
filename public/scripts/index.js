@@ -20,12 +20,10 @@ const disclaimerToggle = document.getElementById('disclaimerToggle').addEventLis
         setTimeout(() => {
             disclaimerText.classList.add('hidden');
         }, 5000);
-        } else {
+    } else {
         disclaimerText.classList.add('hidden');
     }
 });
-
-
 
 function handleFolderInput(e) {
     e.preventDefault();
@@ -78,12 +76,12 @@ function validateInput() {
 }
 
 // Retrieve the display name from the URL's query parameters when the page loads
-window.onload = function() {
+window.onload = function () {
     const urlParams = new URLSearchParams(window.location.search);
     const displayName = urlParams.get('displayName');
-    if (displayName != null){
-        document.getElementById('login-label').innerHTML = 'Logged in as: '+ displayName;
-    } 
+    if (displayName != null) {
+        document.getElementById('login-label').innerHTML = 'Logged in as: ' + displayName;
+    }
 }
 
 // TODO: Implement the commenceHarvest function to kickstart the process by setting off function calls in a specific order
@@ -99,7 +97,6 @@ function loginUser() {
     axios.get(`${APIBaseURL}/login`).then(response => {
         console.log(response);
         window.location = response.data.auth_url;
-        // TODO: Create pop-up to confirm signed in as user X ...blah blah
     }).catch(error => {
         console.log("Error authenticating: " + error);
     });
