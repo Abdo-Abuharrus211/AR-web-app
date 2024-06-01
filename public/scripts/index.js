@@ -12,6 +12,19 @@ const folderInput = document.getElementById("folderInput").addEventListener("cha
 const dropInput = document.getElementById('drop-zone').addEventListener("drop", handleFolderInput);
 const loginBtn = document.getElementById('login-btn').addEventListener("click", loginUser);
 const harvestBtn = document.getElementById('harvest-btn').addEventListener("click", commenceHarvest);
+const disclaimerToggle = document.getElementById('disclaimerToggle').addEventListener('click', () => {
+    var disclaimerText = document.getElementById('disclaimerText');
+    if (disclaimerText.classList.contains('hidden')) {
+        console.log('click');
+        disclaimerText.classList.remove('hidden');
+        setTimeout(() => {
+            disclaimerText.classList.add('hidden');
+        }, 5000);
+        } else {
+        disclaimerText.classList.add('hidden');
+    }
+});
+
 
 
 function handleFolderInput(e) {

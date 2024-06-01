@@ -43,14 +43,15 @@
       <p>AudioReaper will harvest your music...blah blah</p>
     </div>
   </div> -->
+  <!-- <div>
+    <p>AudioReaper needs your account info to add songs to your specified playlist.</p>
+    <p>We don't store any of your information, and all cached data is deleted after the session ends.</p>
+  </div> -->
 
-  <div class="container user-box main grid">
+  <div class="container user-box main">
     <div>
-      <p>AudioReaper needs your account info to add songs to your specified playlist.</p>
-      <p>We don't store any of your information, and all cached data is deleted after the session ends.</p>
-    </div>
-    <div style="margin: 2%, 10%; padding: 20px;">
-      <label for="login-btn" id="login-label">Please log into your spotify account first.</label>
+      <label data-tooltip="AudioReaper needs your account info to add songs to your specified playlist." for="login-btn" id="login-label">Please log into Spotify.</label>
+      <p id="user-name" class="hidden"></p>
       <button id="login-btn" class="outline contrast login-button">
         <img src="/images/Spotify_Primary_Logo_RGB_Green.png" alt="Spotify logo">
         Log in
@@ -72,15 +73,16 @@
     </div>
   </div>
 
-  <!-- /////////////////////////////// -->
-  <div class=" container disclaimer-box">
-    <p data-tooltip="AudioReaper relies on NLP and Spotify's API, so results may be inconsistent at times.
-    "data-placement="bottom" style="color: var(--secondary); text-decoration: underline;">Disclaimer</p>
-  </div>
+  <div class="container disclaimer-box">
+    <p id="disclaimerToggle">Disclaimer</p>
+    <div id="disclaimerText" class="hidden">
+        AudioReaper relies on NLP and Spotify's API, so results may be inconsistent at times.
+        We're working on ways to achieve better results, whether that's by streamlining data-processing or improving matching algorithms.
+    </div>
+</div>
 
-  <div class="fail-log">
 
-  </div>
+  <div class="fail-log"></div>
 
 
   <footer>

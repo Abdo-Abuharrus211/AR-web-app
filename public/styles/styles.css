@@ -11,7 +11,7 @@
     border-bottom: none;
     text-decoration: none;
     cursor: help;
-  }
+}
 
 .hidden {
     display: none;
@@ -40,21 +40,20 @@ nav a {
 
 .navbar-logo {
     font-size: 2rem;
-    color: var(--primary);
+    color: var(--text);
 }
 
 .navbar-link:hover {
-    color: var(--primary)
+    color: var(--secondary)
 }
 
 nav {
     margin: 0 3%;
     position: absolute;
-    top: 5%; /* Adjust based on the desired overlay position */
+    top: 5%;
     width: 90%;
-    /* background-color: rgba(0, 0, 0, 0.5); Semi-transparent black for visibility */
     color: var(--text);
-    padding: 2% 0;
+    padding: 0 0;
     text-align: center;
     z-index: 10;
 }
@@ -84,13 +83,10 @@ nav {
     z-index: 5;
 }
 
-.about-section {
-    padding: 5%;
-    margin: 3% auto;
+
+.user-box {
     text-align: center;
 }
-
-
 
 .login-button {
     display: inline-flex;
@@ -108,7 +104,7 @@ nav {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    color: red;
+    border-color: red;
     /* border: solid 1px #1DB954; Spotify Green */
     padding: 8px 16px;
     font-size: 16px;
@@ -184,6 +180,20 @@ nav {
 .disclaimer-box {
     margin: auto;
     text-align: center;
+}
+
+#disclaimerToggle {
+    color: var(--primary);
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+#disclaimerText {
+    margin: auto;
+    padding: 0 30%;
+    text-align: start;
+    transition: all 0.3s ease;
+    overflow: hidden;
 }
 
 footer {
