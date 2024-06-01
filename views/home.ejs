@@ -45,8 +45,8 @@
       <article id="instructions">
         <ol type="1">
           <li>Log into Spotify</li>
-          <li>Upload a folder containing MP3 or WAV files.</li>
-          <li>Enter the name of the new playlist, or an existing playlist you want to add to.</li>
+          <li>Upload a folder containing MP3 or WAV files (100 or less for best results).</li>
+          <li>Enter the name of a new playlist or an existing Spotify playlist.</li>
           <li>Hit 'Harvest' and let it do its thing.</li>
         </ol>
       </article>
@@ -78,6 +78,13 @@
       <input id="playlist-input" type="text" class="playlist-form" name="playlistName" placeholder="Playlist name..."
         aria-label="playlistName">
       <button id="harvest-btn" class="outline" disabled="true">Harvest!</button>
+      <!-- loading animation -->
+      <dialog id="loadingIndicator" class="hidden" open>
+        <article class="loading-card">          
+          <h4>AudioReaper is processing your library!</h4>
+          <div class="loader"></div>
+        </article>
+      </dialog>
     </div>
   </div>
 

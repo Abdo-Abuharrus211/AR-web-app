@@ -26,10 +26,13 @@ document.addEventListener('harvestCommence', () => {
 });
 
 function sendToBackend(data){
+    document.getElementById('loadingIndicator').classList.remove('hidden');
     axios.post(`${APIBaseURL}/receiveMetadata`, data).then(response =>{
         console.log("Server Response:" + response.data.message);
+        document.getElementById('loadingIndicator').classList.add('hidden');
     }).catch( error => {
         console.log("Error" + error);
+        document.getElementById('loadingIndicator').classList.add('hidden');
     })
 }
 
