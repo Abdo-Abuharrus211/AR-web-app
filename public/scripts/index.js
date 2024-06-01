@@ -78,6 +78,8 @@ window.onload = function() {
 async function commenceHarvest() {
     sendPlaylistName();
     document.dispatchEvent(new Event('harvestCommence'));
+    // TODO: Perhaps signal completion of harvest to the user
+
 }
 
 function loginUser() {

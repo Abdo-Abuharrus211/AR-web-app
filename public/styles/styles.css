@@ -29,12 +29,8 @@ body {
 /* Color theme */
 header {
     color: var(--text);
-    margin: 0 5% 5%;
+    margin: 0;
     padding: 0 0;
-}
-
-nav {
-    margin: 0 3%;
 }
 
 nav a {
@@ -48,18 +44,33 @@ nav a {
 }
 
 .navbar-link:hover {
-    color: brown;
+    color: var(--primary)
+}
+
+nav {
+    margin: 0 3%;
+    position: absolute;
+    top: 5%; /* Adjust based on the desired overlay position */
+    width: 90%;
+    /* background-color: rgba(0, 0, 0, 0.5); Semi-transparent black for visibility */
+    color: var(--text);
+    padding: 2% 0;
+    text-align: center;
+    z-index: 10;
 }
 
 .banner {
+    padding: 0;
     position: relative;
-    height: 50vh;
-    margin: 0 auto;
+    width: 100%;
+    height: 600px;
     overflow: hidden;
 }
+
 .banner img.banner-image {
     width: 100%;
-    object-fit: cover; /* This ensures the image covers the area without distorting aspect ratio */
+    height: 100%;
+    object-fit: cover;
 }
 
 .banner .banner-text {
@@ -69,10 +80,8 @@ nav a {
     transform: translate(-50%, -50%);
     color: white;
     font-size: 24px;
-    /* Adjust size as needed */
     text-align: center;
-    z-index: 10;
-    /* Ensures text appears above the image */
+    z-index: 5;
 }
 
 .about-section {
@@ -81,9 +90,7 @@ nav a {
     text-align: center;
 }
 
-.user-box label {
-    margin-right: 65%;
-}
+
 
 .login-button {
     display: inline-flex;
