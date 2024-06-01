@@ -15,7 +15,6 @@ const harvestBtn = document.getElementById('harvest-btn').addEventListener("clic
 const disclaimerToggle = document.getElementById('disclaimerToggle').addEventListener('click', () => {
     var disclaimerText = document.getElementById('disclaimerText');
     if (disclaimerText.classList.contains('hidden')) {
-        console.log('click');
         disclaimerText.classList.remove('hidden');
         setTimeout(() => {
             disclaimerText.classList.add('hidden');
@@ -80,7 +79,9 @@ window.onload = function () {
     const urlParams = new URLSearchParams(window.location.search);
     const displayName = urlParams.get('displayName');
     if (displayName != null) {
-        document.getElementById('login-label').innerHTML = 'Logged in as: ' + displayName;
+        document.getElementById('login-label').innerHTML = `Logged in as: <span style="color: var(--accent); font-weight: bold;">${displayName}</span>`;
+        urlParams.delete('displayName');
+        history.replaceState({}, '', `${location.pathname}?${urlParams}`);
     }
 }
 

@@ -143,8 +143,6 @@ function indicateFolderAdded() {
     var folderNameElement = document.getElementById('folder-name');
     folderNameElement.textContent = "Selected folder: "+ folderName;
     folderNameElement.classList.remove('hidden');
-    
-    //TODO: pop-up stating a folder with MP3s added + name of folder
 }
 
 function indicateWrongFileTypes() {
