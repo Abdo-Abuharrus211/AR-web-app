@@ -18,7 +18,7 @@ const disclaimerToggle = document.getElementById('disclaimerToggle').addEventLis
         disclaimerText.classList.remove('hidden');
         setTimeout(() => {
             disclaimerText.classList.add('hidden');
-        }, 5000);
+        }, 7000);
     } else {
         disclaimerText.classList.add('hidden');
     }
