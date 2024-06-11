@@ -125,12 +125,16 @@ nav {
     border-radius: 4px;
 }
 
-.login-button img {
+.login-button img, .logout-button img{
     width: 24px;
     /* Adjust size as necessary */
     height: auto;
     margin-right: 8px;
     /* Space between the logo and the text */
+}
+
+.login-button:hover, .logout-button:hover {
+    opacity: 0.8;
 }
 
 #folder-name {

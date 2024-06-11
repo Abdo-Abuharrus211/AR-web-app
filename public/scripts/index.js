@@ -94,6 +94,8 @@ async function commenceHarvest() {
 
 }
 
+
+// TODO: REfactor these two functions into one but with params
 function loginUser() {
     axios.get(`${APIBaseURL}/login`).then(response => {
         console.log(response);
@@ -101,6 +103,20 @@ function loginUser() {
     }).catch(error => {
         console.log("Error authenticating: " + error);
     });
+    document.getElementById("logout-btn").removeAttribute("hidden");
+    document.getElementById("login-btn").setAttribute("hidden", "hidden");
+}
+
+// TODO: Implement Logout function here & in backend
+function logoutUser(){
+    axios.get(`${APIBaseURL}/logout`).then(response => {
+        console.log(response);
+        window.location.href = "/";
+    }).catch(error => {
+        console.log("Error loggin out: " + error);
+    });
+    document.getElementById("logout-btn").setAttribute("hidden", "hidden");
+    document.getElementById("login-btn").removeAttribute("hidden");
 }
 
 function sendPlaylistName() {
