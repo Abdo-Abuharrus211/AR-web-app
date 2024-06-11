@@ -100,11 +100,11 @@ function loginUser() {
     axios.get(`${APIBaseURL}/login`).then(response => {
         console.log(response);
         window.location = response.data.auth_url;
+        document.getElementById("logout-btn").removeAttribute("hidden");
+        document.getElementById("login-btn").setAttribute("hidden", "hidden");
     }).catch(error => {
         console.log("Error authenticating: " + error);
     });
-    document.getElementById("logout-btn").removeAttribute("hidden");
-    document.getElementById("login-btn").setAttribute("hidden", "hidden");
 }
 
 // TODO: Implement Logout function here & in backend
@@ -112,11 +112,11 @@ function logoutUser(){
     axios.get(`${APIBaseURL}/logout`).then(response => {
         console.log(response);
         window.location.href = "/";
+        document.getElementById("logout-btn").setAttribute("hidden", "hidden");
+        document.getElementById("login-btn").removeAttribute("hidden");
     }).catch(error => {
         console.log("Error loggin out: " + error);
     });
-    document.getElementById("logout-btn").setAttribute("hidden", "hidden");
-    document.getElementById("login-btn").removeAttribute("hidden");
 }
 
 function sendPlaylistName() {

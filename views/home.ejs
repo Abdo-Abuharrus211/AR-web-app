@@ -19,8 +19,8 @@
 <body>
 
   <header>
-  <div class="banner container-fluid">
-    <img src="/images/pexels-tuesday-temptation-190692-3780104.jpg" alt="Banner Image" class="banner-image">
+    <div class="banner container-fluid">
+      <img src="/images/pexels-tuesday-temptation-190692-3780104.jpg" alt="Banner Image" class="banner-image">
       <nav>
         <ul>
           <li>
@@ -32,11 +32,11 @@
           <li><a href="/contact" class="secondary navbar-link">Contact</a></li>
         </ul>
       </nav>
-    <div class="banner-text">Bridge your Local library with your Spotify!</div>
-  </div>
+      <div class="banner-text">Bridge your Local library with your Spotify!</div>
+    </div>
   </header>
 
-  
+
 
   <div class="how-section main container">
     <hgroup>
@@ -59,13 +59,14 @@
 
   <div class="container user-box main">
     <div>
-      <label data-tooltip="AudioReaper needs your account info to add songs to your specified playlist." for="login-btn" id="login-label">Please log into Spotify.</label>
+      <label data-tooltip="AudioReaper needs your account info to add songs to your specified playlist." for="login-btn"
+        id="login-label">Please log into Spotify.</label>
       <p id="user-name" class="hidden"></p>
       <button id="login-btn" class="outline contrast login-button">
         <img src="/images/Spotify_Primary_Logo_RGB_Green.png" alt="Spotify logo">
         Log in
       </button>
-       <button id="logout-btn" class="outline contrast logout-button" hidden>
+      <button id="logout-btn" class="outline contrast logout-button" hidden>
         <img src="/images/Spotify_Primary_Logo_RGB_Green.png" alt="Spotify logo">
         Log Out
       </button>
@@ -83,9 +84,10 @@
       <input id="playlist-input" type="text" class="playlist-form" name="playlistName" placeholder="Playlist name..."
         aria-label="playlistName">
       <button id="harvest-btn" class="outline" disabled="true">Harvest!</button>
+      <form>
       <!-- loading animation -->
       <dialog id="loadingIndicator" class="hidden" open>
-        <article class="loading-card">          
+        <article class="loading-card">
           <h4>AudioReaper is processing your library!</h4>
           <div class="loader"></div>
         </article>
@@ -96,10 +98,11 @@
   <div class="container disclaimer-box main">
     <p id="disclaimerToggle">Disclaimer</p>
     <div id="disclaimerText" class="hidden">
-        AudioReaper relies on NLP and Spotify's API, so results may be inconsistent at times.
-        We're working on ways to achieve better results, whether that's by streamlining data-processing or improving matching algorithms.
+      AudioReaper relies on NLP and Spotify's API, so results may be inconsistent at times.
+      We're working on ways to achieve better results, whether that's by streamlining data-processing or improving
+      matching algorithms.
     </div>
-</div>
+  </div>
 
 
   <div id="failBox" class="main container hidden">
@@ -119,10 +122,18 @@
     <section id="footer-about">
       <p>About</p>
     </section>
+    <section>
+      <p>Navigation</p>
+    </section>
     <section id="footer-docs">
       <p>Docs</p>
-    </section id="footer-contact">
+    </section>
     <section>
+      <p>
+        Donate
+      </p>
+    </section>
+    <section id="footer-contact">
       <p>Contact</p>
     </section>
   </footer>
