@@ -4,13 +4,11 @@ import { getMetadata, getFileNames } from './fileIO.js';
 var unprocessedMetadata = [];
 const APIBaseURL = 'http://localhost:5000'; // TODO: replace with real API URL and store in .env
 var mp3FileNames = [];
-var addedTitles = [];
-var failedTitles = [];
 
 document.addEventListener('metadataUpdated', () => {
    unprocessedMetadata =[];
    unprocessedMetadata = getMetadata();
-   console.log(unprocessedMetadata);
+//    console.log(unprocessedMetadata);
     mp3FileNames = [];
     mp3FileNames = getFileNames();
 });
@@ -18,7 +16,6 @@ document.addEventListener('metadataUpdated', () => {
 document.addEventListener('harvestCommence', () => {
     try{
         sendToBackend(unprocessedMetadata);
-        // await response when sendToBackend is done and the backend sends a response, then call the following functions
     }
     catch(error){
         console.log(error);
@@ -26,30 +23,34 @@ document.addEventListener('harvestCommence', () => {
 });
 
 function sendToBackend(data){
+    document.getElementById('failedTracks-list').innerHTML = '';
     document.getElementById('loadingIndicator').classList.remove('hidden');
     axios.post(`${APIBaseURL}/receiveMetadata`, data).then(response =>{
         console.log("Server Response:" + response.data.message);
         document.getElementById('loadingIndicator').classList.add('hidden');
+        getFailed();
+        document.getElementById('failBox').classList.remove('hidden');
     }).catch( error => {
         console.log("Error" + error);
         document.getElementById('loadingIndicator').classList.add('hidden');
     })
 }
 
-function getAddedResults(){
-    axios.get(`${APIBaseURL}/getResults`).then(response =>{
-        addedTitles = response;
-        console.log("Added: \n" + addedTitles);
-    }).catch(error =>{
-        console.log(error);
-    })
-}
+// function getAddedResults(){
+//     axios.get(`${APIBaseURL}/getResults`).then(response =>{
+//         addedTitles = response;
+//         console.log("Added: \n" + addedTitles);
+//     }).catch(error =>{
+//         console.log(error);
+//     })
+// }
 
-function getFailed(){
-    axios.get(`${APIBaseURL}/getFailed`).then(response =>{
-        failedTitles = response;
-        console.log("Failed: \n" + failedTitles);
-    }).catch(error =>{
+function getFailed() {
+    axios.get(`${APIBaseURL}/getFailed`).then(response => {
+        var failedSongs = response.data;
+        const failedTrackItems = failedSongs.map(title => `<li>${title}</li>`).join('');
+        document.getElementById('failedTracks-list').innerHTML = failedTrackItems;
+    }).catch(error => {
         console.log(error);
     })
 }

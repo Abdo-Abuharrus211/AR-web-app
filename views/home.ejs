@@ -48,6 +48,7 @@
           <li>Upload a folder containing MP3 or WAV files (100 or less for best results).</li>
           <li>Enter the name of a new playlist or an existing Spotify playlist.</li>
           <li>Hit 'Harvest' and let it do its thing.</li>
+          <li>AudioReaper will then try adding your tracks to the specified playlist.</li>
         </ol>
       </article>
     </hgroup>
@@ -101,7 +102,17 @@
 </div>
 
 
-  <div class="fail-log"></div>
+  <div id="failBox" class="main container hidden">
+    <hgroup>
+      <h4>Failed Tracks</h4>
+      <p>Tracks AudioReaper couldn't add to Spotify.</p>
+    </hgroup>
+    <article id="failedTracks">
+      <ul id="failedTracks-list">
+
+      </ul>
+    </article>
+  </div>
 
 
   <footer>
