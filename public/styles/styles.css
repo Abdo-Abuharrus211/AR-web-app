@@ -31,13 +31,15 @@ body {
     color: var(--text);
 }
 
-/* Color theme */
 header {
+    padding:0;
     color: var(--text);
     margin: 0;
-    padding: 0 0;
 }
 
+.generic-header{
+    margin-bottom: 10%;
+}
 nav a {
     margin: 0 2%;
     text-decoration: none;
