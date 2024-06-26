@@ -3,6 +3,7 @@ const express = require('express');
 const ejs = require('ejs');
 const homeRoute = require('./routes/home')
 const contactRoute = require('./routes/contact');
+const aboutRoute = require('./routes/about');
 
 const app = express();
 
@@ -16,6 +17,7 @@ app.use(cors());
 // These import the individual pages and `require` when app is launched
 homeRoute(app);
 contactRoute(app);
+aboutRoute(app);
 
 
 let port = process.env.PORT || 9000;
