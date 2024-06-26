@@ -21,6 +21,7 @@ This will serve as the web app and front-end for Project AudioReaper
 - [X] Send backend the packaged data via API handler (like Axios or AJAx)
 - [X] Test frontend, send req to backend
 - [X] Finish UI design and make good looking styles
+- [ ] Conduct final clean-up and removal of comments and To-Dos
 
 
 Great, now any suggestions on how to visually convey on the DOM that a folder has been uploaded? perhaps change the folder input div? Or show a popup (not a modal) that conveys it?
