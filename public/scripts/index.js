@@ -85,8 +85,6 @@ window.onload = function () {
     }
 }
 
-// TODO: Implement the commenceHarvest function to kickstart the process by setting off function calls in a specific order
-// Account for wait time and async functions and to wait until the backend is done to get results
 async function commenceHarvest() {
     sendPlaylistName();
     document.dispatchEvent(new Event('harvestCommence'));
@@ -109,9 +107,8 @@ function loginUser() {
 
 // TODO: Implement Logout function here & in backend
 function logoutUser(){
-    axios.get(`${APIBaseURL}/logout`).then(response => {
+    axios.post(`${APIBaseURL}/logout`).then(response => {
         console.log(response);
-        window.location.href = "/";
         document.getElementById("logout-btn").setAttribute("hidden", "hidden");
         document.getElementById("login-btn").removeAttribute("hidden");
     }).catch(error => {
