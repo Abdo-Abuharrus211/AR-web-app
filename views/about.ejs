@@ -1,5 +1,57 @@
-<%- include ('partials/header') %>
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+    <link rel="stylesheet" href="styles/styles.css">
+</head>
 
+<body>
+    <%- include ('partials/header') %>
 
-<%- include ('partials/footer') %>
+    <main>
+        <div class="main container">
+            <hgroup>
+                <h2>What's AudioReaper?</h2>
+                <small>It's a Web app that helps sync your PC's music library with your Spotify account.</small>
+            </hgroup>
+            <div class="grid">
+                <div>
+                    <article>
+                        <div class="story-box">
+                            <p>
+                                Project AudioReaper, now just <em>'AudioReaper'</em> started life as a simple Python script.
+                            </p>
+                            <p>
+                                One evening, I was out with friends talking about our music collections and how extensive our local libraries have become
+                                and how it'd be nice to 'sync' them with our Spotify accounts as that's now the common way people listen to their music, even on PC.
+                            </p>
+                            <p>
+                                Initially, AudioReaper simply read MP3 metadata and searched for matching tracks on spotify, but I quickly noticed that most MP3 files had incorrect or missing data tags. <br>
+                                To fix this, I resorted to how I identify the track, the file name! <br> Thanks to Natural Language Processing (NLP) and Large Language Models (LLMs) I was able to implement a feature to extract the data from the file names when tags where insufficient.
+                            </p>
+                            <p>
+                                So in November of 2023, I started working on the program as a project for my personal use self-development, and to share it with friends. <br>
+                                Several months later, a friend suggested to turn it into a Web app as others might like something like this.
+                            </p>
+                            <p>So I embarked on developing this Web app slowly as I had other obligations that demanded most of my energy, and this project's scope grew immensely afterward.</p>
+                            <p>Finally, AudioReaper is deployed. 
+                                <br>It's not perfect but it's certainly <b>Done!</b></p>
+                        </div>
+                    </article>
+                </div>
+                <!-- <div>
+                    <article>
+                        <h4>STUFF HERE?</h4>
+                    </article>
+                </div> -->
+            </div>
+        </div>        
+    </main>
+        <%- include ('partials/footer') %>
+</body>
+
+</html>
