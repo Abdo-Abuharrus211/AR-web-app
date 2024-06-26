@@ -16,11 +16,11 @@ This will serve as the web app and front-end for Project AudioReaper
 - [ ] When logged in change what the btn says
 - [X] Add SPotify icon to the login btn
 - [X] Adjust btn and text
-- [ ] Add login btn logic and test
-- [ ] Account for remaining interactivity and DOM updating
+- [X] Add login btn logic and test
+- [X] Account for remaining interactivity and DOM updating
 - [X] Send backend the packaged data via API handler (like Axios or AJAx)
-- [ ] Test frontend, send req to backend
-- [ ] Finish UI design and make good looking styles
-- [ ] Bob
+- [X] Test frontend, send req to backend
+- [X] Finish UI design and make good looking styles
+
 
 Great, now any suggestions on how to visually convey on the DOM that a folder has been uploaded? perhaps change the folder input div? Or show a popup (not a modal) that conveys it?
