@@ -66,8 +66,11 @@ function traverseFileTree(item, path = "") {
         });
     }
 }
+
 function validateInput() {
-    if (isFolderAdded == true && playlistNameValue != "") {
+    var loggedStatus = sessionStorage.getItem('loggedIn') === "true";
+        console.log(`user status is ${loggedStatus}`);
+    if (isFolderAdded == true && playlistNameValue != "" && loggedStatus == true) {
         document.getElementById("harvest-btn").disabled = false;
     }
     else {
@@ -99,13 +102,12 @@ function loginUser() {
         console.log(response);
         window.location = response.data.auth_url;
         sessionStorage.setItem('loggedIn', true);
-        checkLoginStatus();
     }).catch(error => {
         console.log("Error authenticating: " + error);
     });
 }
 
-function logoutUser(){
+function logoutUser() {
     axios.post(`${APIBaseURL}/logout`).then(response => {
         sessionStorage.clear();
         window.location = ('/');
@@ -128,15 +130,17 @@ function sendPlaylistName() {
 
 function checkLoginStatus() {
     const isLoggedIn = sessionStorage.getItem('loggedIn');
-    const displayName = sessionStorage.getItem('username');
+    const name = sessionStorage.getItem('username');
     if (isLoggedIn) {
         document.getElementById("logout-btn").removeAttribute("hidden");
         document.getElementById("login-btn").setAttribute("hidden", "hidden");
+        document.getElementById('login-label').innerHTML = `Logged in as: <span style="color: var(--accent); font-weight: bold;">${name}</span>`;
+        console.log(`User logged in:  ${isLoggedIn}`);
     } else {
         document.getElementById("logout-btn").setAttribute("hidden", "hidden");
         document.getElementById("login-btn").removeAttribute("hidden");
         document.getElementById('login-label').innerHTML = 'Please log into Spotify.';
-
+        console.log(`User logged in:  ${isLoggedIn}`);
     }
 }
 
