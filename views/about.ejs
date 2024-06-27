@@ -12,45 +12,52 @@
 <body>
     <%- include ('partials/header') %>
 
-    <main>
-        <div id="about-section" class="main container">
-            <hgroup>
-                <h2>What's AudioReaper?</h2>
-                <small>It's a Web app that helps sync your PC's music library with your Spotify account.</small>
+        <div class="container">
+            <hgroup class="about-header">
+                <h1>What's AudioReaper?</h1>
+                <small>It's a Web App that syncs your PC's local music library with your Spotify account.</small>
             </hgroup>
-            <div class="grid">
-                <div>
-                    <article class="story-card">
-                        <div class="story-div">
-                            <p>
-                                Project AudioReaper, now just <em>'AudioReaper'</em> started life as a simple Python script.
-                            </p>
-                            <p>
-                                One evening, I was out with friends talking about our music collections and how extensive our local libraries have become
-                                and how it'd be nice to 'sync' them with our Spotify accounts as that's now the common way people listen to their music, even on PC.
-                            </p>
-                            <p>
-                                Initially, AudioReaper simply read MP3 metadata and searched for matching tracks on spotify, but I quickly noticed that most MP3 files had incorrect or missing data tags. <br>
-                                To fix this, I resorted to how I identify the track, the file name! <br> Thanks to Natural Language Processing (NLP) and Large Language Models (LLMs) I was able to implement a feature to extract the data from the file names when tags where insufficient.
-                            </p>
-                            <p>
-                                So in November of 2023, I started working on the program as a project for my personal use self-development, and to share it with friends. <br>
-                                Several months later, a friend suggested to turn it into a Web app as others might like something like this.
-                            </p>
-                            <p>So I embarked on developing this Web app slowly as I had other obligations that demanded most of my energy, and this project's scope grew immensely afterward.</p>
-                            <p>Finally, AudioReaper is deployed. 
-                                <br>It's not perfect but it's certainly <b>Done!</b></p>
-                        </div>
-                    </article>
-                </div>
-                <!-- <div>
-                    <article>
-                        <h4>STUFF HERE?</h4>
-                    </article>
-                </div> -->
+        </div>
+
+        <main>
+            <div id="about-section" class="main container">
+                <hgroup>
+                    <h2>The Story</h2>
+                    <small>How it came to be...</small>
+                </hgroup>
+                <article class="story-card">
+                    <div class="story-div">
+                        <img class="idea-img" src="images/project draft.jpg" alt="Drafting the idea">
+                        <p>
+                            Project AudioReaper, now just <em>'AudioReaper'</em> started life as a simple Python script.
+                        </p>
+                        <p>
+                            One evening, I was out with friends talking about our music collections, how extensive
+                            our local libraries have become, and how it'd be nice to 'sync' them with our Spotify accounts as that's now the most common way
+                            people listen to music, even on PC.
+                        </p>
+                        <p>
+                            Initially, AudioReaper simply read MP3 metadata and searched for matching tracks on Spotify,
+                            but I quickly noticed that most MP3 files had incorrect or missing data tags. <br>
+                            To fix this, I resorted to how I (a totally real person) identify a track, by reading the file name! <br> Thanks to Natural
+                            Language Processing (NLP) and Large Language Models (LLMs) I was able to implement a feature
+                            to extract the data from the file names when tags were insufficient.
+                        </p>
+                        <p>
+                            So in November of 2023, I started working on the program as a project for personal use and
+                            self-development, and to share it with friends. <br>
+                            Several months later, a friend suggested turning it into a Web app as others might like
+                            something like this.
+                        </p>
+                        <p>So I embarked on developing this Web app slowly as I had other obligations that demanded most
+                            of my energy, and this project's scope grew immensely afterward.</p>
+                        <p>Finally, AudioReaper is deployed.
+                            <br>It's not perfect but it's certainly <b>Done!</b>
+                        </p>
+                    </div>
+                </article>
             </div>
-        </div>        
-    </main>
+        </main>
         <%- include ('partials/footer') %>
 </body>
 
