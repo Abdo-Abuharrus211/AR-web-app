@@ -57,7 +57,7 @@
     </div>
   </div>
 
-  <div class="container user-box main">
+  <!-- <div class="container user-box main">
     <div>
       <label data-tooltip="AudioReaper needs your account info to add songs to your specified playlist." for="login-btn"
         id="login-label">Please log into Spotify.</label>
@@ -71,9 +71,22 @@
         Log Out
       </button>
     </div>
-  </div>
+  </div> -->
 
   <div class="container main">
+    <div class="container user-box main">
+      <label data-tooltip="AudioReaper needs your account info to add songs to your specified playlist." for="login-btn"
+        id="login-label">Please log into Spotify.</label>
+      <p id="user-name" class="hidden"></p>
+      <button id="login-btn" class="outline contrast login-button">
+        <img src="/images/Spotify_Primary_Logo_RGB_Green.png" alt="Spotify logo">
+        Log in
+      </button>
+      <button id="logout-btn" class="outline contrast logout-button" hidden>
+        <img src="/images/Spotify_Primary_Logo_RGB_Green.png" alt="Spotify logo">
+        Log Out
+      </button>
+    </div>
     <div id="drop-zone" class="folder-not-added">
       <p id="folder-name" class="hidden"></p>
       <p>Drag and drop a folder or select</p>
@@ -85,13 +98,13 @@
         aria-label="playlistName">
       <button id="harvest-btn" class="outline" disabled="true">Harvest!</button>
       <form>
-      <!-- loading animation -->
-      <dialog id="loadingIndicator" class="hidden" open>
-        <article class="loading-card">
-          <h4>AudioReaper is processing your library!</h4>
-          <div class="loader"></div>
-        </article>
-      </dialog>
+        <!-- loading animation -->
+        <dialog id="loadingIndicator" class="hidden" open>
+          <article class="loading-card">
+            <h4>AudioReaper is processing your library!</h4>
+            <div class="loader"></div>
+          </article>
+        </dialog>
     </div>
   </div>
 
@@ -119,10 +132,10 @@
 
 
   <%- include('partials/footer') %>
-  <!-- My scripts -->
-  <script type="module" src="scripts/index.js"></script>
-  <script type="module" src="scripts/fileIO.js"></script>
-  <script type="module" src="scripts/metadata.js"></script>
+    <!-- My scripts -->
+    <script type="module" src="scripts/index.js"></script>
+    <script type="module" src="scripts/fileIO.js"></script>
+    <script type="module" src="scripts/metadata.js"></script>
 </body>
 
 </html>
