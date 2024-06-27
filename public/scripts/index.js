@@ -11,6 +11,7 @@ playlistNameInput.addEventListener("input", () => {
 const folderInput = document.getElementById("folderInput").addEventListener("change", handleFolderInput);
 const dropInput = document.getElementById('drop-zone').addEventListener("drop", handleFolderInput);
 const loginBtn = document.getElementById('login-btn').addEventListener("click", loginUser);
+const logoutBtn = document.getElementById('logout-btn').addEventListener("click", logoutUser);
 const harvestBtn = document.getElementById('harvest-btn').addEventListener("click", commenceHarvest);
 const disclaimerToggle = document.getElementById('disclaimerToggle').addEventListener('click', () => {
     var disclaimerText = document.getElementById('disclaimerText');
@@ -78,53 +79,67 @@ function validateInput() {
 window.onload = function () {
     const urlParams = new URLSearchParams(window.location.search);
     const displayName = urlParams.get('displayName');
+    sessionStorage.setItem('username', displayName); //Set the username in session
     if (displayName != null) {
         document.getElementById('login-label').innerHTML = `Logged in as: <span style="color: var(--accent); font-weight: bold;">${displayName}</span>`;
         urlParams.delete('displayName');
         history.replaceState({}, '', `${location.pathname}?${urlParams}`);
     }
+    checkLoginStatus()
 }
 
 async function commenceHarvest() {
     sendPlaylistName();
     document.dispatchEvent(new Event('harvestCommence'));
-    // TODO: Perhaps signal completion of harvest to the user
-
 }
-
 
 // TODO: REfactor these two functions into one but with params
 function loginUser() {
     axios.get(`${APIBaseURL}/login`).then(response => {
         console.log(response);
         window.location = response.data.auth_url;
-        document.getElementById("logout-btn").removeAttribute("hidden");
-        document.getElementById("login-btn").setAttribute("hidden", "hidden");
+        sessionStorage.setItem('loggedIn', true);
+        checkLoginStatus();
     }).catch(error => {
         console.log("Error authenticating: " + error);
     });
 }
 
-// TODO: Implement Logout function here & in backend
 function logoutUser(){
     axios.post(`${APIBaseURL}/logout`).then(response => {
-        console.log(response);
-        document.getElementById("logout-btn").setAttribute("hidden", "hidden");
-        document.getElementById("login-btn").removeAttribute("hidden");
+        sessionStorage.clear();
+        window.location = ('/');
+        console.log(response.data.message);
+        checkLoginStatus();
     }).catch(error => {
         console.log("Error loggin out: " + error);
     });
 }
 
+
 function sendPlaylistName() {
     var playlistName = document.getElementById('playlist-input').value;
-    // console.log("Name of the playlist is: " + playlistName);
     axios.post(`${APIBaseURL}/setPlaylistName/${playlistName}`).then(response => {
         console.log("Server Response: " + response.data.message);
     }).catch(error => {
         console.log("Server Response: " + error);
     })
 }
+
+function checkLoginStatus() {
+    const isLoggedIn = sessionStorage.getItem('loggedIn');
+    const displayName = sessionStorage.getItem('username');
+    if (isLoggedIn) {
+        document.getElementById("logout-btn").removeAttribute("hidden");
+        document.getElementById("login-btn").setAttribute("hidden", "hidden");
+    } else {
+        document.getElementById("logout-btn").setAttribute("hidden", "hidden");
+        document.getElementById("login-btn").removeAttribute("hidden");
+        document.getElementById('login-label').innerHTML = 'Please log into Spotify.';
+
+    }
+}
+
 
 
 
