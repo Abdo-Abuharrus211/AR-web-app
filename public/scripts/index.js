@@ -8,11 +8,29 @@ playlistNameInput.addEventListener("input", () => {
     validateInput();
 });
 
+// const contactTriggers = document.getElementsByClassName("contact-trigger");
+// for (let trigger of contactTriggers) {
+//     trigger.addEventListener("click", () => openModal());
+// }
+// const contactCloser = document.getElementById("close-contact-modal").addEventListener("click", closeModal);
+// // Close modal on "Esc" key press
+// document.addEventListener("keydown", function (event) {
+//     if (event.key === "Escape") {
+//         closeModal();
+//     }
+// });
+// // Closing contact modal by clicking elsewhere
+// document.getElementById("contact-modal").addEventListener("click", function (event) {
+//     if (event.target === this) {
+//         closeModal();
+//     }
+// });
 const folderInput = document.getElementById("folderInput").addEventListener("change", handleFolderInput);
 const dropInput = document.getElementById('drop-zone').addEventListener("drop", handleFolderInput);
 const loginBtn = document.getElementById('login-btn').addEventListener("click", loginUser);
 const logoutBtn = document.getElementById('logout-btn').addEventListener("click", logoutUser);
 const harvestBtn = document.getElementById('harvest-btn').addEventListener("click", commenceHarvest);
+
 const disclaimerToggle = document.getElementById('disclaimerToggle').addEventListener('click', () => {
     var disclaimerText = document.getElementById('disclaimerText');
     if (disclaimerText.classList.contains('hidden')) {
@@ -24,6 +42,48 @@ const disclaimerToggle = document.getElementById('disclaimerToggle').addEventLis
         disclaimerText.classList.add('hidden');
     }
 });
+
+
+// DOM Manipilation//////////
+function validateInput() {
+    var loggedStatus = sessionStorage.getItem('loggedIn') === "true";
+    console.log(`user status is ${loggedStatus}`);
+    if (isFolderAdded == true && playlistNameValue != "" && loggedStatus == true) {
+        document.getElementById("harvest-btn").disabled = false;
+    }
+    else {
+        document.getElementById("harvest-btn").disabled = true;
+    }
+}
+
+// Retrieve the display name from the URL's query parameters when the page loads
+window.onload = function () {
+    const urlParams = new URLSearchParams(window.location.search);
+    const displayName = urlParams.get('displayName');
+    sessionStorage.setItem('username', displayName); //Set the username in session
+    if (displayName != null) {
+        document.getElementById('login-label').innerHTML = `Logged in as: <span style="color: var(--accent); font-weight: bold;">${displayName}</span>`;
+        urlParams.delete('displayName');
+        history.replaceState({}, '', `${location.pathname}?${urlParams}`);
+    }
+    checkLoginStatus()
+}
+
+
+// function openModal(modal) {
+//     var modal = document.getElementById("contact-modal");
+//     modal.classList.remove("hidden");
+//     setTimeout(() => {
+//         closeModal(modal);
+//     }, 300000); // 5 minutes in milliseconds
+// }
+
+// function closeModal(modal) {
+//     var modal = document.getElementById("contact-modal");
+//     modal.classList.add("hidden");
+// }
+
+
 
 function handleFolderInput(e) {
     e.preventDefault();
@@ -67,30 +127,7 @@ function traverseFileTree(item, path = "") {
     }
 }
 
-function validateInput() {
-    var loggedStatus = sessionStorage.getItem('loggedIn') === "true";
-        console.log(`user status is ${loggedStatus}`);
-    if (isFolderAdded == true && playlistNameValue != "" && loggedStatus == true) {
-        document.getElementById("harvest-btn").disabled = false;
-    }
-    else {
-        document.getElementById("harvest-btn").disabled = true;
-    }
-}
-
-// Retrieve the display name from the URL's query parameters when the page loads
-window.onload = function () {
-    const urlParams = new URLSearchParams(window.location.search);
-    const displayName = urlParams.get('displayName');
-    sessionStorage.setItem('username', displayName); //Set the username in session
-    if (displayName != null) {
-        document.getElementById('login-label').innerHTML = `Logged in as: <span style="color: var(--accent); font-weight: bold;">${displayName}</span>`;
-        urlParams.delete('displayName');
-        history.replaceState({}, '', `${location.pathname}?${urlParams}`);
-    }
-    checkLoginStatus()
-}
-
+// Core Fnuctionality////////
 async function commenceHarvest() {
     sendPlaylistName();
     document.dispatchEvent(new Event('harvestCommence'));

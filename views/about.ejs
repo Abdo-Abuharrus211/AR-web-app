@@ -11,6 +11,24 @@
 
 <body>
     <%- include ('partials/header') %>
+        <dialog id="contact-modal" class="hidden" open>
+            <article>
+                <header>
+                    <button id="close-contact-modal" aria-label="Close" rel="prev"></button>
+                    <h2>Contact Us</h2>
+                    <p>If you have any questions or concerns, please fill out the form below.</p>
+                </header>
+                <form>
+                    <label for="name">Your Name:</label>
+                    <input type="text" id="name" name="name" required>
+                    <label for="email">Your Email:</label>
+                    <input type="email" id="email" name="email" required>
+                    <label for="message">Message:</label>
+                    <textarea id="message" name="message" rows="4" required></textarea>
+                    <button type="submit" class="outline">Send Message</button>
+                </form>
+            </article>
+        </dialog>
 
         <div class="container">
             <hgroup class="about-header">
@@ -33,13 +51,15 @@
                         </p>
                         <p>
                             One evening, I was out with friends talking about our music collections, how extensive
-                            our local libraries have become, and how it'd be nice to 'sync' them with our Spotify accounts as that's now the most common way
+                            our local libraries have become, and how it'd be nice to 'sync' them with our Spotify
+                            accounts as that's now the most common way
                             people listen to music, even on PC.
                         </p>
                         <p>
                             Initially, AudioReaper simply read MP3 metadata and searched for matching tracks on Spotify,
                             but I quickly noticed that most MP3 files had incorrect or missing data tags. <br>
-                            To fix this, I resorted to how I (a totally real person) identify a track, by reading the file name! <br> Thanks to Natural
+                            To fix this, I resorted to how I (a totally real person) identify a track, by reading the
+                            file name! <br> Thanks to Natural
                             Language Processing (NLP) and Large Language Models (LLMs) I was able to implement a feature
                             to extract the data from the file names when tags were insufficient.
                         </p>
@@ -59,6 +79,7 @@
             </div>
         </main>
         <%- include ('partials/footer') %>
+            <script type="module" src="scripts/contact.js"></script>
 </body>
 
 </html>
