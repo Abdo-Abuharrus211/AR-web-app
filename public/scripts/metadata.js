@@ -28,6 +28,10 @@ function sendToBackend(data){
     axios.post(`${APIBaseURL}/receiveMetadata`, data).then(response =>{
         console.log("Server Response:" + response.data.message);
         document.getElementById('loadingIndicator').classList.add('hidden');
+        document.getElementById('success-Indicator').classList.remove('hidden');
+        setTimeout(() =>{
+            document.getElementById('success-Indicator').classList.add('hidden');
+        }), 2000;
         getFailed();
         document.getElementById('failBox').classList.remove('hidden');
     }).catch( error => {
