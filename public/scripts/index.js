@@ -8,23 +8,6 @@ playlistNameInput.addEventListener("input", () => {
     validateInput();
 });
 
-// const contactTriggers = document.getElementsByClassName("contact-trigger");
-// for (let trigger of contactTriggers) {
-//     trigger.addEventListener("click", () => openModal());
-// }
-// const contactCloser = document.getElementById("close-contact-modal").addEventListener("click", closeModal);
-// // Close modal on "Esc" key press
-// document.addEventListener("keydown", function (event) {
-//     if (event.key === "Escape") {
-//         closeModal();
-//     }
-// });
-// // Closing contact modal by clicking elsewhere
-// document.getElementById("contact-modal").addEventListener("click", function (event) {
-//     if (event.target === this) {
-//         closeModal();
-//     }
-// });
 const folderInput = document.getElementById("folderInput").addEventListener("change", handleFolderInput);
 const dropInput = document.getElementById('drop-zone').addEventListener("drop", handleFolderInput);
 const loginBtn = document.getElementById('login-btn').addEventListener("click", loginUser);
@@ -42,7 +25,6 @@ const disclaimerToggle = document.getElementById('disclaimerToggle').addEventLis
         disclaimerText.classList.add('hidden');
     }
 });
-
 
 // DOM Manipilation//////////
 function validateInput() {
@@ -69,22 +51,7 @@ window.onload = function () {
     checkLoginStatus()
 }
 
-
-// function openModal(modal) {
-//     var modal = document.getElementById("contact-modal");
-//     modal.classList.remove("hidden");
-//     setTimeout(() => {
-//         closeModal(modal);
-//     }, 300000); // 5 minutes in milliseconds
-// }
-
-// function closeModal(modal) {
-//     var modal = document.getElementById("contact-modal");
-//     modal.classList.add("hidden");
-// }
-
-
-
+//TODO: Move these to fileIO.js ????
 function handleFolderInput(e) {
     e.preventDefault();
     var items;
@@ -132,8 +99,6 @@ async function commenceHarvest() {
     sendPlaylistName();
     document.dispatchEvent(new Event('harvestCommence'));
 }
-
-// TODO: REfactor these two functions into one but with params
 function loginUser() {
     axios.get(`${APIBaseURL}/login`).then(response => {
         console.log(response);
@@ -180,7 +145,4 @@ function checkLoginStatus() {
         console.log(`User logged in:  ${isLoggedIn}`);
     }
 }
-
-
-
 
