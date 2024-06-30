@@ -137,12 +137,10 @@ function checkLoginStatus() {
         document.getElementById("logout-btn").removeAttribute("hidden");
         document.getElementById("login-btn").setAttribute("hidden", "hidden");
         document.getElementById('login-label').innerHTML = `Logged in as: <span style="color: var(--accent); font-weight: bold;">${name}</span>`;
-        console.log(`User logged in:  ${isLoggedIn}`);
     } else {
         document.getElementById("logout-btn").setAttribute("hidden", "hidden");
         document.getElementById("login-btn").removeAttribute("hidden");
         document.getElementById('login-label').innerHTML = 'Please log into Spotify.';
-        console.log(`User logged in:  ${isLoggedIn}`);
     }
 }
 
