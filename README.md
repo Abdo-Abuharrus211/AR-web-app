@@ -13,7 +13,7 @@ This will serve as the web app and front-end for Project AudioReaper
 - [X] Create a custom event to ensure updating the metadata in fileIO.js
 - [X] Store the Spotify credentials and pass to backend
 - [X] Set up the backend and pass on relevant information
-- [ ] When logged in change what the btn says
+- [X] When logged in change what the btn says
 - [X] Add SPotify icon to the login btn
 - [X] Adjust btn and text
 - [X] Add login btn logic and test
@@ -22,6 +22,4 @@ This will serve as the web app and front-end for Project AudioReaper
 - [X] Test frontend, send req to backend
 - [X] Finish UI design and make good looking styles
 - [ ] Conduct final clean-up and removal of comments and To-Dos
-
-
-Great, now any suggestions on how to visually convey on the DOM that a folder has been uploaded? perhaps change the folder input div? Or show a popup (not a modal) that conveys it?
+- [ ] 
