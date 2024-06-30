@@ -91,6 +91,15 @@ nav {
     z-index: 5;
 }
 
+#artist-link{
+    color: var(--text);
+    font-weight: 600;
+    text-decoration: none;
+}
+#artist-link:hover{
+    color: var(--accent);
+}
+
 #instructions,
 #failedTracks {
     margin-right: 30%;
