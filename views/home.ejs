@@ -34,7 +34,9 @@
       </nav>
       <div class="banner-text">Bridge your Local library with your Spotify!</div>
     </div>
-    <small>Art by <a id="artist-link" href="https://www.pexels.com/photo/purple-and-blue-light-digital-wallpaper-3780104/">Tuesday Temptation</a></small>
+    <small>Art by <a id="artist-link"
+        href="https://www.pexels.com/photo/purple-and-blue-light-digital-wallpaper-3780104/">Tuesday
+        Temptation</a></small>
   </header>
 
 
@@ -81,15 +83,18 @@
         <h2>Contact Us</h2>
         <p>If you have any questions or concerns, please fill out the form below.</p>
       </header>
-      <form>
+      <form action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="54ca3262-a11a-4a23-be34-89750c055c36">
         <label for="name">Your Name:</label>
         <input type="text" id="name" name="name" required>
         <label for="email">Your Email:</label>
         <input type="email" id="email" name="email" required>
         <label for="message">Message:</label>
         <textarea id="message" name="message" rows="4" required></textarea>
+        <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+        <input type="hidden" name="redirect" value="http://localhost:9000/">
         <button type="submit" class="outline">Send Message</button>
-    </form>
+      </form>
     </article>
   </dialog>
 
