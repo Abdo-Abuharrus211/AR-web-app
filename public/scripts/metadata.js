@@ -27,18 +27,18 @@ function sendToBackend(data){
     document.getElementById('failedTracks-list').innerHTML = '';
     document.getElementById('loadingIndicator').classList.remove('hidden');
     axios.post(`${APIBaseURL}/receiveMetadata`, data).then(response =>{
-        console.log("Server Response:" + response.data.message);
+        // console.log("Server Response:" + response.data.message);
         document.getElementById('loadingIndicator').classList.add('hidden');
-        document.getElementById('success-Indicator').classList.remove('hidden');
-        setTimeout(() =>{
-            document.getElementById('success-Indicator').classList.add('hidden');
-        }), 2000;
         getFailed();
         document.getElementById('failBox').classList.remove('hidden');
+        document.getElementById('successIndicator').classList.remove('hidden');
+        setTimeout(() =>{
+            document.getElementById('successIndicator').classList.add('hidden');
+        }), 5000;
     }).catch( error => {
         console.log("Error" + error);
         document.getElementById('loadingIndicator').classList.add('hidden');
-    })
+    });
 }
 
 // function getAddedResults(){

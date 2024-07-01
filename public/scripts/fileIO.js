@@ -24,7 +24,7 @@ function resetMetadataPromise() {
         var checkInterval = setInterval(() => {
             if (filesToRead === filesRead && mp3FilesToRead === 0) {  // Ensures all MP3 files are processed
                 clearInterval(checkInterval);
-                console.log("Resolving promise with metadataArray:", metadataArray);
+                // console.log("Resolving promise with metadataArray:", metadataArray);
                 resolve(metadataArray);
             }
         }, 100);
