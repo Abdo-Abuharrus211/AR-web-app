@@ -9,7 +9,6 @@ var mp3FileNames = [];
 document.addEventListener('metadataUpdated', () => {
    unprocessedMetadata =[];
    unprocessedMetadata = getMetadata();
-//    console.log(unprocessedMetadata);
     mp3FileNames = [];
     mp3FileNames = getFileNames();
 });
@@ -27,7 +26,6 @@ function sendToBackend(data){
     document.getElementById('failedTracks-list').innerHTML = '';
     document.getElementById('loadingIndicator').classList.remove('hidden');
     axios.post(`${APIBaseURL}/receiveMetadata`, data).then(response =>{
-        // console.log("Server Response:" + response.data.message);
         document.getElementById('loadingIndicator').classList.add('hidden');
         getFailed();
         document.getElementById('failBox').classList.remove('hidden');
@@ -44,7 +42,6 @@ function sendToBackend(data){
 // function getAddedResults(){
 //     axios.get(`${APIBaseURL}/getResults`).then(response =>{
 //         addedTitles = response;
-//         console.log("Added: \n" + addedTitles);
 //     }).catch(error =>{
 //         console.log(error);
 //     })
