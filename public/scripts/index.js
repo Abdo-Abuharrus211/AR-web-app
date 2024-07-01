@@ -1,6 +1,7 @@
 var playlistNameValue = "";
 var isFolderAdded = false;
-const APIBaseURL = 'http://localhost:5000'; // TODO: replace with real API URL and store in .env
+const APIBaseURL = 'http://localhost:5000';
+// const APIBaseURL = 'https://project-audio-reaper-pure-4.onrender.com';
 
 const playlistNameInput = document.getElementById('playlist-input');
 playlistNameInput.addEventListener("input", () => {
