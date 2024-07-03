@@ -38,17 +38,21 @@ function validateInput() {
     }
 }
 
-// Retrieve the display name from the URL's query parameters when the page loads
 window.onload = function () {
-    const urlParams = new URLSearchParams(window.location.search);
-    const displayName = urlParams.get('displayName');
-    sessionStorage.setItem('username', displayName); //Set the username in session
-    if (displayName != null) {
-        document.getElementById('login-label').innerHTML = `Logged in as: <span style="color: var(--accent); font-weight: bold;">${displayName}</span>`;
-        urlParams.delete('displayName');
-        history.replaceState({}, '', `${location.pathname}?${urlParams}`);
+    let displayName = sessionStorage.getItem('username');
+    if (!displayName) {
+        const urlParams = new URLSearchParams(window.location.search);
+        displayName = urlParams.get('displayName');
+        if (displayName) {
+            sessionStorage.setItem('username', displayName);
+            urlParams.delete('displayName');
+            history.replaceState({}, '', `${location.pathname}?${urlParams}`);
+        }
     }
-    checkLoginStatus()
+    if (displayName) {
+        document.getElementById('login-label').innerHTML = `Logged in as: <span style="color: var(--accent); font-weight: bold;">${displayName}</span>`;
+    }
+    checkLoginStatus();
 }
 
 //TODO: Move these to fileIO.js ????
@@ -103,6 +107,7 @@ function loginUser() {
     axios.get(`${APIBaseURL}/login`).then(response => {
         window.location = response.data.auth_url;
         sessionStorage.setItem('loggedIn', true);
+        getUsername();
     }).catch(error => {
         console.log("Error authenticating: " + error);
     });
@@ -128,8 +133,11 @@ function sendPlaylistName() {
 }
 
 function checkLoginStatus() {
-    const isLoggedIn = sessionStorage.getItem('loggedIn');
-    const name = sessionStorage.getItem('username');
+    let isLoggedIn = sessionStorage.getItem('loggedIn');
+    let name = sessionStorage.getItem('username');
+    if (isLoggedIn && !name) {
+        getUsername();
+    }
     if (isLoggedIn) {
         document.getElementById("logout-btn").removeAttribute("hidden");
         document.getElementById("login-btn").setAttribute("hidden", "hidden");
@@ -139,5 +147,14 @@ function checkLoginStatus() {
         document.getElementById("login-btn").removeAttribute("hidden");
         document.getElementById('login-label').innerHTML = 'Please log into Spotify.';
     }
+}
+
+function getUsername() {
+    axios.get(`${APIBaseURL}/getDisplayName`).then(response => {
+        let name = response.data;
+        sessionStorage.setItem('username', name);
+    }).catch(error => {
+        console.log("Error getting username" + error);
+    });
 }
 
