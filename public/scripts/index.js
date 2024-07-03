@@ -1,3 +1,5 @@
+import { getFolderName } from './fileIO.js';
+
 var playlistNameValue = "";
 var isFolderAdded = false;
 const APIBaseURL = 'http://localhost:5000';
@@ -103,6 +105,10 @@ function traverseFileTree(item, path = "") {
 async function commenceHarvest() {
     sendPlaylistName();
     document.dispatchEvent(new Event('harvestCommence'));
+    var folderName = getFolderName();
+    var successMessage =  document.getElementById("success-message");
+    successMessage.textContent = "Tracks from " + folderName + " added to playlist!"
+    successMessage.classList.remove('hidden');
 }
 function loginUser() {
     axios.get(`${APIBaseURL}/login`).then(response => {
