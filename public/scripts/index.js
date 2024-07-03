@@ -2,8 +2,8 @@ import { getFolderName } from './fileIO.js';
 
 var playlistNameValue = "";
 var isFolderAdded = false;
-const APIBaseURL = 'http://localhost:5000';
-// const APIBaseURL = 'https://project-audio-reaper-pure-4.onrender.com';
+// const APIBaseURL = 'http://localhost:5000';
+const APIBaseURL = 'https://project-audio-reaper-pure-4.onrender.com';
 
 const playlistNameInput = document.getElementById('playlist-input');
 playlistNameInput.addEventListener("input", () => {
