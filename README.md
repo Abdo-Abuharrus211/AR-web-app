@@ -1,7 +1,7 @@
 
 # AudioReaper Web app (frontend)
-* Abdulqadir Abuharrus
-* 03/07/2024
+* Author: Abdulqadir Abuharrus
+* Date: 03/07/2024
 
 ## Description:
 A web app made to help bridge the gap between your local music libraries on your PC and your Spotify playlists!
@@ -23,7 +23,7 @@ This is the client side of the web app that was developed to publish and share A
 6. The tracks AR fails to add will be listed in the 'Failed Tracks' section.
 7. When finished, be sure to log out, but don't worry if you don't as AudioReaper's backend ends sessions, logs out users then deletes session data.
 
-## Tech Stack
+## Technologies
 The frontend is rather simple and lightweight.
 * Written in JavaScript, and built using Node.js and Express.
 * API calls are handled using Axios for simplicity.
