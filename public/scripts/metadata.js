@@ -25,7 +25,8 @@ document.addEventListener('harvestCommence', () => {
 function sendToBackend(data){
     document.getElementById('failedTracks-list').innerHTML = '';
     document.getElementById('loadingIndicator').classList.remove('hidden');
-    axios.post(`${APIBaseURL}/receiveMetadata`, data).then(response =>{
+    let username = sessionStorage.getItem('username');
+    axios.post(`${APIBaseURL}/${username}/receiveMetadata`, data).then(response =>{
         document.getElementById('loadingIndicator').classList.add('hidden');
         getFailed();
         document.getElementById('failBox').classList.remove('hidden');
