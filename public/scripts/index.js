@@ -106,7 +106,7 @@ async function commenceHarvest() {
     sendPlaylistName();
     document.dispatchEvent(new Event('harvestCommence'));
     var folderName = getFolderName();
-    var successMessage =  document.getElementById("success-message");
+    var successMessage = document.getElementById("success-message");
     successMessage.textContent = "Tracks from " + folderName + " added to playlist!"
     successMessage.classList.remove('hidden');
 }
@@ -114,6 +114,7 @@ function loginUser() {
     axios.get(`${APIBaseURL}/login`).then(response => {
         window.location = response.data.auth_url;
         sessionStorage.setItem('loggedIn', true);
+        // TODO: Store username in sessionStorage
         getUsername();
     }).catch(error => {
         console.log("Error authenticating: " + error);
@@ -121,7 +122,8 @@ function loginUser() {
 }
 
 function logoutUser() {
-    axios.post(`${APIBaseURL}/logout`).then(response => {
+    let username = sessionStorage.getItem('username');
+    axios.post(`${APIBaseURL}/${username}/logout`).then(response => {
         sessionStorage.clear();
         window.location = ('/');
         console.log(response.data.message);
@@ -133,8 +135,9 @@ function logoutUser() {
 
 
 function sendPlaylistName() {
+    let username = sessionStorage.getItem('username');
     var playlistName = document.getElementById('playlist-input').value;
-    axios.post(`${APIBaseURL}/setPlaylistName/${playlistName}`).then(response => {
+    axios.post(`${APIBaseURL}/${username}/setPlaylistName/${playlistName}`).then(response => {
         console.log("Server Response: " + response.data.message);
     }).catch(error => {
         console.log("Server Response: " + error);
@@ -159,11 +162,13 @@ function checkLoginStatus() {
 }
 
 function getUsername() {
-    axios.get(`${APIBaseURL}/getDisplayName`).then(response => {
-        let name = response.data;
-        sessionStorage.setItem('username', name);
-    }).catch(error => {
-        console.log("Error getting username" + error);
-    });
+    if (!(sessionStorage.getItem('username'))) {
+        axios.get(`${APIBaseURL}/getDisplayName`).then(response => {
+            let name = response.data;
+            sessionStorage.setItem('username', name);
+        }).catch(error => {
+            console.log("Error getting username" + error);
+        });
+    }
 }
 
