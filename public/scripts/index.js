@@ -1,4 +1,7 @@
+import axios from 'axios';
 import { getFolderName } from './fileIO.js';
+import { response } from 'express';
+import { error } from 'console';
 
 var playlistNameValue = "";
 var isFolderAdded = false;
@@ -43,14 +46,27 @@ function validateInput() {
 
 window.onload = function () {
     let displayName = sessionStorage.getItem('username');
-    if (!displayName) {
+    let userID = sessionStorage.getItem('userID');
+    if (!displayName || !userID) {
         const urlParams = new URLSearchParams(window.location.search);
         displayName = urlParams.get('displayName');
-        if (displayName) {
+        userID = urlParams.get('userID');
+        // TODO: Add API call here to store info in server-session cuz flask is a bitch
+        let tokenCode = urlParams('code');
+        axios.post(`${APIBaseURL}/exchangeCodeSession/${tokenCode}`).then(response => {
+            console.log('Token for data exchange status:' + response.data.message)
+        }).catch(error => {
+            console.log('An Error occured getting user data into session:' + error);
+        })
+        console.log("This user's ID is " + userID);
+        if (displayName || userID) {
             sessionStorage.setItem('username', displayName);
+            sessionStorage.setItem('userID', userID);
             urlParams.delete('displayName');
+            urlParams.delete('userID');
             history.replaceState({}, '', `${location.pathname}?${urlParams}`);
         }
+
     }
     if (displayName) {
         document.getElementById('login-label').innerHTML = `Logged in as: <span style="color: var(--accent); font-weight: bold;">${displayName}</span>`;
@@ -114,7 +130,6 @@ function loginUser() {
     axios.get(`${APIBaseURL}/login`).then(response => {
         window.location = response.data.auth_url;
         sessionStorage.setItem('loggedIn', true);
-        // TODO: Store username in sessionStorage
         getUsername();
     }).catch(error => {
         console.log("Error authenticating: " + error);
@@ -122,8 +137,8 @@ function loginUser() {
 }
 
 function logoutUser() {
-    let username = sessionStorage.getItem('username');
-    axios.post(`${APIBaseURL}/${username}/logout`).then(response => {
+    let userID = sessionStorage.getItem('userID');
+    axios.post(`${APIBaseURL}/logout/${userID}`).then(response => {
         sessionStorage.clear();
         window.location = ('/');
         console.log(response.data.message);
@@ -135,9 +150,9 @@ function logoutUser() {
 
 
 function sendPlaylistName() {
-    let username = sessionStorage.getItem('username');
+    let userID = sessionStorage.getItem('userID');
     var playlistName = document.getElementById('playlist-input').value;
-    axios.post(`${APIBaseURL}/${username}/setPlaylistName/${playlistName}`).then(response => {
+    axios.post(`${APIBaseURL}/setPlaylistName/${playlistName}/${userID}`).then(response => {
         console.log("Server Response: " + response.data.message);
     }).catch(error => {
         console.log("Server Response: " + error);
@@ -163,7 +178,8 @@ function checkLoginStatus() {
 
 function getUsername() {
     if (!(sessionStorage.getItem('username'))) {
-        axios.get(`${APIBaseURL}/getDisplayName`).then(response => {
+        let userID = sessionStorage.getItem('userID');
+        axios.get(`${APIBaseURL}/getDisplayName/${userID}`).then(response => {
             let name = response.data;
             sessionStorage.setItem('username', name);
         }).catch(error => {
