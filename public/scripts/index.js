@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { getFolderName } from './fileIO.js';
-import { response } from 'express';
-import { error } from 'console';
+// import { response } from 'express';
+// import { error } from 'console';
 
 var playlistNameValue = "";
 var isFolderAdded = false;
@@ -53,11 +53,11 @@ window.onload = function () {
         userID = urlParams.get('userID');
         // TODO: Add API call here to store info in server-session cuz flask is a bitch
         let tokenCode = urlParams('code');
-        axios.post(`${APIBaseURL}/exchangeCodeSession/${tokenCode}`).then(response => {
-            console.log('Token for data exchange status:' + response.data.message)
-        }).catch(error => {
-            console.log('An Error occured getting user data into session:' + error);
-        })
+        // axios.post(`${APIBaseURL}/exchangeCodeSession/${tokenCode}`).then(response => {
+        //     console.log('Token for data exchange status:' + response.data.message)
+        // }).catch(error => {
+        //     console.log('An Error occured getting user data into session:' + error);
+        // });
         console.log("This user's ID is " + userID);
         if (displayName || userID) {
             sessionStorage.setItem('username', displayName);
