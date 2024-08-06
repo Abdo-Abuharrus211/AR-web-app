@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from 'https://cdn.skypack.dev/axios';
 import { getFolderName } from './fileIO.js';
 // import { response } from 'express';
 // import { error } from 'console';
@@ -45,19 +45,19 @@ function validateInput() {
 }
 
 window.onload = function () {
+    const urlParams = new URLSearchParams(window.location.search);
+    let tokenCode = urlParams.get('code');
+    axios.post(`${APIBaseURL}/exchangeCodeSession/${tokenCode}`).then(response => {
+        console.log('Token for data exchange status:' + response.data.message)
+    }).catch(error => {
+        console.log('An Error occured getting user data into session:' + error);
+    });
     let displayName = sessionStorage.getItem('username');
     let userID = sessionStorage.getItem('userID');
     if (!displayName || !userID) {
         const urlParams = new URLSearchParams(window.location.search);
         displayName = urlParams.get('displayName');
         userID = urlParams.get('userID');
-        // TODO: Add API call here to store info in server-session cuz flask is a bitch
-        let tokenCode = urlParams('code');
-        // axios.post(`${APIBaseURL}/exchangeCodeSession/${tokenCode}`).then(response => {
-        //     console.log('Token for data exchange status:' + response.data.message)
-        // }).catch(error => {
-        //     console.log('An Error occured getting user data into session:' + error);
-        // });
         console.log("This user's ID is " + userID);
         if (displayName || userID) {
             sessionStorage.setItem('username', displayName);
