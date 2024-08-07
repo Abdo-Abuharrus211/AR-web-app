@@ -47,27 +47,24 @@ function validateInput() {
 window.onload = function () {
     const urlParams = new URLSearchParams(window.location.search);
     let tokenCode = urlParams.get('code');
-    axios.post(`${APIBaseURL}/exchangeCodeSession/${tokenCode}`).then(response => {
-        console.log('Token for data exchange status:' + response.data.message)
-    }).catch(error => {
-        console.log('An Error occured getting user data into session:' + error);
-    });
+    exchangeTokenForData(tokenCode)
+    // TODO: redo this block now that there's a func that adds data to local storage...
     let displayName = sessionStorage.getItem('username');
     let userID = sessionStorage.getItem('userID');
-    if (!displayName || !userID) {
-        const urlParams = new URLSearchParams(window.location.search);
-        displayName = urlParams.get('displayName');
-        userID = urlParams.get('userID');
-        console.log("This user's ID is " + userID);
-        if (displayName || userID) {
-            sessionStorage.setItem('username', displayName);
-            sessionStorage.setItem('userID', userID);
-            urlParams.delete('displayName');
-            urlParams.delete('userID');
-            history.replaceState({}, '', `${location.pathname}?${urlParams}`);
-        }
+    // if (!displayName || !userID) {
+    //     const urlParams = new URLSearchParams(window.location.search);
+    //     displayName = urlParams.get('displayName');
+    //     userID = urlParams.get('userID');
+    //     console.log("This user's ID is " + userID);
+    //     if (displayName || userID) {
+    //         sessionStorage.setItem('username', displayName);
+    //         sessionStorage.setItem('userID', userID);
+    //         urlParams.delete('displayName');
+    //         urlParams.delete('userID');
+    //         history.replaceState({}, '', `${location.pathname}?${urlParams}`);
+    //     }
 
-    }
+    // }
     if (displayName) {
         document.getElementById('login-label').innerHTML = `Logged in as: <span style="color: var(--accent); font-weight: bold;">${displayName}</span>`;
     }
@@ -148,6 +145,14 @@ function logoutUser() {
     });
 }
 
+function exchangeTokenForData(code) {
+    axios.post(`${APIBaseURL}/exchangeCodeSession/${code}`).then(response => {
+        sessionStorage.setItem('username', response.data.username);
+        sessionStorage.setItem('userID', response.data.userID);
+    }).catch(error => {
+        console.log('An Error occured getting user data into session:' + error);
+    });
+}
 
 function sendPlaylistName() {
     let userID = sessionStorage.getItem('userID');
@@ -181,6 +186,7 @@ function getUsername() {
         let userID = sessionStorage.getItem('userID');
         axios.get(`${APIBaseURL}/getDisplayName/${userID}`).then(response => {
             let name = response.data;
+            console.log(name);
             sessionStorage.setItem('username', name);
         }).catch(error => {
             console.log("Error getting username" + error);
