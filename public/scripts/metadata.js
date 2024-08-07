@@ -1,5 +1,7 @@
 import { getMetadata, getFileNames } from './fileIO.js';
 
+axios.defaults.withCredentials = true;
+
 
 var unprocessedMetadata = [];
 const APIBaseURL = 'http://localhost:5000'; // TODO: replace with real API URL and store in .env
