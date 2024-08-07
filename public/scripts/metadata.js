@@ -1,5 +1,7 @@
 import { getMetadata, getFileNames } from './fileIO.js';
 
+axios.defaults.withCredentials = true;
+
 
 var unprocessedMetadata = [];
 // const APIBaseURL = 'http://localhost:5000'; // TODO: replace with real API URL and store in .env
@@ -25,7 +27,8 @@ document.addEventListener('harvestCommence', () => {
 function sendToBackend(data){
     document.getElementById('failedTracks-list').innerHTML = '';
     document.getElementById('loadingIndicator').classList.remove('hidden');
-    axios.post(`${APIBaseURL}/receiveMetadata`, data).then(response =>{
+    let userID = sessionStorage.getItem('userID');
+    axios.post(`${APIBaseURL}/receiveMetadata/${userID}`, data).then(response =>{
         document.getElementById('loadingIndicator').classList.add('hidden');
         getFailed();
         document.getElementById('failBox').classList.remove('hidden');
@@ -48,7 +51,8 @@ function sendToBackend(data){
 // }
 
 function getFailed() {
-    axios.get(`${APIBaseURL}/getFailed`).then(response => {
+    let userID = sessionStorage.getItem('userID');
+    axios.get(`${APIBaseURL}/getFailed/${userID}`).then(response => {
         var failedSongs = response.data;
         const failedTrackItems = failedSongs.map(title => `<li>${title}</li>`).join('');
         document.getElementById('failedTracks-list').innerHTML = failedTrackItems;
