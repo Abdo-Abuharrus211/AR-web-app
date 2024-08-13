@@ -131,7 +131,7 @@ function loginUser() {
 
 function logoutUser() {
     let userID = sessionStorage.getItem('userID');
-    axios.post(`${APIBaseURL}/logout/${userID}`).then(response => {
+    axios.post(`${APIBaseURL}/logout`).then(response => {
         sessionStorage.clear();
         window.location = ('/');
         console.log(response.data.message);
@@ -145,7 +145,7 @@ function logoutUser() {
 function sendPlaylistName() {
     let userID = sessionStorage.getItem('userID');
     var playlistName = document.getElementById('playlist-input').value;
-    axios.post(`${APIBaseURL}/setPlaylistName/${playlistName}/${userID}`).then(response => {
+    axios.post(`${APIBaseURL}/setPlaylistName/${playlistName}`).then(response => {
         console.log("Server Response: " + response.data.message);
     }).catch(error => {
         console.log("Server Response: " + error);
@@ -172,11 +172,11 @@ function checkLoginStatus() {
 function getUsername() {
     if (!(sessionStorage.getItem('username'))) {
         let userID = sessionStorage.getItem('userID');
-        axios.get(`${APIBaseURL}/getDisplayName/${userID}`).then(response => {
+        axios.get(`${APIBaseURL}/getDisplayName`).then(response => {
             let name = response.data;
             console.log(name);
             sessionStorage.setItem('username', name);
-        }).catch(error => {
+        }).catch(error => {``
             console.log("Error getting username" + error);
         });
     }
