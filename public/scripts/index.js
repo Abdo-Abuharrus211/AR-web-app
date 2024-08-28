@@ -1,3 +1,8 @@
+import axios from 'https://cdn.skypack.dev/axios';
+import { getFolderName } from './fileIO.js';
+// import { response } from 'express';
+// import { error } from 'console';
+axios.defaults.withCredentials = true;
 var playlistNameValue = "";
 var isFolderAdded = false;
 const APIBaseURL = 'http://localhost:5000';
@@ -38,24 +43,29 @@ function validateInput() {
     }
 }
 
-window.onload = function () {
-    let displayName = sessionStorage.getItem('username');
-    if (!displayName) {
-        const urlParams = new URLSearchParams(window.location.search);
-        displayName = urlParams.get('displayName');
-        if (displayName) {
-            sessionStorage.setItem('username', displayName);
-            urlParams.delete('displayName');
-            history.replaceState({}, '', `${location.pathname}?${urlParams}`);
-        }
-    }
-    if (displayName) {
-        document.getElementById('login-label').innerHTML = `Logged in as: <span style="color: var(--accent); font-weight: bold;">${displayName}</span>`;
-    }
-    checkLoginStatus();
+function exchangeTokenForData(code) {
+    return axios.post(`${APIBaseURL}/exchangeCodeSession/${code}`).then(response => {
+        sessionStorage.setItem('username', response.data.username);
+        sessionStorage.setItem('userID', response.data.userID);
+        sessionStorage.setItem('loggedIn', true);
+    }).catch(error => {
+        console.log('An Error occured getting user data into session:' + error);
+    });
 }
 
-//TODO: Move these to fileIO.js ????
+window.onload = function () {
+    const urlParams = new URLSearchParams(window.location.search);
+    let tokenCode = urlParams.get('code');
+    if (tokenCode) {
+        exchangeTokenForData(tokenCode).then(() => {
+            checkLoginStatus();
+        });
+    } else {
+        checkLoginStatus();
+    }
+}
+
+
 function handleFolderInput(e) {
     e.preventDefault();
     var items;
@@ -102,18 +112,24 @@ function traverseFileTree(item, path = "") {
 async function commenceHarvest() {
     sendPlaylistName();
     document.dispatchEvent(new Event('harvestCommence'));
+    var folderName = getFolderName();
+    var successMessage = document.getElementById("success-message");
+    successMessage.textContent = "Tracks from " + folderName + " added to playlist!"
+    successMessage.classList.remove('hidden');
 }
 function loginUser() {
     axios.get(`${APIBaseURL}/login`).then(response => {
         window.location = response.data.auth_url;
-        sessionStorage.setItem('loggedIn', true);
-        getUsername();
+        // TODO: Delete this function call?
+        // sessionStorage.setItem('loggedIn', true);
+        //  getUsername();
     }).catch(error => {
         console.log("Error authenticating: " + error);
     });
 }
 
 function logoutUser() {
+    let userID = sessionStorage.getItem('userID');
     axios.post(`${APIBaseURL}/logout`).then(response => {
         sessionStorage.clear();
         window.location = ('/');
@@ -125,6 +141,7 @@ function logoutUser() {
 
 
 function sendPlaylistName() {
+    let userID = sessionStorage.getItem('userID');
     var playlistName = document.getElementById('playlist-input').value;
     axios.post(`${APIBaseURL}/setPlaylistName/${playlistName}`).then(response => {
     }).catch(error => {
@@ -150,11 +167,15 @@ function checkLoginStatus() {
 }
 
 function getUsername() {
-    axios.get(`${APIBaseURL}/getDisplayName`).then(response => {
-        let name = response.data;
-        sessionStorage.setItem('username', name);
-    }).catch(error => {
-        console.log("Error getting username" + error);
-    });
+    if (!(sessionStorage.getItem('username'))) {
+        let userID = sessionStorage.getItem('userID');
+        axios.get(`${APIBaseURL}/getDisplayName`).then(response => {
+            let name = response.data;
+            console.log(name);
+            sessionStorage.setItem('username', name);
+        }).catch(error => {``
+            console.log("Error getting username" + error);
+        });
+    }
 }
 

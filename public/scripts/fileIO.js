@@ -12,8 +12,8 @@ document.getElementById('drop-zone').addEventListener('drop', dropHandler);
 document.getElementById('drop-zone').addEventListener('dragover', dragOverHandler);
 document.getElementById('folderInput').addEventListener('change', function (event) {
     handleFiles(event.target.files);
-     // Get the name of the selected folder
-     if (event.target.files.length > 0) {
+    // Get the name of the selected folder
+    if (event.target.files.length > 0) {
         folderName = event.target.files[0].webkitRelativePath.split('/')[0];
     }
 });
@@ -141,7 +141,7 @@ function indicateFolderAdded() {
     drop.classList.replace('folder-not-added', 'folder-added');
     drop.classList.replace('wrong-file-types', 'folder-added');
     var folderNameElement = document.getElementById('folder-name');
-    folderNameElement.textContent = "Selected folder: "+ folderName;
+    folderNameElement.textContent = "Selected folder: " + folderName;
     folderNameElement.classList.remove('hidden');
 }
 
@@ -161,3 +161,4 @@ export function getMetadata() {
 export function getFileNames() {
     return fileNames;
 }
+export function getFolderName() { return folderName; }
