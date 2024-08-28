@@ -35,7 +35,6 @@ const disclaimerToggle = document.getElementById('disclaimerToggle').addEventLis
 // DOM Manipilation//////////
 function validateInput() {
     var loggedStatus = sessionStorage.getItem('loggedIn') === "true";
-    console.log(`user status is ${loggedStatus}`);
     if (isFolderAdded == true && playlistNameValue != "" && loggedStatus == true) {
         document.getElementById("harvest-btn").disabled = false;
     }
@@ -134,7 +133,6 @@ function logoutUser() {
     axios.post(`${APIBaseURL}/logout`).then(response => {
         sessionStorage.clear();
         window.location = ('/');
-        console.log(response.data.message);
         checkLoginStatus();
     }).catch(error => {
         console.log("Error loggin out: " + error);
@@ -146,7 +144,6 @@ function sendPlaylistName() {
     let userID = sessionStorage.getItem('userID');
     var playlistName = document.getElementById('playlist-input').value;
     axios.post(`${APIBaseURL}/setPlaylistName/${playlistName}`).then(response => {
-        console.log("Server Response: " + response.data.message);
     }).catch(error => {
         console.log("Server Response: " + error);
     })
