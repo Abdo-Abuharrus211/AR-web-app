@@ -25,7 +25,6 @@ This is the client side of the web app that was developed to publish and share A
 ## Technologies
 The app is rather simple and lightweight.
 * Built using Express.js.
-* API calls are handled using Axios.
 * For styling, I used the minimal CSS framework [pico](https://picocss.com/.
 
 ## TODO: 
@@ -45,7 +44,7 @@ The app is rather simple and lightweight.
 - [X] Adjust btn and text
 - [X] Add login btn logic and test
 - [X] Account for remaining interactivity and DOM updating
-- [X] Send backend the packaged data via API handler (like Axios or AJAx)
+- [X] Send backend the packaged data via web API `fetch`
 - [X] Test frontend, send req to backend
 - [X] Finish UI design and make good looking styles
 - [X] Store the username in the localstorage session.
