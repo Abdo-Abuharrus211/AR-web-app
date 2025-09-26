@@ -83,7 +83,7 @@ function readDirectory(entry) {
 }
 
 function dragOverHandler(event) {
-    event.preventDefault(); // TODO: Add a visual cue to show that the file can be dropped!!!
+    event.preventDefault();
 }
 
 function handleFiles(files) {
