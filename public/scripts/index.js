@@ -1,8 +1,5 @@
-import axios from 'https://cdn.skypack.dev/axios';
 import { getFolderName } from './fileIO.js';
-// import { response } from 'express';
-// import { error } from 'console';
-axios.defaults.withCredentials = true;
+
 var playlistNameValue = "";
 var isFolderAdded = false;
 const APIBaseURL = 'http://localhost:5000';
@@ -32,7 +29,7 @@ const disclaimerToggle = document.getElementById('disclaimerToggle').addEventLis
     }
 });
 
-// DOM Manipilation//////////
+// DOM Manipilation //
 function validateInput() {
     var loggedStatus = sessionStorage.getItem('loggedIn') === "true";
     if (isFolderAdded == true && playlistNameValue != "" && loggedStatus == true) {
@@ -43,14 +40,27 @@ function validateInput() {
     }
 }
 
-function exchangeTokenForData(code) {
-    return axios.post(`${APIBaseURL}/exchangeCodeSession/${code}`).then(response => {
-        sessionStorage.setItem('username', response.data.username);
-        sessionStorage.setItem('userID', response.data.userID);
-        sessionStorage.setItem('loggedIn', true);
-    }).catch(error => {
-        console.log('An Error occured getting user data into session:' + error);
-    });
+async function exchangeTokenForData(code) {
+    try {
+        const response = await fetch(`${APIBaseURL}/exchangeCodeSession/${code}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            credentials: 'include',
+        });
+
+        if (response.ok) {
+            let res = await response.json();
+            sessionStorage.setItem('username', res.username);
+            sessionStorage.setItem('userID', res.userID);
+            sessionStorage.setItem('loggedIn', true);
+        } else {
+            console.log(`Error authenticating user: ${response.statusText}`);
+        }
+    } catch (error) {
+        console.log(`Error occured authenticating session: ${error}`);
+    }
 }
 
 window.onload = function () {
@@ -108,7 +118,7 @@ function traverseFileTree(item, path = "") {
     }
 }
 
-// Core Fnuctionality////////
+// Core Fnuctionality //
 async function commenceHarvest() {
     sendPlaylistName();
     document.dispatchEvent(new Event('harvestCommence'));
@@ -117,36 +127,53 @@ async function commenceHarvest() {
     successMessage.textContent = "Tracks from " + folderName + " added to playlist!"
     successMessage.classList.remove('hidden');
 }
-function loginUser() {
-    axios.get(`${APIBaseURL}/login`).then(response => {
-        window.location = response.data.auth_url;
-        // TODO: Delete this function call?
-        // sessionStorage.setItem('loggedIn', true);
-        //  getUsername();
-    }).catch(error => {
-        console.log("Error authenticating: " + error);
-    });
+
+async function loginUser() {
+    try {
+        const response = await fetch(`${APIBaseURL}/login`, {
+            method: "GET",
+        });
+
+        if (response.ok) {
+            let res = await response.json();
+            window.location = res.auth_url;
+        }
+    } catch (error) {
+        console.log(`Error authenticating: ${error}`);
+    };
 }
 
-function logoutUser() {
-    let userID = sessionStorage.getItem('userID');
-    axios.post(`${APIBaseURL}/logout`).then(response => {
-        sessionStorage.clear();
-        window.location = ('/');
-        checkLoginStatus();
-    }).catch(error => {
-        console.log("Error loggin out: " + error);
-    });
+async function logoutUser() {
+    try {
+        const response = await fetch(`${APIBaseURL}/logout`, {
+            method: "POST",
+            credentials: "include"
+        });
+        if (response.ok) {
+            sessionStorage.clear();
+            window.location = ('/');
+            checkLoginStatus();
+        };
+    } catch (error) {
+        console.log(`Error logging out: ${error}`);
+    }
 }
 
 
-function sendPlaylistName() {
+async function sendPlaylistName() {
     let userID = sessionStorage.getItem('userID');
     var playlistName = document.getElementById('playlist-input').value;
-    axios.post(`${APIBaseURL}/setPlaylistName/${playlistName}`).then(response => {
-    }).catch(error => {
-        console.log("Server Response: " + error);
-    })
+    try {
+        const response = await fetch(`${APIBaseURL}/setPlaylistName/${playlistName}`, {
+            method: "POST",
+            credentials: 'include',
+        });
+        if (!response.ok) {
+            console.log(`${response.statusText}`);
+        }
+    } catch (error) {
+        console.log(`Error sending playlist name: ${error}`);
+    }
 }
 
 function checkLoginStatus() {
@@ -166,16 +193,21 @@ function checkLoginStatus() {
     }
 }
 
-function getUsername() {
+async function getUsername() {
     if (!(sessionStorage.getItem('username'))) {
-        let userID = sessionStorage.getItem('userID');
-        axios.get(`${APIBaseURL}/getDisplayName`).then(response => {
-            let name = response.data;
-            console.log(name);
-            sessionStorage.setItem('username', name);
-        }).catch(error => {``
-            console.log("Error getting username" + error);
-        });
+        try {
+            const response = await fetch(`${APIBaseURL}/getDisplayName`, {
+                method: "GET",
+            });
+
+            if (response.ok) {
+                let res = await response.json();
+                let name = res.data;
+                sessionStorage.setItem('username', name);
+            }
+        } catch (error) {
+            console.log(`Error fetching username: ${error}`);
+        }
     }
 }
 
