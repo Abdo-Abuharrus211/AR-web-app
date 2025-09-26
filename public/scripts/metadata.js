@@ -2,7 +2,7 @@ import { getMetadata, getFileNames } from './fileIO.js';
 
 var unprocessedMetadata = [];
 const APIBaseURL = 'http://localhost:5000'; // replace with real API URL and store in .env
-// const APIBaseURL = 'https://project-audio-reaper-pure-4.onrender.com';
+// const APIBaseURL = process.env.API_BASE_URL;
 var mp3FileNames = [];
 
 document.addEventListener('metadataUpdated', () => {

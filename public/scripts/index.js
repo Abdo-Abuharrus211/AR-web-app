@@ -3,7 +3,7 @@ import { getFolderName } from './fileIO.js';
 var playlistNameValue = "";
 var isFolderAdded = false;
 const APIBaseURL = 'http://localhost:5000';
-// const APIBaseURL = 'https://project-audio-reaper-pure-4.onrender.com';
+// const APIBaseURL = process.env.API_BASE_URL;
 
 const playlistNameInput = document.getElementById('playlist-input');
 playlistNameInput.addEventListener("input", () => {
