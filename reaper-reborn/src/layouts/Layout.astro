@@ -1,7 +1,7 @@
 ---
 import Header from "../components/header.astro";
 import Footer from "../components/footer.astro";
-const pageTitle = Astro.props
+const pageTitle = Astro.props;
 ---
 
 <!doctype html>
@@ -9,10 +9,25 @@ const pageTitle = Astro.props
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link
+			rel="icon"
+			type="image/svg+xml"
+			href="../assets/images/AudioReaper-favicon.png"
+		/>
 		<meta name="generator" content={Astro.generator} />
 		<title>{pageTitle}</title>
-		<link rel="stylesheet" href="../styles/styles.css">
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Monoton&display=swap"
+			rel="stylesheet"
+		/>
+		<!-- fontawesome -->
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+		/>
+		<link rel="stylesheet" href="../styles/styles.css" />
 	</head>
 	<body>
 		<Header />
