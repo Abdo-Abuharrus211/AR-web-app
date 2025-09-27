@@ -1,0 +1,23 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout pageTitle="404 - Page Not Found">
+    <div class="container main">
+        <hgroup>
+            <h1>Oh No!!!</h1>
+            <p>
+                You've wound up in <em>Never-Never land</em>, not even
+                AudioReaper dwells here
+            </p>
+        </hgroup>
+        <button id="return-btn" class="contrast">Go Back!</button>
+    </div>
+</Layout>
+
+<script>
+    document.getElementById;
+    document.getElementById("return-btn")?.addEventListener("click", () => {
+        window.location.href = "/";
+    });
+</script>
