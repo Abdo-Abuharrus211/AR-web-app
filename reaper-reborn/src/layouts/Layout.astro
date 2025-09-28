@@ -16,6 +16,7 @@ const pageTitle = Astro.props;
 		/>
 		<meta name="generator" content={Astro.generator} />
 		<title>{pageTitle}</title>
+		<!-- Google Fonts -->
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
@@ -27,6 +28,11 @@ const pageTitle = Astro.props;
 			rel="stylesheet"
 			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
 		/>
+		<!-- jsmediatags CDN -->
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/jsmediatags/3.9.5/jsmediatags.min.js"
+		></script>
+
 		<link rel="stylesheet" href="../styles/styles.css" />
 	</head>
 	<body>

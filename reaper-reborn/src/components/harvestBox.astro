@@ -1,0 +1,48 @@
+---
+// TODO:  add the logic for file IO, metadata, and the rest from index.js
+---
+
+<div id="drop-zone" class="folder-not-added">
+    <p id="folder-name" class="hidden"></p>
+    <p>Drag and drop a folder or select</p>
+    <!-- Following ignore is for the webdirecory attribute -->
+    <!-- @ts-ignore -->
+    <input
+        @ts-ignore
+        type="file"
+        id="folderInput"
+        multiple
+        accept="audio/mp3"
+        webkitdirectory
+        directory
+        style="display:none"
+    />
+    <button onclick="document.getElementById('folderInput').click();"
+        >Browse...</button
+    >
+</div>
+<div class="container form-box">
+    <input
+        id="playlist-input"
+        type="text"
+        class="playlist-form"
+        name="playlistName"
+        placeholder="Playlist name..."
+        aria-label="playlistName"
+    />
+    <button id="harvest-btn" class="outline" disabled="true">Harvest!</button>
+    <form>
+        <!-- loading animation -->
+        <dialog id="loadingIndicator" class="hidden" open>
+            <article class="loading-card">
+                <h4>AudioReaper is processing your library!</h4>
+                <div class="loader"></div>
+            </article>
+        </dialog>
+        <dialog id="successIndicator" class="hidden" open>
+            <article>
+                <h3>Tracks added to Playlist!</h3>
+            </article>
+        </dialog>
+    </form>
+</div>
