@@ -11,3 +11,22 @@
         algorithms.
     </div>
 </div>
+
+<script>
+    document
+        .getElementById("disclaimerToggle")
+        ?.addEventListener("click", disclaimerToggle);
+
+    // Toggle the class, and hide it after 7 seconds
+    function disclaimerToggle() {
+        const disclaimerText = document.getElementById("disclaimerText");
+        if (disclaimerText) {
+            disclaimerText.classList.toggle("hidden");
+            if (!disclaimerText.classList.contains("hidden")) {
+                setTimeout(() => {
+                    disclaimerText.classList.toggle("hidden");
+                }, 7000);
+            }
+        }
+    }
+</script>
