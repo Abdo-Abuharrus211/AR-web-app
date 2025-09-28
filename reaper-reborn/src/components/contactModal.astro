@@ -1,6 +1,5 @@
 ---
 // TODO: port the logic over here
-
 ---
 
 <dialog id="contact-modal" class="hidden" open>
@@ -25,4 +24,41 @@
         </form>
     </article>
 </dialog>
-<script type="module" src="scripts/contact.js"></script>
+
+<script>
+    const contactModal = document.getElementById("contact-modal");
+    // An array of all elements that can trigger the Contact modal
+    const contactTriggers = document.getElementsByClassName("contact-trigger");
+    for (let trigger of contactTriggers) {
+        trigger.addEventListener("click", () => openModal());
+    }
+
+    // For all the buttons that close the modal
+    document
+        .getElementById("close-contact-modal")
+        ?.addEventListener("click", closeModal);
+    // Close modal on "Esc" key press
+    document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") {
+            closeModal();
+        }
+    });
+
+    function openModal() {
+        contactModal?.classList.remove("hidden");
+        setTimeout(() => {
+            closeModal();
+        }, 300000); // 5 minutes in milliseconds
+    }
+
+    function closeModal() {
+        contactModal?.classList.add("hidden");
+    }
+
+    // Closing contact modal by clicking elsewhere
+    contactModal?.addEventListener("click", (e) => {
+        if (e.target === this) {
+            closeModal();
+        }
+    });
+</script>
