@@ -15,6 +15,30 @@ function checkLoginStatus() {
     }
 }
 
+
+async function exchangeTokenForData(code) {
+    try {
+        const response = await fetch(`${APIBaseURL}/exchangeCodeSession/${code}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            credentials: 'include'
+        })
+
+        if (response.ok) {
+            let res = await response.json()
+            sessionStorage.setItem('username', res.username)
+            sessionStorage.setItem('userID', res.userID)
+            sessionStorage.setItem('loggedIn', 'true')
+        } else {
+            console.log(`Error authenticating user: ${response.statusText}`)
+        }
+    } catch (error) {
+        console.log(`Error occured authenticating session: ${error}`)
+    }
+}
+
 async function getUsername() {
     if (!(sessionStorage.getItem('username'))) {
         try {
@@ -33,4 +57,4 @@ async function getUsername() {
     }
 }
 
-export default checkLoginStatus; 
+export {checkLoginStatus , exchangeTokenForData}; 
