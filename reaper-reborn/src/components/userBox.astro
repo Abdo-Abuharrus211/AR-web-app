@@ -26,13 +26,11 @@
 </div>
 
 <script>
-    import checkLoginStatus from "../scripts/user";
+    import { checkLoginStatus } from "../scripts/user";
+    import { APIBaseURL } from "../constants";
 
-    // TODO: make a file for these Global constants and checks if in dev or prod
-    const APIBaseURL = "http://localhost:5000";
-    // const APIBaseURL = process.env.API_BASE_URL;
-    document.getElementById("login-btn").addEventListener("click", loginUser);
-    document.getElementById("logout-btn").addEventListener("click", logoutUser);
+    document.getElementById("login-btn")?.addEventListener("click", loginUser);
+    document.getElementById("logout-btn")?.addEventListener("click", logoutUser);
 
     // TODO: fix this session manmagement to be PROPER and airtight!
     async function loginUser() {
