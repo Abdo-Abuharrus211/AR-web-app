@@ -1,3 +1,5 @@
+import { APIBaseURL } from "../constants";
+
 function checkLoginStatus() {
     let isLoggedIn = sessionStorage.getItem('loggedIn');
     let name = sessionStorage.getItem('username');

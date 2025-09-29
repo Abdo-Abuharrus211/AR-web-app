@@ -1,10 +1,9 @@
 import { getFolderName } from './fileIO'
 import { checkLoginStatus, exchangeTokenForData } from './user'
+import { APIBaseURL } from '../constants'
 
 var playlistNameValue = ''
 var isFolderAdded = false
-const APIBaseURL = 'http://localhost:5000'
-// const APIBaseURL = process.env.API_BASE_URL;
 
 const playlistNameInput = document.getElementById(
     'playlist-input'

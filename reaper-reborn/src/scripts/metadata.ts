@@ -1,8 +1,7 @@
 import { getMetadata, getFileNames } from './fileIO.js';
+import { APIBaseURL } from '../constants.js';
 
 var unprocessedMetadata = [];
-const APIBaseURL = 'http://localhost:5000'; // replace with real API URL and store in .env
-// const APIBaseURL = process.env.API_BASE_URL;
 var mp3FileNames: string[] = [];
 
 document.addEventListener('metadataUpdated', () => {
@@ -24,7 +23,7 @@ document.addEventListener('harvestCommence', () => {
 async function sendToBackend(data) {
     document.getElementById('failedTracks-list').innerHTML = '';
     document.getElementById('loadingIndicator').classList.remove('hidden');
-    
+
     try {
         const response = await fetch(`${APIBaseURL}/receiveMetadata`, {
             method: "POST",
