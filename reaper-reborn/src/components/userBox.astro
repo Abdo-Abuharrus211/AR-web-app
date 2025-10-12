@@ -24,3 +24,43 @@
         Log Out
     </button>
 </div>
+
+<script>
+    import { checkLoginStatus } from "../scripts/user";
+    import { APIBaseURL } from "../constants";
+
+    document.getElementById("login-btn")?.addEventListener("click", loginUser);
+    document.getElementById("logout-btn")?.addEventListener("click", logoutUser);
+
+    // TODO: fix this session manmagement to be PROPER and airtight!
+    async function loginUser() {
+        try {
+            const response = await fetch(`${APIBaseURL}/login`, {
+                method: "GET",
+            });
+
+            if (response.ok) {
+                let res = await response.json();
+                window.location = res.auth_url;
+            }
+        } catch (error) {
+            console.log(`Error authenticating: ${error}`);
+        }
+    }
+
+    async function logoutUser() {
+        try {
+            const response = await fetch(`${APIBaseURL}/logout`, {
+                method: "POST",
+                credentials: "include",
+            });
+            if (response.ok) {
+                sessionStorage.clear();
+                window.location.href = "/";
+                checkLoginStatus();
+            }
+        } catch (error) {
+            console.log(`Error logging out: ${error}`);
+        }
+    }
+</script>

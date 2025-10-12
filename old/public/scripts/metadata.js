@@ -1,3 +1,4 @@
+import { fail } from 'assert';
 import { getMetadata, getFileNames } from './fileIO.js';
 
 var unprocessedMetadata = [];
@@ -76,7 +77,10 @@ async function getFailed() {
         if (response.ok) {
             let failedSongs = await response.json();
             const failedTrackItems = failedSongs.map(title => `<li>${title}</li>`).join('');
-            document.getElementById('failedTracks-list').innerHTML = failedTrackItems;
+            const failListElm = document.getElementById('failedTracks-list');
+            if (failListElm) {
+                failListElm.innerHTML = failedTrackItems;
+            }
         } else {
             console.log(`Error fetching failed tracks: ${response.statusText}`)
         }

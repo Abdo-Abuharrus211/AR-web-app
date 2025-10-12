@@ -1,10 +1,9 @@
-import { fail } from 'assert';
+
 import { getMetadata, getFileNames } from './fileIO.js';
+import { APIBaseURL } from '../constants.js';
 
 var unprocessedMetadata = [];
-const APIBaseURL = 'http://localhost:5000'; // replace with real API URL and store in .env
-// const APIBaseURL = process.env.API_BASE_URL;
-var mp3FileNames = [];
+var mp3FileNames: string[] = [];
 
 document.addEventListener('metadataUpdated', () => {
     unprocessedMetadata = [];
@@ -25,7 +24,6 @@ document.addEventListener('harvestCommence', () => {
 async function sendToBackend(data) {
     document.getElementById('failedTracks-list').innerHTML = '';
     document.getElementById('loadingIndicator').classList.remove('hidden');
-    let userID = sessionStorage.getItem('userID');
 
     try {
         const response = await fetch(`${APIBaseURL}/receiveMetadata`, {
@@ -69,7 +67,6 @@ async function getAddedResults() {
 }
 
 async function getFailed() {
-    let userID = sessionStorage.getItem('userID');
     try {
         const response = await fetch(`${APIBaseURL}/getFailed`, {
             method: "GET",
@@ -77,10 +74,7 @@ async function getFailed() {
         if (response.ok) {
             let failedSongs = await response.json();
             const failedTrackItems = failedSongs.map(title => `<li>${title}</li>`).join('');
-            const failListElm = document.getElementById('failedTracks-list');
-            if (failListElm) {
-                failListElm.innerHTML = failedTrackItems;
-            }
+            document.getElementById('failedTracks-list').innerHTML = failedTrackItems;
         } else {
             console.log(`Error fetching failed tracks: ${response.statusText}`)
         }

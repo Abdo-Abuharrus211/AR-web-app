@@ -1,11 +1,11 @@
-var metadataArray = [];
-var fileNames = [];
-var folderCheck = false;
-var filesToRead = 0;
-var filesRead = 0;
-var mp3FilesToRead = 0;
-var metadataPromise;
-var folderName;
+let metadataArray = [];
+let fileNames = [];
+let folderCheck = false;
+let filesToRead = 0;
+let filesRead = 0;
+let mp3FilesToRead = 0;
+let metadataPromise;
+let folderName;
 
 //Event listeners
 document.getElementById('drop-zone').addEventListener('drop', dropHandler);
@@ -100,7 +100,7 @@ function handleFiles(files) {
 
 
 function readMusicTags(file) {
-    return new Promise((resolve, reject) => {
+    return new Promise<void>((resolve, reject) => {
         if (!file.name.toLowerCase().endsWith('.mp3')) {
             indicateWrongFileTypes();
             filesRead++;
@@ -108,6 +108,7 @@ function readMusicTags(file) {
             return;
         };
         fileNames.push(file.name);
+        // @ts-ignore
         jsmediatags.read(file, {
             onSuccess: function (tag) {
                 var songData = {
