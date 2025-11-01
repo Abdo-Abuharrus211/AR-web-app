@@ -43,9 +43,7 @@ header {
     margin: 0;
 }
 
-.generic-header {
-    margin-bottom: 12%;
-}
+
 
 nav a {
     margin: 0 2%;
@@ -53,16 +51,7 @@ nav a {
     text-decoration: none;
 }
 
-.navbar-logo {
-    font-size: 3rem;
-    color: #F5F7F8;
-    font-family: "Monoton", sans-serif;
-    font-style: normal;
-}
 
-.navbar-link:hover {
-    color: var(--secondary)
-}
 
 nav {
     margin: 0 3%;
