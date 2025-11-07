@@ -1,31 +1,35 @@
+/* Reset and base styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
 :root {
     --text: #dfd7fe;
     --background: #040112;
     --primary: #896efa;
     --secondary: #a90585;
     --accent: #f82585;
-}
 
-[data-tooltip]:not(a, button, input) {
-    opacity: 0.8;
-    border-bottom: none;
-    text-decoration: none;
-    cursor: help;
-}
+    /* TODO: change the fonts... */
+    --ff1: "Noto Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --ff2: "Archivo", system-ui, sans-serif;
+    --h1: 700 4rem/1.2em var(--ff2);
+    --h2: 600 2rem/1.2em var(--ff2);
+    --p: 1rem/1.5em var(--ff1);
 
-.monoton-regular {
-    font-family: "Monoton", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-  }
-
-.hidden {
-    display: none;
-}
-
-.main {
-    padding: 2%;
-    margin: 3% auto 0;
+    --spacing1: 4px;
+    --spacing2: 8px;
+    --spacing3: 16px;
+    --spacing4: 20px;
+    --spacing5: 40px;
+    --page-padding: 2%;
+    --banner-height: 600px;
 }
 
 body {
@@ -35,15 +39,40 @@ body {
     flex-direction: column;
     background-color: var(--background);
     color: var(--text);
+    font: var(--p);
+    font-family: var(--ff1);
 }
 
+/* Tooltip rule */
+[data-tooltip]:not(a, button, input) {
+    opacity: 0.8;
+    border-bottom: none;
+    text-decoration: none;
+    cursor: help;
+}
+
+/* Typography helpers */
+.monoton-regular {
+    font-family: "Monoton", sans-serif;
+    font-weight: 400;
+}
+
+/* Elements */
 header {
     padding: 0;
     color: var(--text);
     margin: 0;
 }
 
-
+nav {
+    margin: 0 3%;
+    position: absolute;
+    top: 5%;
+    width: 90%;
+    color: var(--text);
+    text-align: center;
+    z-index: 10;
+}
 
 nav a {
     margin: 0 2%;
@@ -52,122 +81,44 @@ nav a {
 }
 
 
-
-nav {
-    margin: 0 3%;
-    position: absolute;
-    top: 5%;
-    width: 90%;
-    color: var(--text);
-    padding: 0 0;
+footer {
     text-align: center;
-    z-index: 10;
+    border-top: 1px solid var(--secondary);
+    justify-content: space-around;
+    margin-top: 10%;
 }
 
-.banner {
-    padding: 0;
-    position: relative;
-    width: 100%;
-    height: 600px;
-    overflow: hidden;
-}
 
-.banner img.banner-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.banner .banner-text {
-    position: absolute;
-    top: 60%;
-    left: 40%;
-    transform: translate(-20%, -50%);
-    color: var(--text);
-    font-size: 2.5rem;
-    text-align: center;
-    z-index: 5;
-}
-
-#artist-link{
-    color: var(--text);
-    font-weight: 600;
-    text-decoration: none;
-}
-#artist-link:hover{
-    color: var(--accent);
-}
-
+/* TODO:  rename this shared style... */
 #instructions,
 #failedTracks {
     margin-right: 30%;
-    background-color: rgb(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0.3);
 }
 
-#instructions ol {
-    color: var(--text);
+
+/* Utility Classes */
+.hidden {
+    display: none;
 }
 
-.user-box {
+.center {
     text-align: center;
 }
 
-.login-button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    /* border: solid 1px #1DB954; Spotify Green */
-    padding: 8px 16px;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 4px;
+/* TODO: review this class, do you really need it?*/
+.main {
+    padding: var(--page-padding);
+    margin: 3% auto 0;
 }
 
-.logout-button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border-color: red;
-    /* border: solid 1px #1DB954; Spotify Green */
-    padding: 8px 16px;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 4px;
+
+.container {
+    margin: var(--spacing3) auto;
+    padding: var(--spacing4);
 }
 
-.login-button img,
-.logout-button img {
-    width: 24px;
-    /* Adjust size as necessary */
-    height: auto;
-    margin-right: 8px;
-    /* Space between the logo and the text */
-}
-
-.login-button:hover,
-.logout-button:hover {
-    opacity: 0.8;
-}
-
-#folder-name {
-    color: var(--text);
-}
-
-#drop-zone {
-    color: var(--text);
-    margin: 2% 10%;
-    border-radius: 5px;
-    padding: 20px;
-    text-align: center;
-    cursor: pointer;
-}
-
-#drop-zone:hover {
-    border-color: var(--secondary);
-    opacity: 0.8;
-}
-
+/* User I/O indicators */
 .folder-not-added {
     color: #007bff;
     border: 2px dashed #007bff;
@@ -183,19 +134,6 @@ nav {
     border: 2px solid #cc0000;
 }
 
-
-.form-box {
-    margin-left: auto;
-    width: 50%;
-    display: flex;
-    align-items: center;
-}
-
-.playlist-form {
-    width: 40%;
-    margin: 3% auto;
-}
-
 #harvest-btn {
     margin: 5%;
     color: var(--text);
@@ -205,17 +143,7 @@ nav {
     border-color: var(--secondary);
 }
 
-.loader {
-    margin: auto;
-    width: 45px;
-    aspect-ratio: 1;
-    --c: no-repeat linear-gradient(var(--secondary) 0 0);
-    background:
-        var(--c) 0% 100%,
-        var(--c) 50% 100%,
-        var(--c) 100% 100%;
-    animation: l2 1s infinite linear;
-}
+/* Animations */
 
 @keyframes l2 {
     0% {
@@ -243,79 +171,7 @@ nav {
     }
 }
 
-.loading-card {
-    text-align: center;
-}
-
-.disclaimer-box {
-    margin: auto;
-    text-align: center;
-}
-
-#disclaimerToggle {
-    color: var(--primary);
-    text-decoration: underline;
-    cursor: pointer;
-}
-
-#disclaimerText {
-    margin: auto;
-    padding: 0 30%;
-    text-align: start;
-    transition: all 0.3s ease;
-    overflow: hidden;
-}
-
-
-footer {
-    text-align: center;
-    border-top: 1px solid var(--secondary);
-    justify-content: space-around;
-    margin-top: 10%;
-}
-
-#footer-list li {
-    margin: 2% 1%;
-    display: inline-block;
-    list-style: none;
-}
-
-#footer-list a {
-    text-decoration: none;
-    color: var(--text);
-}
-
-#footer-list a:hover {
-    color: var(--accent);
-}
-
-/* About Page */
-#about-section {
-    background-color: rgb(0, 0, 0, 0.3);
-}
-
-.about-header {
-    margin: 4%;
-}
-
-.story-card {
-    background-color: rgb(0, 0, 0, 0.3);
-    border: 1px solid var(--secondary);
-    overflow: auto;
-    padding: 2% 7%;
-}
-
-.about-img-box {
-    float: right;
-    margin: 2%;
-}
-
-.idea-img {
-    width: 40%;
-    border-radius: 2%;
-    float: right;
-    margin: 2%;
-}
+/* Responsiveness */
 
 
 @media screen and (max-width: 768px) {
