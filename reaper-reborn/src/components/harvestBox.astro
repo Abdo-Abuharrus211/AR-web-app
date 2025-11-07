@@ -34,7 +34,7 @@
     <form>
         <!-- loading animation -->
         <dialog id="loadingIndicator" class="hidden" open>
-            <article class="loading-card">
+            <article class="center">
                 <h4>AudioReaper is processing your library!</h4>
                 <div class="loader"></div>
             </article>
@@ -48,3 +48,48 @@
 </div>
 
 <script src="../scripts/fileIO.ts"></script>
+
+<style>
+    #drop-zone {
+        color: var(--text);
+        margin: 2% 10%;
+        border-radius: 5px;
+        padding: 20px;
+        text-align: center;
+        cursor: pointer;
+    }
+
+    #drop-zone:hover {
+        border-color: var(--secondary);
+        opacity: 0.8;
+    }
+
+    #folder-name {
+        color: var(--text);
+    }
+
+    #harvest-btn {
+        margin: 5%;
+        color: var(--text);
+    }
+    #harvest-btn:hover {
+        border-color: var(--secondary);
+    }
+
+    /* Loader */
+    .loader {
+        margin: auto;
+        width: 45px;
+        aspect-ratio: 1;
+        --c: no-repeat linear-gradient(var(--secondary) 0 0);
+        background:
+            var(--c) 0% 100%,
+            var(--c) 50% 100%,
+            var(--c) 100% 100%;
+        animation: l2 1s infinite linear;
+    }
+    .playlist-form {
+        width: 40%;
+        margin: 3% auto;
+    }
+</style>
