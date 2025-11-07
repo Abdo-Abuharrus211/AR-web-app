@@ -2,7 +2,7 @@
 import Header from "../components/header.astro";
 import Footer from "../components/footer.astro";
 import favicon from "../assets/images/AudioReaper-favicon.png";
-const { layoutProps } = Astro.props;
+const { pageTitle } = Astro.props;
 import "../styles/styles.css";
 ---
 
@@ -17,7 +17,7 @@ import "../styles/styles.css";
 			href="../assets/images/AudioReaper-favicon-1.png"
 		/>
 		<meta name="generator" content={Astro.generator} />
-		<title>{layoutProps.pageTitle}</title>
+		<title>{pageTitle}</title>
 		<!-- Google Fonts -->
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
