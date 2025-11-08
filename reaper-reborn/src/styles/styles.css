@@ -1,3 +1,5 @@
+@import url("../styles/utils.css");
+
 /* Reset and base styles */
 * {
     box-sizing: border-box;
@@ -43,6 +45,39 @@ body {
     font-family: var(--ff1);
 }
 
+h1 {
+    font: var(--h1);
+    color: var(--primary);
+    margin: var(--spacing1);
+}
+
+h2 {
+    font: var(--h2);
+    color: var(--primary);
+    margin: var(--spacing2);
+}
+
+h3 {
+    margin: var(--spacing2);
+}
+
+p {
+    margin: var(--spacing2);
+}
+
+small {
+    color: var(--subtext);
+}
+
+a {
+    text-decoration: none;
+    color: var(--accent);
+}
+
+a:hover {
+    color: var(--secondary);
+}
+
 /* Tooltip rule */
 [data-tooltip]:not(a, button, input) {
     opacity: 0.8;
@@ -64,14 +99,15 @@ header {
     margin: 0;
 }
 
+/* TODO: Change the positioning here... */
 nav {
-    margin: 0 3%;
-    position: absolute;
+    margin: var(--spacing2) 0; 
+    /* position: absolute;
     top: 5%;
     width: 90%;
     color: var(--text);
     text-align: center;
-    z-index: 10;
+    z-index: 10; */
 }
 
 nav a {
@@ -116,6 +152,31 @@ footer {
 .container {
     margin: var(--spacing3) auto;
     padding: var(--spacing4);
+}
+
+.flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing4);
+    flex-wrap: wrap;
+}
+
+.flex>* {
+    flex: 1;
+    min-width: 200px;
+}
+
+.column {
+    flex-direction: column;
+}
+
+.reverse {
+    flex-direction: row-reverse;
+}
+
+.flex-start {
+    align-items: flex-start;
 }
 
 /* User I/O indicators */
