@@ -1,0 +1,59 @@
+
+/* Utility Classes for quick styles during dev*/
+
+/* Margins and Paddings */
+.padding1 {
+    padding: var(--spacing1) 0;
+}
+
+.padding2 {
+    padding: var(--spacing2) 0;
+}
+
+.padding3 {
+    padding: var(--spacing3) 0;
+}
+
+.padding4 {
+    padding: var(--spacing4) 0;
+}
+
+.padding5 {
+    padding: var(--spacing5) 0;
+}
+
+.padding6 {
+    padding: var(--spacing6) 0;
+}
+
+.padding7 {
+    padding: var(--spacing7) 0;
+}
+
+.margin1 {
+    margin: var(--spacing1) auto;
+}
+
+.margin2 {
+    margin: var(--spacing2) auto;
+}
+
+.margin3 {
+    margin: var(--spacing3) auto;
+}
+
+.margin4 {
+    margin: var(--spacing4) auto;
+}
+
+.margin5 {
+    margin: var(--spacing5) auto;
+}
+
+.margin6 {
+    margin: var(--spacing6) auto;
+}
+
+.margin7 {
+    margin: var(--spacing7) auto;
+}
