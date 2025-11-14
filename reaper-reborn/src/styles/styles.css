@@ -45,6 +45,13 @@ body {
     font-family: var(--ff1);
 }
 
+section {
+    width: 80%;
+    max-width: 1200px;
+    padding: var(--spacing6);
+    margin: var(--spacing6) auto;
+}
+
 h1 {
     font: var(--h1);
     color: var(--primary);
@@ -101,7 +108,7 @@ header {
 
 /* TODO: Change the positioning here... */
 nav {
-    margin: var(--spacing2) 0; 
+    margin: var(--spacing2) 0;
     /* position: absolute;
     top: 5%;
     width: 90%;
