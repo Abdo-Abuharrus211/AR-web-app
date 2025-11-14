@@ -30,12 +30,14 @@ html {
     --spacing3: 16px;
     --spacing4: 20px;
     --spacing5: 40px;
-    --page-padding: 2%;
+    --spacing6: 80px;
+    --spacing7: 160px;
+    --spacing8: 320px;    --page-padding: 2%;
     --banner-height: 600px;
 }
 
 body {
-    min-height: 100vh;
+    min-height: 100dvh;
     padding: 0;
     display: flex;
     flex-direction: column;
