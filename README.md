@@ -2,56 +2,45 @@
 * Author: Abdulqadir Abuharrus
 * Date: 03/07/2024
 
-## Description:
-A web app made to help bridge the gap between your local music libraries on your PC and your Spotify playlists!
-This is the client side of the web app that was developed to publish and share AudioReaper and allow users to use it cleanly and directly in their browsers.
+>[!Warning] 
+>AudioReaper's systems are currently being undergoing a full overhaul and refactoring
+> The client is being rebuilt using Astro to improve the UI/UX and reducing reliance on certain NPM packages where possible. Additionally, the backend is being refactored to increase efficiency.
+>
+> During this time it will remain **inactive** to end users.
 
+## Description:
+AudioReaper is a web app that bridges the gap between music libraries on PC and Spotify accounts.
+
+Giving users the option to syncrhonize and add these tracks to their playlists or create a new one all together.
+AudioReaper works by scanning metadata from MP3 files and leveraging Natural Language Processing (NLP) to extract data from file names where tags aren't available and/or reliable enough.
+
+### History
+AudioReaper started as a simple Python script that I'd use a few times a month until one day; when my friend suggested sharing it. However, I knew that a script or executable that runs in the terminal wouldn't be useful for average users, and that's where the idea to build a simple microservice centered around AR came to be.
 
 ## Requirements
-* A modern browser.
-* Directory containing MP3 or WAV files (your music!).
-* A Spotify account to log into in order to sync your music.
+* A modern browser such as Chrome or Firefox
+* A PC housing your MP3 or WAV files i,e, your music
+* A Spotify account to log into in order to sync your music
+
+>[!Note]
+>AudioReaper does not and will never collect nor retain your private information, including but not limited to Spotify credentials. All logins are done via Spotify's official OAuth2 API.
 
 ## Instructions
-1. Click the 'Log in' button
-2. Authorize AudioReaper with the appropriate permissions as shown by the Spotify auth window.
-3. Upload the folder containing MP3 files, 100 tracks or less at a time for best results, by dragging and dropping or using the 'Browse' button.
-4. Type in the name of the playlist, existing or new. 
-   Please note that playlist names are case-sensitive.
-5. Hit the 'Harvest' button and let AudioReaper work.
-6. The tracks AR fails to add will be listed in the 'Failed Tracks' section.
-7. When finished, be sure to log out, but don't worry if you don't as AudioReaper's backend ends sessions, logs out users then deletes session data.
+1. Go to [AudioReaper](https://audioreaper.aabuharrus.dev)
+2. Click the 'Log in' button
+3. Authorize AudioReaper with the appropriate permissions as shown by the Spotify auth window.
+4. Upload the folder containing MP3 files, 100 tracks or less at a time for best results, by dragging and dropping or using the 'Browse' button.
+5. Type in the name of the playlist, existing or new. 
+   Please note that playlist names are **case-sensitive**.
+6. Hit the `Harvest` button and let AudioReaper work.
+7. The tracks AR fails to add will be listed in the 'Failed Tracks' section.
+8. When finished, be sure to log out, but don't worry if you don't as AudioReaper's backend ends sessions, logs out users then deletes session data after a short timeout period.
 
 ## Technologies
 The app is rather simple and lightweight.
-* Built using Express.js.
-* For styling, I used the minimal CSS framework [pico](https://picocss.com/.
+* Built using Express.js ( currently porting to Astro framework)
+* For styling, I used [pico](https://picocss.com/), a minimal CSS framework
 
-## TODO: 
-
-- [X] Organize the data into a DS that's usable
-- [X] Add playlist name form
-- [X] Add "Harvest" button
-- [X] Make form and button dynamic and restricted until ready
-- [X] Modify HTML to reflect drag over
-- [X] Change HTML appearance when file dropped in by changing the drop zone accordingly
-- [X] Reflect HTML when wrong folders are added.
-- [X] Create a custom event to ensure updating the metadata in fileIO.js
-- [X] Store the Spotify credentials and pass to backend
-- [X] Set up the backend and pass on relevant information
-- [X] When logged in change what the btn says
-- [X] Add SPotify icon to the login btn
-- [X] Adjust btn and text
-- [X] Add login btn logic and test
-- [X] Account for remaining interactivity and DOM updating
-- [X] Send backend the packaged data via web API `fetch`
-- [X] Test frontend, send req to backend
-- [X] Finish UI design and make good looking styles
-- [X] Store the username in the localstorage session.
-- [X] Adjust the API requests URLs to include the 'username' path variable.
-- [ ] Adjust for backend's access token
-- [ ] Upon logout, clear localstorage/session
-- [ ] Conduct final clean-up and removal of comments and To-Dos
 
 ## MIT License
 Copyright (c) 2024 ABDULQADIR ABUHARRUS
