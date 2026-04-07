@@ -1,0 +1,53 @@
+# FULL PROJECT OVERHAUL
+- **MODERN CLIENT**
+	- [x] Rebuild it using [[Svelte]] or [[Astro]]? ==// I've gone with Astro seeing as AR is mostly static anyway...And I like it!==
+	- [x] Convert the EJS partials to Astro components
+	- [x] Build layouts
+	- [x] Build pages
+	- [x] Refactor and decompose the home page at `home.ejs`
+	- [x] Add the ENVs to `prod` and main
+	- [x] Port the logic and scripts for all components and pages
+		- [x] Figure out the types... UGH
+		- [x] Will I have to move the logic to client side? Can't run it in `./src/scripts`? // No
+		- [x] Breakdown `metadata.js`
+		- [x] Breakdown `fileio.js`
+		- [x] Breakdown `index.js`
+	- [x]  Refactor the Style into a global style sheet using my system+ styles for specific components go into their modules.
+	- [x] Add utility classes from my design system if needed
+	- [ ] Implementing token revocation?
+	- [ ] Upon logout, clear `localstorage`/`session`
+	- [ ] Need to add Cookie Disclaimer/Alert for the essential cookies I use for auth and stuff (kinda legally required).
+	- [ ] Add new color palette
+	- [ ] **Update the UI to not suck**
+	- [ ] Adjust the navbar, no more bullet list...
+	- [ ] Why am i checking for a code `onload` in `index.ts`?
+	- [ ] Make a single "generic" modal open/close function
+	- [ ] Combine and assemble it all together
+		- [ ] Fix the components
+		- [ ] Check media tags and imports
+		- [ ] 
+	- [ ] **Redo the authentication on client side**
+	- [x] Implement page routing for Astro
+- **Fix Modal Logic:**
+    - [ ] Implement missing `privacyAndTerms.js` to handle Privacy/Terms modals.
+    - [ ] Tie modals to triggers in `navbar.astro` and `footer.astro`.
+- **Client-Side Functionality:**
+    - [ ] Update and verify scripts: `fileIO.ts`, `index.ts`, `checkLoginStatus`.
+    - [ ] Ensure secure session logic (`userBox`).
+- **Styling:**
+    - [ ] Test global CSS variables (`--text`, `--accent`, `--secondary`) for contrast and clarity.
+    - [ ] Modernize the color palette for better UI aesthetics.
+- **Responsive Design Testing:**
+    - [ ] Ensure responsive behavior for `navbar.astro`.
+    - [ ] Ensure responsive behavior for `footer.astro`.
+- **Authentication Revamp:**
+    - [ ] Implement token revocation.
+    - [ ] Ensure `localStorage`/`session` clearance upon logout.
+- **Navbar Updates:**
+    - [ ] Remove bullet list styling from navbar links.
+- **Final Assembly and QA:**
+    - [ ] Check media imports and static asset references.
+    - [ ] Test external dependencies for functionality (FontAwesome, Google Fonts).
+    - [ ] Complete full-application walkthrough for cohesive behavior.
+- **CLEAN UP AND CONTAINERIZE FLASK BACKEND**
+ 	- [ ] 
