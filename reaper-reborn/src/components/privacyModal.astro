@@ -58,9 +58,8 @@
         </ol>
     </article>
 </dialog>
-<script type="module" src="../scripts/modalLogic.js"></script>
 <script>
-  import { attachModalLogic } from '../scripts/modalLogic.js';
+  import { attachModalLogic } from '../scripts/modalHandler';
   
   document.addEventListener('DOMContentLoaded', () => {
     attachModalLogic('.policy-trigger', 'privacy-policy-modal', '#close-privacy-modal');
