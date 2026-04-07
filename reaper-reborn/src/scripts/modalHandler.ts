@@ -1,14 +1,20 @@
 // Module to handle opening and closing the various modals in the app. 
 
+let currentModal: string = "";
+
 /**
  * Open the specified modal by removing the "hidden" class and setting "open".
  * @param {string} modalId - ID of the modal to open.
  */
 export function openModal(modalId: string) {
+  if(currentModal !== ""){
+    closeModal(currentModal);
+  }
   const modal: HTMLDialogElement = document.getElementById(modalId);
   if (modal) {
     modal.classList.remove('hidden');
     modal.open = true;
+    currentModal = modalId;
   } else {
     console.error(`Modal with ID '${modalId}' not found.`);
   }
@@ -27,6 +33,7 @@ export function closeModal(modalId: string) {
   if (modal) {
     modal.classList.add('hidden');
     modal.open = false;
+    currentModal = "";
   } else {
     console.error(`Modal with ID '${modalId}' not found.`);
   }
