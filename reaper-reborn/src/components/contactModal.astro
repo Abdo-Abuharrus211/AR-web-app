@@ -1,11 +1,12 @@
 ---
+``;
 ---
 
 <dialog id="contact-modal" class="hidden" open>
     <article>
         <header>
             <!-- Removed `rel="prev" from this btn so be aware if side effects arise` -->
-            <button aria-label="Close"></button>
+            <button id="close-contact-modal" aria-label="Close"></button>
             <h2>Contact Us</h2>
             <p>
                 If you have any questions or concerns, please fill out the form
@@ -25,39 +26,13 @@
 </dialog>
 
 <script>
-    const contactModal = document.getElementById("contact-modal");
-    // An array of all elements that can trigger the Contact modal
-    const contactTriggers = document.getElementsByClassName("contact-trigger");
-    for (let trigger of contactTriggers) {
-        trigger.addEventListener("click", () => openModal());
-    }
+    import { attachModalLogic } from "../scripts/modalHandler";
 
-    // For all the buttons that close the modal
-    document
-        .getElementById("close-contact-modal")
-        ?.addEventListener("click", closeModal);
-    // Close modal on "Esc" key press
-    document.addEventListener("keydown", function (event) {
-        if (event.key === "Escape") {
-            closeModal();
-        }
-    });
-
-    function openModal() {
-        contactModal?.classList.remove("hidden");
-        setTimeout(() => {
-            closeModal();
-        }, 300000); // 5 minutes in milliseconds
-    }
-
-    function closeModal() {
-        contactModal?.classList.add("hidden");
-    }
-
-    // Closing contact modal by clicking elsewhere
-    contactModal?.addEventListener("click", (e) => {
-        if (e.target === this) {
-            closeModal();
-        }
+    document.addEventListener("DOMContentLoaded", () => {
+        attachModalLogic(
+            ".contact-trigger",
+            "contact-modal",
+            "#close-contact-modal",
+        );
     });
 </script>
