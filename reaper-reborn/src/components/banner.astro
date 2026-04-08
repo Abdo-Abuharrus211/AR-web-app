@@ -7,16 +7,15 @@ import bannerImage from "../assets/images/pexels-tuesday-temptation-190692-37801
     <div class="banner container-fluid">
         <Image src={bannerImage} alt={"banner image"} />
         <div class="banner-text">
-            Bridge your Local library with your Spotify!
+            <!-- TODO: Style the span -->
+            Bridge your Local library with your <span
+                ><em> Spotify! </em>
+            </span>
         </div>
-    </div>
-    <small
-        >Art by <a
-            id="artist-link"
-            href="https://www.pexels.com/photo/purple-and-blue-light-digital-wallpaper-3780104/"
-            >Tuesday Temptation</a
-        ></small
-    >
+    </div>Art by <a
+        id="artist-link"
+        href="https://www.pexels.com/photo/purple-and-blue-light-digital-wallpaper-3780104/"
+        >Tuesday Temptation</a>
 </header>
 
 <style>
@@ -36,15 +35,15 @@ import bannerImage from "../assets/images/pexels-tuesday-temptation-190692-37801
 
     .banner .banner-text {
         position: absolute;
-        top: 60%;
+        top: 50%;
         left: 40%;
-        transform: translate(-20%, -50%);
+        transform: translate(-50%, -50%);
         color: var(--text);
-        font-size: 2.5rem;
-        text-align: center;
+        font-size: calc(var(--spacing5));
+        line-height: 1.5;
+        /* text-align: center; */
     }
 
-    /* Artist link styles preserved */
     #artist-link {
         color: var(--text);
         font-weight: 600;
