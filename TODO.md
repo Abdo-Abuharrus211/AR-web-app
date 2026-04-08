@@ -9,7 +9,7 @@
     - [ ] Reduce the space between the `IntroSection` and the `UserBox`
     - [ ] Fix the layouts for About page incl. the image
     - [ ] Tighten and clean up the UI
-    - [ ] Test global CSS variables (`--text`, `--accent`, `--secondary`) for contrast and clarity.
+    - [X] Test global CSS variables (`--text`, `--accent`, `--secondary`) for contrast and clarity.
     - [ ] Modernize the color palette for better UI aesthetics.
 - **Fix Modal Logic:**
     - [X] Implement missing `privacyAndTerms.js` to handle Privacy/Terms modals.
@@ -24,7 +24,7 @@
     - [ ] Implement token revocation.
     - [ ] Ensure `localStorage`/`session` clearance upon logout.
 - **Navbar Updates:**
-    - [ ] Remove bullet list styling from navbar links.
+    - [X] Remove bullet list styling from navbar links.
 - **Final Assembly and QA:**
     - [ ] Check media imports and static asset references.
     - [ ] Test external dependencies for functionality (FontAwesome, Google Fonts).
