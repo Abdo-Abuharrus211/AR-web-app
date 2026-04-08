@@ -5,63 +5,71 @@
 <dialog id="privacy-policy-modal" class="hidden" open>
     <article>
         <header>
-            <button id="close-privacy-modal" aria-label="Close"></button>
             <h2>Privacy Policy for AudioReaper</h2>
-            <p>Last Updated: 02/07/2024</p>
+            <button id="close-privacy-modal" aria-label="Close">X</button>
         </header>
-        <ol type="1">
-            <li>
-                <span><b>Introduction</b></span><br />
-                Welcome to AudioReaper. This privacy policy explains our practices
-                concerning the privacy of our visitors and users when using our software,
-                which is designed as a personal project to showcase, grow, and improve
-                skills in software development.
-            </li>
-            <li>
-                <span><b>Information We Collect Temporarily</b></span><br />
-                AudioReaper temporarily stores data such as access tokens and usernames
-                in the backend session to facilitate the current user session. This
-                data is strictly used to enhance user experience and is not used
-                for any other purposes. All session data is wiped automatically at
-                the end of the session and is not permanently stored anywhere.
-            </li>
-            <li>
-                <span><b>Spotify API Interaction</b></span><br />
-                AudioReaper uses the Spotify API to access and modify your Spotify
-                playlists, but only in ways you have authorized. This may include
-                reading your playlists and adding new songs to them. We do not access
-                or alter any other aspects of your Spotify account. Your interaction
-                with Spotify through our application is governed by the permissions
-                you grant during the login process with Spotify.
-            </li>
-            <li>
-                <span><b>Use of Your Information</b></span><br />
-                Since no personal information is permanently collected or stored,
-                there is no further use of such information beyond the current session.
-            </li>
-            <li>
-                <span><b>Data Protection</b></span><br />
-                We take precautions to ensure that any operations within the software
-                and any temporary storage of data do not compromise the security
-                of your device or any information therein.
-            </li>
-            <li>
-                <span><b>Changes to Our Privacy Policy</b></span><br />
-                We may update this Privacy Policy from time to time. We encourage
-                you to review this Privacy Policy periodically.
-            </li>
-            <li>
-                <span><b>Contact Us</b></span><br />
-                If you have any questions about this Privacy Policy, please contact
-                us.
-            </li>
-        </ol>
+        <p>Last Updated: 02/07/2024</p>
+        <div>
+            <ol type="1">
+                <li>
+                    <span><b>Introduction</b></span><br />
+                    Welcome to AudioReaper. This privacy policy explains our practices
+                    concerning the privacy of our visitors and users when using our
+                    software, which is designed as a personal project to showcase,
+                    grow, and improve skills in software development.
+                </li>
+                <li>
+                    <span><b>Information We Collect Temporarily</b></span><br />
+                    AudioReaper temporarily stores data such as access tokens and
+                    usernames in the backend session to facilitate the current user
+                    session. This data is strictly used to enhance user experience
+                    and is not used for any other purposes. All session data is wiped
+                    automatically at the end of the session and is not permanently
+                    stored anywhere.
+                </li>
+                <li>
+                    <span><b>Spotify API Interaction</b></span><br />
+                    AudioReaper uses the Spotify API to access and modify your Spotify
+                    playlists, but only in ways you have authorized. This may include
+                    reading your playlists and adding new songs to them. We do not
+                    access or alter any other aspects of your Spotify account. Your
+                    interaction with Spotify through our application is governed by
+                    the permissions you grant during the login process with Spotify.
+                </li>
+                <li>
+                    <span><b>Use of Your Information</b></span><br />
+                    Since no personal information is permanently collected or stored,
+                    there is no further use of such information beyond the current
+                    session.
+                </li>
+                <li>
+                    <span><b>Data Protection</b></span><br />
+                    We take precautions to ensure that any operations within the software
+                    and any temporary storage of data do not compromise the security
+                    of your device or any information therein.
+                </li>
+                <li>
+                    <span><b>Changes to Our Privacy Policy</b></span><br />
+                    We may update this Privacy Policy from time to time. We encourage
+                    you to review this Privacy Policy periodically.
+                </li>
+                <li>
+                    <span><b>Contact Us</b></span><br />
+                    If you have any questions about this Privacy Policy, please contact
+                    us.
+                </li>
+            </ol>
+        </div>
     </article>
 </dialog>
 <script>
-  import { attachModalLogic } from '../scripts/modalHandler';
-  
-  document.addEventListener('DOMContentLoaded', () => {
-    attachModalLogic('.policy-trigger', 'privacy-policy-modal', '#close-privacy-modal');
-  });
+    import { attachModalLogic } from "../scripts/modalHandler";
+
+    document.addEventListener("DOMContentLoaded", () => {
+        attachModalLogic(
+            ".policy-trigger",
+            "privacy-policy-modal",
+            "#close-privacy-modal",
+        );
+    });
 </script>
