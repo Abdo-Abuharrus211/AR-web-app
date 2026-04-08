@@ -1,13 +1,22 @@
 # FULL PROJECT OVERHAUL
+- **UI Fixes**
+    - [ ] Add color shades to this style system
+    - [ ] Buttons, fix them
+    - [ ] Navbar alignemnt, links should be right aligned
+    - [ ] Make navbar sticky
+    - [ ] Remove banner?
+    - [ ] Adjust `IntroSection` menu text alignment
+    - [ ] Reduce the space between the `IntroSection` and the `UserBox`
+    - [ ] Fix the layouts for About page incl. the image
+    - [ ] Tighten and clean up the UI
+    - [ ] Test global CSS variables (`--text`, `--accent`, `--secondary`) for contrast and clarity.
+    - [ ] Modernize the color palette for better UI aesthetics.
 - **Fix Modal Logic:**
-    - [ ] Implement missing `privacyAndTerms.js` to handle Privacy/Terms modals.
-    - [ ] Tie modals to triggers in `navbar.astro` and `footer.astro`.
+    - [X] Implement missing `privacyAndTerms.js` to handle Privacy/Terms modals.
+    - [X] Tie modals to triggers in `navbar.astro` and `footer.astro`.
 - **Client-Side Functionality:**
     - [ ] Update and verify scripts: `fileIO.ts`, `index.ts`, `checkLoginStatus`.
     - [ ] Ensure secure session logic (`userBox`).
-- **Styling:**
-    - [ ] Test global CSS variables (`--text`, `--accent`, `--secondary`) for contrast and clarity.
-    - [ ] Modernize the color palette for better UI aesthetics.
 - **Responsive Design Testing:**
     - [ ] Ensure responsive behavior for `navbar.astro`.
     - [ ] Ensure responsive behavior for `footer.astro`.
@@ -20,5 +29,3 @@
     - [ ] Check media imports and static asset references.
     - [ ] Test external dependencies for functionality (FontAwesome, Google Fonts).
     - [ ] Complete full-application walkthrough for cohesive behavior.
-- **CLEAN UP AND CONTAINERIZE FLASK BACKEND**
- 	- [ ] 
