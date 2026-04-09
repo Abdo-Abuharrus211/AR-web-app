@@ -4,27 +4,26 @@ import bannerImage from "../assets/images/pexels-tuesday-temptation-190692-37801
 import IntroSection from "./introSection.astro";
 ---
 
-<header style="padding-top: 0;">
-    <div class="banner container-fluid">
+<div class="container-fluid">
+    <section>
         <!-- TODO: replace the banner background with and style the span -->
         <!-- <Image src={bannerImage} alt={"banner image"} /> -->
-        <div class="banner-text">
-            <p>
+        <div>
+            <h2 class="greeting">
                 Bridge your Local library with your <span
                     ><em> Spotify! </em>
                 </span>
-            </p>
+            </h2>
         </div>
-
-        <IntroSection />
-    </div>
+    </section>
+    <IntroSection />
     <!-- <p>
         Art by <a
             id="artist-link"
             href="https://www.pexels.com/photo/purple-and-blue-light-digital-wallpaper-3780104/"
             >Tuesday Temptation</a>
     </p> -->
-</header>
+</div>
 
 <style>
     .banner {
@@ -44,8 +43,14 @@ import IntroSection from "./introSection.astro";
     .banner .banner-text {
         position: absolute;
         top: 20%;
-        left: 40%;
+        left: 50%;
         transform: translate(-50%, -50%);
+        color: var(--text);
+        font-size: calc(var(--spacing5));
+        line-height: 1.5;
+        text-align: center;
+    }
+    .greeting {
         color: var(--text);
         font-size: calc(var(--spacing5));
         line-height: 1.5;
