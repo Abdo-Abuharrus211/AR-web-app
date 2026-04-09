@@ -1,21 +1,29 @@
 ---
 import Image from "astro/components/Image.astro";
 import bannerImage from "../assets/images/pexels-tuesday-temptation-190692-3780104.jpg";
+import IntroSection from "./introSection.astro";
 ---
 
 <header style="padding-top: 0;">
     <div class="banner container-fluid">
-        <Image src={bannerImage} alt={"banner image"} />
+        <!-- TODO: replace the banner background with and style the span -->
+        <!-- <Image src={bannerImage} alt={"banner image"} /> -->
         <div class="banner-text">
-            <!-- TODO: Style the span -->
-            Bridge your Local library with your <span
-                ><em> Spotify! </em>
-            </span>
+            <p>
+                Bridge your Local library with your <span
+                    ><em> Spotify! </em>
+                </span>
+            </p>
         </div>
-    </div>Art by <a
-        id="artist-link"
-        href="https://www.pexels.com/photo/purple-and-blue-light-digital-wallpaper-3780104/"
-        >Tuesday Temptation</a>
+
+        <IntroSection />
+    </div>
+    <!-- <p>
+        Art by <a
+            id="artist-link"
+            href="https://www.pexels.com/photo/purple-and-blue-light-digital-wallpaper-3780104/"
+            >Tuesday Temptation</a>
+    </p> -->
 </header>
 
 <style>
@@ -35,7 +43,7 @@ import bannerImage from "../assets/images/pexels-tuesday-temptation-190692-37801
 
     .banner .banner-text {
         position: absolute;
-        top: 50%;
+        top: 20%;
         left: 40%;
         transform: translate(-50%, -50%);
         color: var(--text);
