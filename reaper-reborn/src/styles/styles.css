@@ -106,12 +106,6 @@ button {
     cursor: help;
 }
 
-/* Typography helpers */
-.monoton-regular {
-    font-family: "Monoton", sans-serif;
-    font-weight: 400;
-}
-
 /* Elements */
 header {
     padding: 0;
@@ -119,7 +113,6 @@ header {
     margin: 0;
 }
 
-/* TODO: Change the positioning here... */
 nav {
     margin: 0 0 var(--spacing6);
     position: sticky;
@@ -128,17 +121,10 @@ nav {
     background-color: var(--subbackground);
     padding: var(--spacing3);
 
-    /* position: absolute;
-    top: 5%;
-    width: 90%;
-    color: var(--text);
-    text-align: center;
-    z-index: 10; */
 }
 
 nav a {
     margin: 0 2%;
-    color: #F5F7F8;
     text-decoration: none;
     opacity: 80%;
 }
@@ -151,14 +137,12 @@ footer {
     margin-top: var(--spacing5);
 }
 
-
 /* TODO:  rename this shared style... */
 #instructions,
 #failedTracks {
     margin-right: 30%;
     background-color: rgba(0, 0, 0, 0.3);
 }
-
 
 /* Utility Classes */
 .hidden {
@@ -174,7 +158,6 @@ footer {
     padding: var(--page-padding);
     margin: 3% auto 0;
 }
-
 
 .container {
     margin: var(--spacing3) auto;
@@ -232,7 +215,6 @@ footer {
 }
 
 /* Animations */
-
 @keyframes l2 {
     0% {
         background-size: 20% 100%, 20% 100%, 20% 100%
@@ -336,7 +318,6 @@ dialog textarea:focus {
 }
 
 /* Responsiveness */
-
 @media screen and (max-width: 768px) {
     .main {
         flex-direction: column;
