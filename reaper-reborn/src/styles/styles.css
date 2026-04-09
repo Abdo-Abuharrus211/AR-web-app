@@ -116,7 +116,7 @@ header {
 
 /* TODO: Change the positioning here... */
 nav {
-    margin: var(--spacing2) 0;
+    margin: var(--spacing2) 0 var(--spacing7);
     /* position: absolute;
     top: 5%;
     width: 90%;
