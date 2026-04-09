@@ -12,9 +12,11 @@ html {
 }
 
 :root {
-    --text: #dfd7fe;
-    --background: #040112;
-    --primary: #896efa;
+    --text: hsl(255, 77%, 95%);
+    --subtext: hsl(253, 78%, 60%);;
+    --background: hsl(255, 77%, 5%);
+    --subbackground: hsl(255, 77%, 7%);
+    --primary: hsl(256, 77%, 40%);
     --secondary: #a90585;
     --accent: #f82585;
 
@@ -35,6 +37,9 @@ html {
     --spacing8: 320px;
     --page-padding: 2%;
     --banner-height: 600px;
+    --successGreen: hsl(120, 48%, 67%);
+    --errorRed: hsl(6, 59%, 55%);
+    --focus: 2px solid lightblue;
 }
 
 body {
@@ -88,7 +93,7 @@ a:hover {
     color: var(--secondary);
 }
 
-button{
+button {
     font: var(--ff1);
     padding: var(--spacing1);
 }
@@ -116,7 +121,13 @@ header {
 
 /* TODO: Change the positioning here... */
 nav {
-    margin: var(--spacing2) 0 var(--spacing6);
+    margin: 0 0 var(--spacing6);
+    position: sticky;
+    top: 0dvh;
+    bottom: 80dvh;
+    background-color: var(--subbackground);
+    padding: var(--spacing3);
+
     /* position: absolute;
     top: 5%;
     width: 90%;
@@ -129,6 +140,7 @@ nav a {
     margin: 0 2%;
     color: #F5F7F8;
     text-decoration: none;
+    opacity: 80%;
 }
 
 
