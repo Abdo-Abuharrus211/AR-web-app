@@ -1,13 +1,17 @@
 ---
+import UserBox from "./userBox.astro";
+
 // import "../scripts/fileIO.ts";
 ---
 
-<div id="drop-zone" class="folder-not-added">
-    <p id="folder-name" class="hidden"></p>
-    <p>Drag and drop a folder or select</p>
-    <!-- Following ignore is for the webdirecory attribute -->
-    <!-- @ts-ignore -->
-    <input
+<section class="margin7">
+    <UserBox />
+    <div id="drop-zone" class="folder-not-added">
+        <p id="folder-name" class="hidden"></p>
+        <p>Drag and drop a folder or select</p>
+        <!-- Following ignore is for the webdirecory attribute -->
+        <!-- @ts-ignore -->
+        <input
         @ts-ignore
         type="file"
         id="folderInput"
@@ -16,43 +20,44 @@
         webkitdirectory
         directory
         style="display:none"
-    />
-    <button onclick="document.getElementById('folderInput').click();"
+        />
+        <button onclick="document.getElementById('folderInput').click();"
         >Browse...</button
-    >
-</div>
-<div class="container form-box">
-    <input
+        >
+    </div>
+    <div class="container flex-column form-box">
+        <input
         id="playlist-input"
         type="text"
         class="playlist-form"
         name="playlistName"
         placeholder="Playlist name..."
         aria-label="playlistName"
-    />
-    <button id="harvest-btn" class="outline" disabled="true">Harvest!</button>
-    <form>
-        <!-- loading animation -->
-        <dialog id="loadingIndicator" class="hidden" open>
-            <article class="center">
-                <h4>AudioReaper is processing your library!</h4>
-                <div class="loader"></div>
-            </article>
-        </dialog>
-        <dialog id="successIndicator" class="hidden" open>
-            <article>
-                <h3>Tracks added to Playlist!</h3>
-            </article>
-        </dialog>
-    </form>
-</div>
-
-<script src="../scripts/fileIO.ts"></script>
-
-<style>
-    #drop-zone {
-        color: var(--text);
-        margin: 2% 10%;
+        />
+        <button id="harvest-btn" class="outline" disabled="true">Harvest!</button>
+        <form>
+            <!-- loading animation -->
+            <dialog id="loadingIndicator" class="hidden" open>
+                <article class="center">
+                    <h4>AudioReaper is processing your library!</h4>
+                    <div class="loader"></div>
+                </article>
+            </dialog>
+            <dialog id="successIndicator" class="hidden" open>
+                <article>
+                    <h3>Tracks added to Playlist!</h3>
+                </article>
+            </dialog>
+        </form>
+    </div>
+</section>
+    
+    <script src="../scripts/fileIO.ts"></script>
+    
+    <style>
+        #drop-zone {
+            color: var(--text);
+            margin: 2% 10%;
         border-radius: 5px;
         padding: 20px;
         text-align: center;
