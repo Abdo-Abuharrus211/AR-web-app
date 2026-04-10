@@ -20,7 +20,6 @@ html {
     --secondary: #a90585;
     --accent: #f82585;
 
-    /* TODO: change the fonts... */
     --ff1: "Noto Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     --ff2: "Archivo", system-ui, sans-serif;
     --h1: 700 4rem/1.2em var(--ff2);
@@ -205,12 +204,6 @@ footer {
 
 .card{
     background-color: var(--subbackground);
-}
-
-/* TODO: review this class, do you really need it?*/
-.main {
-    padding: var(--page-padding);
-    margin: 3% auto 0;
 }
 
 .container {
