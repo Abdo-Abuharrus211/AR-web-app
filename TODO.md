@@ -5,7 +5,7 @@
     - [X] Navbar alignemnt, links should be right aligned
     - [X] Make navbar sticky
     - [X] Remove banner?
-    - [ ] Adjust `IntroSection` menu text alignment
+    - [X] Adjust `IntroSection` menu text alignment
     - [ ] Fix the layouts for About page incl. the image
     - [X] Tighten and clean up the UI
     - [X] Test global CSS variables (`--text`, `--accent`, `--secondary`) for contrast and clarity.
