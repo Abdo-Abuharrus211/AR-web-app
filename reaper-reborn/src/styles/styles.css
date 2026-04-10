@@ -40,6 +40,8 @@ html {
     --successGreen: hsl(120, 48%, 67%);
     --errorRed: hsl(6, 59%, 55%);
     --focus: 2px solid lightblue;
+    --spootf-green: hsl(141, 73%, 42%);
+    --spootf-green-hover: hsl(141, 76%, 48%);
 }
 
 body {
@@ -95,7 +97,56 @@ a:hover {
 
 button {
     font: var(--ff1);
-    padding: var(--spacing1);
+    padding: var(--spacing2) var(--spacing3);
+    background: var(--primary);
+    color: var(--text);
+    border: 2px solid var(--primary);
+    border-radius: var(--spacing2);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+button:hover {
+    background: var(--secondary);
+    border-color: var(--secondary);
+}
+
+button:disabled {
+    background: #444;
+    border-color: #444;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+button.outline {
+    background: transparent;
+    color: var(--primary);
+}
+
+button.outline:hover {
+    background: var(--primary);
+    color: var(--text);
+}
+
+button.contrast {
+    background: var(--spootf-green);
+    border-color: var(--spootf-green);
+    color: var(--text);
+}
+
+button.contrast:hover {
+    background: var(--spootf-green-hover);
+    border-color: var(--spootf-green-hover);
+}
+
+button.outline.contrast {
+    background: transparent;
+    color: var(--spootf-green);
+}
+
+button.outline.contrast:hover {
+    background: var(--spootf-green);
+    color: var(--text);
 }
 
 /* Tooltip rule */
