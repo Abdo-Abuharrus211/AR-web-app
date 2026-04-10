@@ -3,21 +3,23 @@ import spotifyLogo from "../assets/images/Spotify_Primary_Logo_RGB_Green.png";
 import Image from "astro/components/Image.astro";
 ---
 
-<div class="container center main">
-    <label
-        data-tooltip="AudioReaper needs your account info to add songs to your specified playlist."
-        for="login-btn"
-        id="login-label">Please log into Spotify.</label
-    >
-    <p id="user-name" class="hidden"></p>
-    <button id="login-btn" class="outline contrast login-button">
-        <Image src={spotifyLogo} alt alt="Spotify logo" />
-        Log in
-    </button>
-    <button id="logout-btn" class="outline contrast logout-button" hidden>
-        <Image src={spotifyLogo} alt alt="Spotify logo" />
-        Log Out
-    </button>
+<div class="container center">
+    <div class="flex column">
+        <label
+            data-tooltip="AudioReaper needs your account info to add songs to your specified playlist."
+            for="login-btn"
+            id="login-label">Please log into Spotify.</label
+        >
+        <p id="user-name" class="hidden"></p>
+        <button id="login-btn" class="outline contrast login-button">
+            <Image src={spotifyLogo} alt alt="Spotify logo" />
+            Log in
+        </button>
+        <button id="logout-btn" class="outline contrast logout-button" hidden>
+            <Image src={spotifyLogo} alt alt="Spotify logo" />
+            Log Out
+        </button>
+    </div>
 </div>
 
 <script>
@@ -63,30 +65,10 @@ import Image from "astro/components/Image.astro";
 </script>
 
 <style>
-    .login-button,
-    .logout-button {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        padding: 8px 16px;
-        font-size: 16px;
-        cursor: pointer;
-        border-radius: 4px;
-    }
-
-    .logout-button {
-        border-color: red;
-    }
-
     .login-button img,
     .logout-button img {
         width: 24px;
         height: auto;
-        margin-right: 8px;
-    }
-
-    .login-button:hover,
-    .logout-button:hover {
-        opacity: 0.8;
+        margin-right: var(--spacing2);
     }
 </style>
