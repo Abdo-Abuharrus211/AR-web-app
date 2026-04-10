@@ -1,14 +1,13 @@
 # FULL PROJECT OVERHAUL
 - **UI Fixes**
-    - [ ] Add color shades to this style system
+    - [X] Add color shades to this style system
     - [ ] Buttons, fix them
-    - [ ] Navbar alignemnt, links should be right aligned
-    - [ ] Make navbar sticky
-    - [ ] Remove banner?
+    - [X] Navbar alignemnt, links should be right aligned
+    - [X] Make navbar sticky
+    - [X] Remove banner?
     - [ ] Adjust `IntroSection` menu text alignment
-    - [ ] Reduce the space between the `IntroSection` and the `UserBox`
     - [ ] Fix the layouts for About page incl. the image
-    - [ ] Tighten and clean up the UI
+    - [X] Tighten and clean up the UI
     - [X] Test global CSS variables (`--text`, `--accent`, `--secondary`) for contrast and clarity.
     - [ ] Modernize the color palette for better UI aesthetics.
 - **Fix Modal Logic:**
