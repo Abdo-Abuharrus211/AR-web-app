@@ -1,7 +1,7 @@
 # FULL PROJECT OVERHAUL
 - **UI Fixes**
     - [X] Add color shades to this style system
-    - [ ] Buttons, fix them
+    - [X] Buttons, fix them
     - [X] Navbar alignemnt, links should be right aligned
     - [X] Make navbar sticky
     - [X] Remove banner?
@@ -9,13 +9,21 @@
     - [ ] Fix the layouts for About page incl. the image
     - [X] Tighten and clean up the UI
     - [X] Test global CSS variables (`--text`, `--accent`, `--secondary`) for contrast and clarity.
-    - [ ] Modernize the color palette for better UI aesthetics.
+    - [X] Modernize the color palette for better UI aesthetics.
 - **Fix Modal Logic:**
     - [X] Implement missing `privacyAndTerms.js` to handle Privacy/Terms modals.
     - [X] Tie modals to triggers in `navbar.astro` and `footer.astro`.
 - **Client-Side Functionality:**
     - [ ] Update and verify scripts: `fileIO.ts`, `index.ts`, `checkLoginStatus`.
     - [ ] Ensure secure session logic (`userBox`).
+- **TypeScript/JavaScript Issues (Critical):**
+    - [ ] Add `jsmediatags` package to dependencies (currently relies on CDN only)
+    - [ ] Fix import paths in `metadata.ts` - remove `.js` extensions from imports
+    - [ ] Fix `constants.ts` - replace `process.env` with browser-safe alternatives
+    - [ ] Import `privacyAndTerms.ts` in the app (currently not loaded anywhere)
+    - [ ] Add missing DOM element `#success-message` to harvestBox or remove reference
+    - [ ] Consolidate modal logic - remove duplicate handlers in `modalHandler.ts` and `privacyAndTerms.ts`
+    - [ ] Remove unused `getAddedResults()` function from metadata.ts
 - **Responsive Design Testing:**
     - [ ] Ensure responsive behavior for `navbar.astro`.
     - [ ] Ensure responsive behavior for `footer.astro`.
