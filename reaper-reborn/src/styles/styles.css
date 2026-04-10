@@ -141,7 +141,6 @@ footer {
 #instructions,
 #failedTracks {
     margin-right: 30%;
-    background-color: rgba(0, 0, 0, 0.3);
 }
 
 /* Utility Classes */
@@ -151,6 +150,10 @@ footer {
 
 .center {
     text-align: center;
+}
+
+.card{
+    background-color: var(--subbackground);
 }
 
 /* TODO: review this class, do you really need it?*/
