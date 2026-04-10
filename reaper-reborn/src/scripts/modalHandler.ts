@@ -10,7 +10,7 @@ export function openModal(modalId: string) {
   if(currentModal !== ""){
     closeModal(currentModal);
   }
-  const modal: HTMLDialogElement = document.getElementById(modalId);
+  const modal = document.getElementById(modalId) as HTMLDialogElement;
   if (modal) {
     modal.classList.remove('hidden');
     modal.open = true;
@@ -29,7 +29,7 @@ export function openModal(modalId: string) {
  * @param {string} modalId - ID of the modal to close.
  */
 export function closeModal(modalId: string) {
-  const modal: HTMLDialogElement = document.getElementById(modalId);
+  const modal = document.getElementById(modalId) as HTMLDialogElement;
   if (modal) {
     modal.classList.add('hidden');
     modal.open = false;
