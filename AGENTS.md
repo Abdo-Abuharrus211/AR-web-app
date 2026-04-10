@@ -29,7 +29,7 @@ npm run astro    # Run Astro CLI directly
 
 ## Task Tracking
 
-See `reaper-reborn/TODO.md` for current overhaul tasks including:
+See `TODO.md` (in project root) for current overhaul tasks including:
 - Modal logic (privacy/terms)
 - Client-side auth/session handling
 - Responsive navbar/footer
