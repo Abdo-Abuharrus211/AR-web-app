@@ -1,20 +1,20 @@
 let metadataArray = [];
-let fileNames = [];
-let folderCheck = false;
-let filesToRead = 0;
-let filesRead = 0;
-let mp3FilesToRead = 0;
+let fileNames: string[] = [];
+let folderCheck: boolean = false;
+let filesToRead: number = 0;
+let filesRead: number = 0;
+let mp3FilesToRead: number = 0;
 let metadataPromise;
-let folderName;
+let folderName: string;
 
 //Event listeners
-document.getElementById('drop-zone').addEventListener('drop', dropHandler);
-document.getElementById('drop-zone').addEventListener('dragover', dragOverHandler);
-document.getElementById('folderInput').addEventListener('change', function (event) {
-    handleFiles(event.target.files);
+document.getElementById('drop-zone')?.addEventListener('drop', dropHandler);
+document.getElementById('drop-zone')?.addEventListener('dragover', dragOverHandler);
+document.getElementById('folderInput')?.addEventListener('change', function (event) {
+    handleFiles(event.target?.files);
     // Get the name of the selected folder
-    if (event.target.files.length > 0) {
-        folderName = event.target.files[0].webkitRelativePath.split('/')[0];
+    if (event.target?.files.length > 0) {
+        folderName = event.target?.files[0].webkitRelativePath.split('/')[0];
     }
 });
 
@@ -139,17 +139,21 @@ function checkMp3FilesRead() {
 
 function indicateFolderAdded() {
     var drop = document.getElementById('drop-zone');
-    drop.classList.replace('folder-not-added', 'folder-added');
-    drop.classList.replace('wrong-file-types', 'folder-added');
+    drop?.classList.replace('folder-not-added', 'folder-added');
+    drop?.classList.replace('wrong-file-types', 'folder-added');
     var folderNameElement = document.getElementById('folder-name');
-    folderNameElement.textContent = "Selected folder: " + folderName;
-    folderNameElement.classList.remove('hidden');
+    if (folderNameElement) {
+        folderNameElement.textContent = "Selected folder: " + folderName;
+        folderNameElement.classList.remove('hidden');
+    } else {
+        console.error("Cannot find element for folder name!");
+    }
 }
 
 function indicateWrongFileTypes() {
     var drop = document.getElementById('drop-zone');
-    drop.classList.replace('folder-added', 'folder-not-added');
-    drop.classList.replace('folder-not-added', 'wrong-file-types');
+    drop?.classList.replace('folder-added', 'folder-not-added');
+    drop?.classList.replace('folder-not-added', 'wrong-file-types');
     //TODO: pop-up stating a folder with wrong file types and to add a folder with MP3s
 
 }
