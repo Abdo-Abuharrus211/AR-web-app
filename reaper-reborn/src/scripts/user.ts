@@ -3,22 +3,23 @@ import { APIBaseURL } from "../constants";
 function checkLoginStatus() {
     let isLoggedIn = sessionStorage.getItem('loggedIn');
     let name = sessionStorage.getItem('username');
+    let label = document.getElementById('login-label');
     if (isLoggedIn && !name) {
         getUsername();
     }
     if (isLoggedIn) {
-        document.getElementById("logout-btn").removeAttribute("hidden");
-        document.getElementById("login-btn").setAttribute("hidden", "hidden");
-        document.getElementById('login-label').innerHTML = `Logged in as: <span style="color: var(--accent); font-weight: bold;">${name}</span>`;
+        document.getElementById("logout-btn")?.removeAttribute("hidden");
+        document.getElementById("login-btn")?.setAttribute("hidden", "hidden");
+        if (label) label.innerHTML = `Logged in as: <span style="color: var(--accent); font-weight: bold;">${name}</span>`;
     } else {
-        document.getElementById("logout-btn").setAttribute("hidden", "hidden");
-        document.getElementById("login-btn").removeAttribute("hidden");
-        document.getElementById('login-label').innerHTML = 'Please log into Spotify.';
+        document.getElementById("logout-btn")?.setAttribute("hidden", "hidden");
+        document.getElementById("login-btn")?.removeAttribute("hidden");
+        if (label) label.innerHTML = 'Please log into Spotify.';
     }
 }
 
 
-async function exchangeTokenForData(code) {
+async function exchangeTokenForData(code: string) {
     try {
         const response = await fetch(`${APIBaseURL}/exchangeCodeSession/${code}`, {
             method: 'POST',
@@ -59,4 +60,4 @@ async function getUsername() {
     }
 }
 
-export {checkLoginStatus , exchangeTokenForData}; 
+export { checkLoginStatus, exchangeTokenForData }; 
