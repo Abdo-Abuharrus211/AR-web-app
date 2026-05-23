@@ -1,22 +1,11 @@
-FROM node:20-alpine AS builder
-
+FROM node:lts AS build
 WORKDIR /app
-
-COPY package.json package-lock.json ./
-RUN npm ci
-
+COPY package*.json ./
+RUN npm install
 COPY . .
 RUN npm run build
 
-FROM node:20-alpine
-
-WORKDIR /app
-
-COPY --from=builder /app/dist ./dist
-COPY --from=builder /app/package.json ./package.json
-COPY --from=builder /app/package-lock.json ./package-lock.json
-COPY --from=builder /app/node_modules ./node_modules
-
-EXPOSE 4321
-
-CMD ["npm", "run", "preview"]
+FROM nginx:alpine AS runtime
+COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
+COPY --from=build /app/dist /usr/share/nginx/html
+EXPOSE 8080
